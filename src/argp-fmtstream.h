@@ -25,9 +25,16 @@
 #ifndef _ARGP_FMTSTREAM_H
 #define _ARGP_FMTSTREAM_H
 
+#ifdef HAVE_CONFIG_H
+# include <config.h>
+#endif
+
 #include <stdio.h>
 #include <string.h>
-#include <unistd.h>
+#if defined(HAVE_UNISTD_H) && HAVE_UNISTD_H
+# include <unistd.h>
+#endif
+#include "argp-compat.h"
 
 #ifndef __attribute__
 /* This feature is available in gcc versions 2.5 and later.  */
