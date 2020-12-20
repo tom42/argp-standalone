@@ -22,7 +22,6 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#include "argp-getopt.h"
 #include <limits.h>
 
 #define __need_error_t
