@@ -21,11 +21,20 @@
 # include <config.h>
 #endif
 
-#include <sysexits.h>
+#if defined(HAVE_SYSEXITS_H) && HAVE_SYSEXITS_H
+# include <sysexits.h>
+#else
+# include <stdlib.h>
+#endif
 
 #include "argp.h"
 
 /* The exit status that argp will use when exiting due to a parsing error.
    If not defined or set by the user program, this defaults to EX_USAGE from
    <sysexits.h>.  */
-error_t argp_err_exit_status = EX_USAGE;
+error_t argp_err_exit_status =
+#if defined(HAVE_SYSEXITS_H) && HAVE_SYSEXITS_H
+  EX_USAGE;
+#else
+  EXIT_FAILURE;
+#endif
