@@ -17,6 +17,10 @@
    License along with the GNU C Library; if not, see
    <http://www.gnu.org/licenses/>.  */
 
+#ifdef HAVE_CONFIG_H
+# include <config.h>
+#endif
+
 #if !_LIBC
 /* This code is written for inclusion in gnu-libc, and uses names in the
    namespace reserved for libc.  If we're not compiling in libc, define those
@@ -76,10 +80,18 @@
 #undef __argp_fmtstream_wmargin
 #define __argp_fmtstream_wmargin argp_fmtstream_wmargin
 
-#include "mempcpy.h"
-#include "strcase.h"
-#include "strchrnul.h"
-#include "strndup.h"
+#if defined(HAVE_MEMPCPY_H) && HAVE_MEMPCPY_H
+# include "mempcpy.h"
+#endif
+#if defined(HAVE_STRCASE_H) && HAVE_STRCASE_H
+# include "strcase.h"
+#endif
+#if defined(HAVE_STRCHRNUL_H) && HAVE_STRCHRNUL_H
+# include "strchrnul.h"
+#endif
+#if defined(HAVE_STRNDUP_H) && HAVE_STRNDUP_H
+# include "strndup.h"
+#endif
 
 /* normal libc functions we call */
 #undef __flockfile
