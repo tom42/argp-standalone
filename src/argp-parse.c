@@ -38,10 +38,12 @@ char *alloca ();
 
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
+#if defined(HAVE_UNISTD_H) && HAVE_UNISTD_H
+# include <unistd.h>
+#endif
 #include <limits.h>
-#include <getopt.h>
-#include <getopt_int.h>
+#include "argp-getopt.h"
+#include "argp-getopt_int.h"
 
 #ifndef _
 /* This is for other GNU distributions with internationalized messages.
@@ -506,9 +508,19 @@ parser_init (struct parser *parser, const struct argp *argp,
     return ENOMEM;
 
   parser->groups = parser->storage;
+#if defined(_MSC_VER) && defined(WIN32)
+  /* Fix for compilers that don't support void pointer arithmetics. */
+  {
+    char* p = parser->storage;
+    parser->child_inputs = p + GLEN;
+    parser->long_opts = p + GLEN + CLEN;
+    parser->short_opts = p + GLEN + CLEN + LLEN;
+  }
+#else
   parser->child_inputs = parser->storage + GLEN;
   parser->long_opts = parser->storage + GLEN + CLEN;
   parser->short_opts = parser->storage + GLEN + CLEN + LLEN;
+#endif
   parser->opt_data = opt_data;
 
   memset (parser->child_inputs, 0, szs.num_child_inputs * sizeof (void *));

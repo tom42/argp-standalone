@@ -1,6 +1,7 @@
 * Consider starting all over again (err...really?)
   * I think fixing all these warnings is pointless: they appear to be benign,
     and we have no clue what we're screwing up by having them...
+* MSVC: disable warnings about converting from __int64 to int and the like, but only if we are not the main project
 * __argp_short_program_name: there is that warning in there (gcc only)
 * Cygwin: should fix warnings about conflicting declarations of getopt stuff, caused by including unistd.h which provide both sleep() and getopt()
 * Add LGPL blurb to
