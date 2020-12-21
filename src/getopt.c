@@ -68,8 +68,9 @@
 #ifdef _LIBC
 # include <libintl.h>
 #else
-# include "gettext.h"
-# define _(msgid) gettext (msgid)
+/*# include "gettext.h"
+# define _(msgid) gettext (msgid)*/
+# define _(msgid) msgid
 #endif
 
 #if defined _LIBC
@@ -94,8 +95,8 @@
    GNU application programs can use a third alternative mode in which
    they can distinguish the relative order of options and other arguments.  */
 
-#include "getopt.h"
-#include "getopt_int.h"
+#include "argp-getopt.h"
+#include "argp-getopt_int.h"
 
 /* For communication from `getopt' to the caller.
    When `getopt' finds an option that takes an argument,
