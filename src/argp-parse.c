@@ -28,6 +28,8 @@
 # else
 #  ifdef _AIX
 #pragma alloca
+#  elif defined(_MSC_VER) && defined(WIN32)
+#   define alloca _alloca
 #  else
 #   ifndef alloca /* predefined by HP cc +Olibcalls */
 char *alloca ();
@@ -66,6 +68,7 @@ char *alloca ();
 
 #include "argp.h"
 #include "argp-namefrob.h"
+#include "argp-compat.h"
 
 /* Getopt return values.  */
 #define KEY_END (-1)		/* The end of the options.  */
@@ -512,9 +515,9 @@ parser_init (struct parser *parser, const struct argp *argp,
   /* Fix for compilers that don't support void pointer arithmetics. */
   {
     char* p = parser->storage;
-    parser->child_inputs = p + GLEN;
-    parser->long_opts = p + GLEN + CLEN;
-    parser->short_opts = p + GLEN + CLEN + LLEN;
+    parser->child_inputs = (void*)(p + GLEN);
+    parser->long_opts = (void*)(p + GLEN + CLEN);
+    parser->short_opts = (void*)(p + GLEN + CLEN + LLEN);
   }
 #else
   parser->child_inputs = parser->storage + GLEN;
