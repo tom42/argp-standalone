@@ -1866,7 +1866,7 @@ __argp_failure (const struct argp_state *state, int status, int errnum,
 #else
 	      putc_unlocked (':', stream);
 	      putc_unlocked (' ', stream);
-# ifdef HAVE_STRERROR_R
+# if defined(HAVE_STRERROR_R) && HAVE_STRERROR_R
 	      fputs (__strerror_r (errnum, buf, sizeof (buf)), stream);
 # else
 	      fputs (strerror (errnum), stream);
@@ -1874,9 +1874,11 @@ __argp_failure (const struct argp_state *state, int status, int errnum,
 #endif
 	    }
 
+#ifdef USE_IN_LIBIO
 	  if (_IO_fwide (stream, 0) > 0)
 	    putwc_unlocked (L'\n', stream);
 	  else
+#endif
 	    putc_unlocked ('\n', stream);
 
 #if _LIBC || (HAVE_FLOCKFILE && HAVE_FUNLOCKFILE)
