@@ -88,13 +88,9 @@ static struct argp argp1 =
   };
 
 
-static int
-do_test (void)
+int
+main (void)
 {
   argp_help (&argp1, stdout, ARGP_HELP_LONG, (char *) "tst-argp2");
   return 0;
 }
-
-
-#define TEST_FUNCTION do_test ()
-#include "../test-skeleton.c"

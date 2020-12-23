@@ -18,8 +18,8 @@ static struct argp argp =
 
 static int cnt;
 
-static int
-do_test (int argc, char *argv[])
+int
+main (int argc, char *argv[])
 {
   int remaining;
   argp_parse (&argp, argc, argv, 0, &remaining, NULL);
@@ -50,6 +50,3 @@ parse_opt (int key, char *arg, struct argp_state *state)
   }
   return 0;
 }
-
-#define TEST_FUNCTION do_test (argc, argv)
-#include "../test-skeleton.c"

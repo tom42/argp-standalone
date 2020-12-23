@@ -92,8 +92,8 @@ static struct argp argp =
 };
 
 
-static int
-do_test (void)
+int
+main (void)
 {
   int argc = 2;
   char *argv[3] = { (char *) "tst-argp1", (char *) "--help", NULL };
@@ -112,6 +112,3 @@ parse_opt (int key, char *arg, struct argp_state *state)
 {
   return ARGP_ERR_UNKNOWN;
 }
-
-#define TEST_FUNCTION do_test ()
-#include "../test-skeleton.c"

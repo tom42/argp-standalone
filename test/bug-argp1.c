@@ -14,13 +14,10 @@ static struct argp test_argp =
 };
 
 
-static int
-do_test (int argc, char *argv[])
+int
+main (int argc, char *argv[])
 {
   int i;
   argp_parse (&test_argp, argc, argv, 0, &i, NULL);
   return 0;
 }
-
-#define TEST_FUNCTION do_test (argc, argv)
-#include "../test-skeleton.c"
