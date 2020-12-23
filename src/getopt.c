@@ -46,6 +46,7 @@ char* alloca();
 # endif
 #endif
 
+#include <stdlib.h>
 #include <stdio.h>
 
 /* Comment out all this code if we are using the GNU C Library, and are not
