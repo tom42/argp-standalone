@@ -23,6 +23,7 @@
 #if defined(_MSC_VER) && defined(WIN32)
 # include <Windows.h>
 #endif
+#include <stddef.h>
 
 #ifdef HAVE_CONFIG_H
 # include "config.h"
