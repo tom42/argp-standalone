@@ -37,7 +37,7 @@ check_symbol_exists(strerror_r string.h HAVE_DECL_STRERROR_R)
 check_symbol_exists(strerror string.h HAVE_DECL_STRERROR)
 
 # Check for miscellaneous functions
-check_function_exists(asprintf HAVE_ASPRINTF)
+check_symbol_exists(asprintf stdio.h HAVE_ASPRINTF)
 check_function_exists(mempcpy HAVE_MEMPCPY)
 check_function_exists(random HAVE_RANDOM)
 check_function_exists(sleep HAVE_SLEEP)
