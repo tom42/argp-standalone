@@ -26,6 +26,40 @@
 #include <string.h>
 #include <argp.h>
 
+/*
+ * Implementation of random() for systems that don't have it.
+ * Suitable for test purposes only, not for production code.
+ */
+#if defined(HAVE_RANDOM) && !HAVE_RANDOM
+int random(void)
+{
+  return rand();
+}
+#endif
+
+/*
+ * Implementation of asprintf() for systems that don't have it.
+ * Suitable for test purposes only, not for production code.
+ */
+#if defined(HAVE_ASPRINTF) && ! HAVE_ASPRINTF
+#include <stdarg.h>
+void asprintf(char** strp, const char* fmt, ...)
+{
+  const size_t bufsize = 1024;
+  va_list ap;
+  va_start(ap, fmt);
+
+  /* Since this is test code we don't bother checking whether malloc returns 0. */
+  *strp = malloc(bufsize);
+
+  /* Format text and ensure it is terminated in any case. */
+  vsnprintf(*strp, bufsize, fmt, ap);
+  (*strp)[bufsize - 1] = 0;
+
+  va_end(ap);
+}
+#endif
+
 const char *argp_program_version = "argp-test 1.0";
 
 struct argp_option sub_options[] =
