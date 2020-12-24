@@ -41,7 +41,11 @@ check_symbol_exists(asprintf stdio.h HAVE_ASPRINTF)
 check_symbol_exists(mempcpy string.h HAVE_MEMPCPY)
 check_symbol_exists(random stdlib.h HAVE_RANDOM)
 check_symbol_exists(sleep unistd.h HAVE_SLEEP)
-check_function_exists(strcasecmp HAVE_STRCASECMP)
+
+# strcasecmp should be in strings.h, but the argp source appears to expect it
+# in string.h, so we probe for that (strings.h isn't included anywhere).
+check_symbol_exists(strcasecmp string.h HAVE_STRCASECMP)
+
 check_function_exists(strchrnul HAVE_STRCHRNUL)
 check_function_exists(strndup HAVE_STRNDUP)
 
