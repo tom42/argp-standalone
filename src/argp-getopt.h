@@ -48,6 +48,14 @@
 extern "C" {
 #endif
 
+/*
+ * The following declarations may conflict with declarations from unistd.h,
+ * e.g. on Cygwin where the declarations from unistd.h are dllimports.
+ * Since getopt itself compiles without these declarations and argp-standalone
+ * only provides argp but not getopt to its clients we simply remove these
+ * declarations.
+ */
+#if 0
 /* For communication from `getopt' to the caller.
    When `getopt' finds an option that takes an argument,
    the argument value is returned here.
@@ -78,6 +86,7 @@ extern int opterr;
 /* Set to an option character which was unrecognized.  */
 
 extern int optopt;
+#endif
 
 #ifndef __need_getopt
 /* Describe the long-named options requested by the application.
