@@ -1,8 +1,11 @@
 * Replace check_function_exists by check_symbol_exists
   * Why do we use both for strerror?
   * Should we set CMAKE_REQUIRED_DEFINITIONS during probing?
+* Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
+* Cygwin: test whether all configurations build. Hint: Release currently doesn't
 * MSVC: disable warnings about converting from __int64 to int and the like, but only if we are not the main project
 * __argp_short_program_name: there is that warning in there (gcc only)
+  * This is only executed if there is no sane argv[0], so having this is not THAT critical
 * Add LGPL blurb to
   * All CMakeLists.txt
   * config.h.in
