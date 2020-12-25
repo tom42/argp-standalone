@@ -1,5 +1,7 @@
 * Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
 * Cygwin: test whether all configurations build. Hint: Release currently doesn't
+  * Easy to fix: just remove inline functions from argp-fmtstream.h (i suspect they are not used with glibc - we can test this)
+  * Fix argp-test.c to use a larger buffer. We've seen that in glibc 2.32.
 * MSVC: disable warnings about converting from __int64 to int and the like, but only if we are not the main project
 * __argp_short_program_name: there is that warning in there (gcc only)
   * This is only executed if there is no sane argv[0], so having this is not THAT critical
