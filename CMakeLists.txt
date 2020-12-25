@@ -32,6 +32,10 @@ check_symbol_exists(fwrite_unlocked stdio.h HAVE_DECL_FWRITE_UNLOCKED)
 # Check for strerror_r and strerror
 # We only check for functions and their declarations here.
 # The decision which one to use is made in the argp sources.
+# We define all of HAVE_STRERROR_R, HAVE_DECL_STRERROR_R and
+# HAVE_DECL_STRERROR here because the argp sources expect
+# it to be done that way. Normally we'd just use a single
+# call to check_symbol_exists to probe for a function.
 check_function_exists(strerror_r HAVE_STRERROR_R)
 check_symbol_exists(strerror_r string.h HAVE_DECL_STRERROR_R)
 check_symbol_exists(strerror string.h HAVE_DECL_STRERROR)
