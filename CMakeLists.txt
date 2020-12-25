@@ -47,7 +47,7 @@ check_symbol_exists(sleep unistd.h HAVE_SLEEP)
 check_symbol_exists(strcasecmp string.h HAVE_STRCASECMP)
 
 check_symbol_exists(strchrnul string.h HAVE_STRCHRNUL)
-check_function_exists(strndup HAVE_STRNDUP)
+check_symbol_exists(strndup string.h HAVE_STRNDUP)
 
 # Check for types
 check_type_size(ssize_t SSIZE_T)
