@@ -1,5 +1,3 @@
-* Replace check_function_exists by check_symbol_exists
-  * Should we set CMAKE_REQUIRED_DEFINITIONS during probing?
 * Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
 * Cygwin: test whether all configurations build. Hint: Release currently doesn't
 * MSVC: disable warnings about converting from __int64 to int and the like, but only if we are not the main project

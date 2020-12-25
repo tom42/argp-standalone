@@ -15,6 +15,10 @@ include(CheckFunctionExists)
 include(CheckIncludeFile)
 include(CheckSymbolExists)
 include(CheckTypeSize)
+include(CMakePushCheckState)
+
+cmake_push_check_state()
+set(CMAKE_REQUIRED_DEFINITIONS -D_GNU_SOURCE)
 
 # Check for headers
 check_include_file(mempcpy.h HAVE_MEMPCPY_H)
@@ -55,6 +59,8 @@ check_symbol_exists(strndup string.h HAVE_STRNDUP)
 
 # Check for types
 check_type_size(ssize_t SSIZE_T)
+
+cmake_pop_check_state()
 
 configure_file(config.h.in config.h)
 
