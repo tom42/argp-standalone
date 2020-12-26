@@ -1,6 +1,10 @@
 * Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
 * Cygwin: test whether all configurations build. Hint: Release currently doesn't
   * Easy to fix: just remove inline functions from argp-fmtstream.h (i suspect they are not used with glibc - we can test this)
+    * Or compile with -std=gnu89. That seems to solve the problem too.
+    * Does it work with C89? If so, use that. Can we set it portably using CMake?
+      * Explanation: https://stackoverflow.com/questions/216510/what-does-extern-inline-do/216546#216546
+    * Well the most portable way would be to use "static inline"
   * Fix argp-test.c to use a larger buffer. We've seen that in glibc 2.32.
 * MSVC: disable warnings about converting from __int64 to int and the like, but only if we are not the main project
 * __argp_short_program_name: there is that warning in there (gcc only)
