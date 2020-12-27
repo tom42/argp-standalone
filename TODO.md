@@ -2,7 +2,7 @@
   We can see this is so when we try building with clang
   #if defined(_MSC_VER) && defined(WIN32)	32	C:\work\experiments\argp-standalone\src\argp-compat.c	34	C:\work\experiments\argp-standalone\src
   #if defined(_MSC_VER) && defined(WIN32)	46	C:\work\experiments\argp-standalone\src\argp-compat.c	34	C:\work\experiments\argp-standalone\src
-* Likewise, fix wrong conditional flags in main CMakeLists: some things are compiler specific, some are platform specific
+* Figure out what's wrong with building with mingw on cygwin?
 * Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
 * MSVC: disable warnings about converting from __int64 to int and the like, but only if we are not the main project
 * __argp_short_program_name: there is that warning in there (gcc only)
