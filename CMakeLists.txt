@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.17.3)
 project(argp-standalone VERSION 1.0 LANGUAGES C)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  set(IS_MAIN_PROJECT TRUE)
+else()
+  set(IS_MAIN_PROJECT FALSE)
+endif()
+
+if(IS_MAIN_PROJECT)
   set_property(GLOBAL PROPERTY USE_FOLDERS ON)
   include(CTest)
 endif()
@@ -86,6 +92,6 @@ endif()
 
 add_subdirectory(src)
 
-if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR argp-standalone_BUILD_TESTING) AND BUILD_TESTING)
+if((IS_MAIN_PROJECT OR argp-standalone_BUILD_TESTING) AND BUILD_TESTING)
   add_subdirectory(test)
 endif()
