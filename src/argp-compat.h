@@ -20,7 +20,7 @@
 #ifndef ARGP_COMPAT_H_INCLUDED
 #define ARGP_COMPAT_H_INCLUDED
 
-#if defined(_MSC_VER) && defined(WIN32)
+#if defined(_WIN32)
 # include <Windows.h>
 #endif
 #include <stddef.h>
@@ -30,7 +30,7 @@
 #endif
 
 #if defined(HAVE_SSIZE_T) && !HAVE_SSIZE_T
-#if defined(_MSC_VER) && defined(WIN32)
+#if defined(_WIN32)
 typedef SSIZE_T ssize_t;
 #else
 #error No replacement for ssize_t is available for the target platform

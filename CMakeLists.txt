@@ -72,19 +72,28 @@ configure_file(config.h.in config.h)
 
 
 ################################################################################
+# Global OS specific options
+################################################################################
+
+if(WIN32)
+  add_compile_definitions(
+    _CRT_DECLARE_GLOBAL_VARIABLES_DIRECTLY
+    _CRT_NONSTDC_NO_DEPRECATE
+    _CRT_SECURE_NO_WARNINGS)
+endif()
+
+
+################################################################################
 # Global compiler specific options
 ################################################################################
 
 if(MSVC)
   add_compile_options(/W3)
-  add_compile_definitions(
-    _CRT_DECLARE_GLOBAL_VARIABLES_DIRECTLY
-    _CRT_NONSTDC_NO_DEPRECATE
-    _CRT_SECURE_NO_WARNINGS)
 else()
   add_compile_options(-Wall -Wno-char-subscripts)
   add_compile_options(-fgnu89-inline)
 endif()
+
 
 ################################################################################
 # Subdirectories

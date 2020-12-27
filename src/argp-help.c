@@ -32,7 +32,7 @@
 # else
 #  ifdef _AIX
 #pragma alloca
-#  elif defined(_MSC_VER) && defined(WIN32)
+#  elif defined(_WIN32)
 #   define alloca _alloca
 #  else
 #   ifndef alloca /* predefined by HP cc +Olibcalls */

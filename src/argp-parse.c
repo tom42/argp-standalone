@@ -28,7 +28,7 @@
 # else
 #  ifdef _AIX
 #pragma alloca
-#  elif defined(_MSC_VER) && defined(WIN32)
+#  elif defined(_WIN32)
 #   define alloca _alloca
 #  else
 #   ifndef alloca /* predefined by HP cc +Olibcalls */
@@ -511,7 +511,7 @@ parser_init (struct parser *parser, const struct argp *argp,
     return ENOMEM;
 
   parser->groups = parser->storage;
-#if defined(_MSC_VER) && defined(WIN32)
+#if defined(_MSC_VER)
   /* Fix for compilers that don't support void pointer arithmetics. */
   {
     char* p = parser->storage;
