@@ -29,7 +29,7 @@ void* argp_compat_mempcpy(void* out, const void* in, size_t n)
 #endif
 
 #if defined(HAVE_SLEEP) && !HAVE_SLEEP
-#if defined(_MSC_VER) && defined(WIN32)
+#if defined(_WIN32)
 void argp_compat_sleep(unsigned int seconds)
 {
   for (; seconds; --seconds)
@@ -43,7 +43,7 @@ void argp_compat_sleep(unsigned int seconds)
 #endif
 
 #if defined(HAVE_STRCASECMP) && !HAVE_STRCASECMP
-#if defined(_MSC_VER) && defined(WIN32)
+#if defined(_WIN32)
 int argp_compat_strcasecmp(const char* s1, const char* s2)
 {
   return _stricmp(s1, s2);
