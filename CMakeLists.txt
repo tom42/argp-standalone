@@ -89,6 +89,10 @@ endif()
 
 if(MSVC)
   add_compile_options(/W3)
+  if(NOT IS_MAIN_PROJECT)
+    # x64: suppress mostly harmless warnings about 64 to 32 bit conversion.
+    add_compile_options(/wd4244 /wd4267)
+  endif()
 else()
   add_compile_options(-Wall -Wno-char-subscripts)
   add_compile_options(-fgnu89-inline)

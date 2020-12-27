@@ -1,6 +1,5 @@
 * Figure out what's wrong with building with mingw on cygwin?
 * Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
-* MSVC: disable warnings about converting from __int64 to int and the like, but only if we are not the main project
 * __argp_short_program_name: there is that warning in there (gcc only)
   * This is only executed if there is no sane argv[0], so having this is not THAT critical
 * Add LGPL blurb to
