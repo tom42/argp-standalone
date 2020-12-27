@@ -1,5 +1,9 @@
 * Figure out what's wrong with building with mingw on cygwin?
+  * Well maybe try mingw without cygwin first (e.g. on a Linux box)
 * Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
+  * This is duplicated like 3 times
+  * Factor out all occurrences into one method, can put that into argp-compat.c
+  * Fix it for windows. I suppose the current implementation is sufficient for Unixoids.
 * __argp_short_program_name: there is that warning in there (gcc only)
   * This is only executed if there is no sane argv[0], so having this is not THAT critical
 * Add LGPL blurb to
