@@ -1,6 +1,4 @@
 * Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
-* Cygwin: test whether all configurations build.
-  * Fix argp-test.c to use a larger buffer. We've seen that in glibc 2.32.
 * MSVC: disable warnings about converting from __int64 to int and the like, but only if we are not the main project
 * __argp_short_program_name: there is that warning in there (gcc only)
   * This is only executed if there is no sane argv[0], so having this is not THAT critical
@@ -9,10 +7,6 @@
   * config.h.in
   * compatibility header
   * compatibility source file
-* Enable warnings as errors for Visual Studio (what about /W4?)
-* Enable warnings as errors for gcc and raise warning level
-* What about optimizations?
-* Do we have pointer size problems on x64?
 * Get source groups working properly?
 * Set up the test CMakeLists.txt (this is still empty)
   * Add all test binaries
