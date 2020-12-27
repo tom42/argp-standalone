@@ -77,6 +77,7 @@ if(MSVC)
     _CRT_SECURE_NO_WARNINGS)
 else()
   add_compile_options(-Wall -Wno-char-subscripts)
+  add_compile_options(-fgnu89-inline)
 endif()
 
 ################################################################################
