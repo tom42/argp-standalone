@@ -1,3 +1,13 @@
+* Review all the conditional compilation with _MSC_VER and WIN32. I think most of it is wrong
+  We can see this is so when we try building with clang
+  #if defined(_MSC_VER) && defined(WIN32)	32	C:\work\experiments\argp-standalone\src\argp-compat.c	34	C:\work\experiments\argp-standalone\src
+  #if defined(_MSC_VER) && defined(WIN32)	46	C:\work\experiments\argp-standalone\src\argp-compat.c	34	C:\work\experiments\argp-standalone\src
+  #if defined(_MSC_VER) && defined(WIN32)	23	C:\work\experiments\argp-standalone\src\argp-compat.h	34	C:\work\experiments\argp-standalone\src
+  #if defined(_MSC_VER) && defined(WIN32)	33	C:\work\experiments\argp-standalone\src\argp-compat.h	34	C:\work\experiments\argp-standalone\src
+  #  elif defined(_MSC_VER) && defined(WIN32)	35	C:\work\experiments\argp-standalone\src\argp-help.c	38	C:\work\experiments\argp-standalone\src
+  #  elif defined(_MSC_VER) && defined(WIN32)	31	C:\work\experiments\argp-standalone\src\argp-parse.c	38	C:\work\experiments\argp-standalone\src
+  #if defined(_MSC_VER) && defined(WIN32)	514	C:\work\experiments\argp-standalone\src\argp-parse.c	34	C:\work\experiments\argp-standalone\src
+  #  elif defined(_MSC_VER) && defined(WIN32)	39	C:\work\experiments\argp-standalone\src\getopt.c	38	C:\work\experiments\argp-standalone\src
 * Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
 * MSVC: disable warnings about converting from __int64 to int and the like, but only if we are not the main project
 * __argp_short_program_name: there is that warning in there (gcc only)
