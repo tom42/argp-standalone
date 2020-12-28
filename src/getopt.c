@@ -65,7 +65,7 @@ char* alloca();
 # endif
 #endif
 
-#ifndef ELIDE_CODE
+/*#ifndef ELIDE_CODE*/
 
 
 /* This needs to come after some library #include
@@ -1222,7 +1222,7 @@ __posix_getopt (int argc, char *const *argv, const char *optstring)
 }
 #endif
 
-#endif	/* Not ELIDE_CODE.  */
+/*#endif*/	/* Not ELIDE_CODE.  */
 
 #ifdef TEST
 

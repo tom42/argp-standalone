@@ -45,7 +45,7 @@
 #endif
 #endif
 
-#ifndef ELIDE_CODE
+/*#ifndef ELIDE_CODE*/
 
 
 /* This needs to come after some library #include
@@ -95,7 +95,7 @@ _getopt_long_only_r (int argc, char *const *argv, const char *options,
 			     1, d, 0);
 }
 
-#endif	/* Not ELIDE_CODE.  */
+/*#endif*/	/* Not ELIDE_CODE.  */
 
 #ifdef TEST
 
