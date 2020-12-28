@@ -1,4 +1,3 @@
-* Looks like newlib actually does have program_invocation_short_name and program_invocation_name, so we might want to probe for them and use them.
 * Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
   * This is duplicated like 3 times
   * Factor out all occurrences into one method, can put that into argp-compat.c

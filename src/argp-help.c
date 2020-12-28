@@ -1707,9 +1707,9 @@ char *__argp_basename (char *name)
 char *
 __argp_short_program_name (void)
 {
-# if HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
+# if defined(HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME) && HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
   return program_invocation_short_name;
-# elif HAVE_DECL_PROGRAM_INVOCATION_NAME
+# elif defined(HAVE_DECL_PROGRAM_INVOCATION_NAME) && HAVE_DECL_PROGRAM_INVOCATION_NAME
   return __argp_basename (program_invocation_name);
 # else
   /* FIXME: What now? Miles suggests that it is better to use NULL,

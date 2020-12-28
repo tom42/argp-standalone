@@ -45,5 +45,9 @@
 #cmakedefine01 HAVE_STRCHRNUL
 #cmakedefine01 HAVE_STRNDUP
 
+/* Variables */
+#cmakedefine01 HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
+#cmakedefine01 HAVE_DECL_PROGRAM_INVOCATION_NAME
+
 /* Types */
 #cmakedefine01 HAVE_SSIZE_T
