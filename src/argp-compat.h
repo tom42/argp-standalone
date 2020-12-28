@@ -21,12 +21,13 @@
 #define ARGP_COMPAT_H_INCLUDED
 
 #if defined(_WIN32)
-# include <Windows.h>
+/* Spell Windows.h all lowercase for MinGW on case sensitive systems. */
+#include <windows.h>
 #endif
 #include <stddef.h>
 
 #ifdef HAVE_CONFIG_H
-# include "config.h"
+#include "config.h"
 #endif
 
 #if defined(HAVE_SSIZE_T) && !HAVE_SSIZE_T
