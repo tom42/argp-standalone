@@ -1,4 +1,3 @@
-* Get source groups working properly?
 * Process the argp Makefile
   * It shows which files should be compiled with -fexceptions (err...do we want that?)
 * Test
@@ -12,3 +11,5 @@
   * Build instructions for selected systems:
     * Using Visual Studio
     * Using MinGW on Linux
+* Make a tag at the very least
+* Make the repository public

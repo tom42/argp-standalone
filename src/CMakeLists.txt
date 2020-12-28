@@ -39,7 +39,9 @@ set(
   getopt.c
   getopt1.c)
 
-add_library(argp-standalone ${SOURCES} ${HEADERS})
+add_library(argp-standalone ${HEADERS} ${SOURCES})
+
+source_group(TREE "${PROJECT_SOURCE_DIR}" FILES ${HEADERS} ${SOURCES})
 
 target_compile_definitions(argp-standalone PRIVATE HAVE_CONFIG_H)
 
