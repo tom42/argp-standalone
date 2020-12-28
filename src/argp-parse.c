@@ -21,6 +21,13 @@
 #include <config.h>
 #endif
 
+#if (defined(HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME) && HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME) || \
+    (defined(HAVE_DECL_PROGRAM_INVOCATION_NAME) && HAVE_DECL_PROGRAM_INVOCATION_NAME)
+#ifndef _GNU_SOURCE
+# define _GNU_SOURCE	1
+#endif
+#endif
+
 /* AIX requires this to be the first thing in the file.  */
 #ifndef __GNUC__
 # if HAVE_ALLOCA_H || defined _LIBC
