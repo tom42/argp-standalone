@@ -1,8 +1,4 @@
 * Looks like newlib actually does have program_invocation_short_name and program_invocation_name, so we might want to probe for them and use them.
-* Figure out what's wrong with building with mingw on cygwin?
-  * Well maybe try mingw without cygwin first (e.g. on a Linux box)
-* Figure out what's wrong on Linux?
-  * mingw: detecting size_t fails
 * Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
   * This is duplicated like 3 times
   * Factor out all occurrences into one method, can put that into argp-compat.c
