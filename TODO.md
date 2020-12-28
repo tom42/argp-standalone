@@ -1,8 +1,3 @@
-* Add LGPL blurb to
-  * All CMakeLists.txt
-  * config.h.in
-  * compatibility header
-  * compatibility source file
 * Get source groups working properly?
 * Process the argp Makefile
   * It shows which files should be compiled with -fexceptions (err...do we want that?)

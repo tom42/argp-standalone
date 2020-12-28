@@ -1,3 +1,20 @@
+# argp-standalone: standalone version of glibc's argp functions.
+# Copyright (C) 2020 Thomas Mathys <tom42@github.com>
+#
+# argp-standalone is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# argp-standalone is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with the GNU C Library; if not, see
+# <http://www.gnu.org/licenses/>.
+
 add_executable(argp-test argp-test.c)
 target_compile_definitions(argp-test PRIVATE HAVE_CONFIG_H)
 target_include_directories(argp-test PRIVATE "${PROJECT_BINARY_DIR}")

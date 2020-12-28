@@ -1,7 +1,6 @@
 /*
+ * argp-standalone: standalone version of glibc's argp functions.
  * Copyright (C) 2020 Thomas Mathys <tom42@github.com>
- *
- * This file is part of argp-standalone.
  *
  * argp-standalone is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -17,6 +16,7 @@
  * License along with the GNU C Library; if not, see
  * <http://www.gnu.org/licenses/>.
  */
+
 #ifndef ARGP_COMPAT_H_INCLUDED
 #define ARGP_COMPAT_H_INCLUDED
 
