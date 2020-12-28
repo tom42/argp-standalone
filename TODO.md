@@ -1,5 +1,10 @@
 * Process the argp Makefile
   * It shows which files should be compiled with -fexceptions (err...do we want that?)
+    CFLAGS-argp-help.c = $(uses-callbacks) -fexceptions
+    CFLAGS-argp-parse.c = $(uses-callbacks)
+    CFLAGS-argp-fmtstream.c = -fexceptions
+  * What does -fexceptions exactly? How do we achieve the same for MSVC?
+  * What's uses-callbacks
 * Test
   * VS2019, x86/x64
   * Cygwin, x86/x64
