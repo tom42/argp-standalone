@@ -1,5 +1,3 @@
-* __argp_short_program_name: there is that warning in there (gcc only)
-  * This is only executed if there is no sane argv[0], so having this is not THAT critical
 * Add LGPL blurb to
   * All CMakeLists.txt
   * config.h.in
