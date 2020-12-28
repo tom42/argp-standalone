@@ -1700,7 +1700,7 @@ weak_alias (__argp_help, argp_help)
 #ifndef _LIBC
 char *__argp_basename (char *name)
 {
-  char *short_name = strrchr (name, '/');
+  char *short_name = strrchr (name, ARGP_PATH_SEPARATOR);
   return short_name ? short_name + 1 : name;
 }
 

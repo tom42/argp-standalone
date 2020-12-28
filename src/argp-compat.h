@@ -38,6 +38,12 @@ typedef SSIZE_T ssize_t;
 #endif
 #endif
 
+#if defined(_WIN32)
+#define ARGP_PATH_SEPARATOR '\\'
+#else
+#define ARGP_PATH_SEPARATOR '/'
+#endif
+
 #if defined(HAVE_MEMPCPY) && !HAVE_MEMPCPY
 void* argp_compat_mempcpy(void* out, const void* in, size_t n);
 #define mempcpy argp_compat_mempcpy
