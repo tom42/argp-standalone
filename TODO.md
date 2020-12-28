@@ -3,7 +3,6 @@
   * Well maybe try mingw without cygwin first (e.g. on a Linux box)
 * Figure out what's wrong on Linux?
   * mingw: detecting size_t fails
-  * native: undefined references to getopt stuff
 * Search for usages of strrchr or '/' literals. This are path separators, and we should use the native one!
   * This is duplicated like 3 times
   * Factor out all occurrences into one method, can put that into argp-compat.c
@@ -26,3 +25,6 @@
 * Final review: patched files vs. original 2.24 files
 * Document missing things:
   * gettext support has been removed altogether
+  * Build instructions for selected systems:
+    * Using Visual Studio
+    * Using MinGW on Linux
