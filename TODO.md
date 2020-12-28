@@ -1,3 +1,4 @@
+* Looks like newlib actually does have program_invocation_short_name and program_invocation_name, so we might want to probe for them and use them.
 * Figure out what's wrong with building with mingw on cygwin?
   * Well maybe try mingw without cygwin first (e.g. on a Linux box)
 * Figure out what's wrong on Linux?
