@@ -18,6 +18,28 @@ I haven't done any extensive testing, but I have successfully built version 1.0 
 * i686-w64-mingw32-gcc, on GNU/Linux
 * x86_64-w64-mingw32-gcc, on GNU/Linux
 
+# Building examples
+
+## Using Visual Studio 2019
+* This example assumes that you are doing an in-tree build
+* Open e.g. a `x86 Native Tools Command Prompt for VS 2019`
+* Change to the directory where the argp-standalone source code resides
+* Run cmake, e.g. `"C:\Program Files\CMake\bin\cmake.exe" -G "Visual Studio 16 2019" -A Win32 .`
+  * Omit the `-A Win32` option to build for x64 instead of x86
+* cmake should have generated `argp-standalone.sln` in the current directory. Open it with Visual Studio 2019
+
+## Using your host gcc
+* This example assumes that you are doing an in-tree build
+* Change to the directory where the argp-standalone source code resides
+* Run cmake, e.g. `cmake -DCMAKE_BUILD_TYPE=Release .`
+* Run `make` to build
+
+## Using MinGW
+* This example assumes that you are doing an in-tree build and that your MinGW gcc is called i686-w64-mingw32-gcc
+* Change to the directory where the argp-standalone source code resides
+* Run cmake, e.g. `cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=i686-w64-mingw32-gcc .`
+* Run `make` to build
+
 # Possible improvements for future versions
 * Factor out duplicated ad hoc implementations of what's basically basename (search for occurrences of ARGP_PATH_SEPARATOR). Provide better implementations where possible. The current implementation has various shortcomings:
   * On Windows it only recognizes \ as the path separator, but should probably recognize both \ and /
