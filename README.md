@@ -48,3 +48,7 @@ I haven't done any extensive testing, but I have successfully built version 1.0 
 * Fix the preprocessor #warning in __argp_short_program_name:
   * On Windows we could fall back to GetModuleFileName
 * gettext support
+
+# History
+* 2020-12-29: Version 1.0, based on glibc 2.24.  
+  glibc 2.24 was simpler to get going than the back then current glibc 2.32. Functionally there should not be much of a difference.
