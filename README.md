@@ -6,6 +6,7 @@ It is currently available in source form only from https://github.com/tom42/argp
 # Missing things
 * glibc compiles its argp sources using the -fexceptions option. argp-standalone currently doesn't do this; even with -fexceptions I don't think letting exceptions propagate into C code is a particularly good idea.
 * gettext is currently not supported.
+* Although argp-standalone contains glibc's getopt implementation it does not provide getopt through its headers. Doing so would be messy e.g. on Cygwin which provides getopt but not argp.
 
 # Compatibility
 I haven't done any extensive testing, but I have successfully built version 1.0 and run the tests with the following compilers:
