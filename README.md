@@ -9,7 +9,7 @@ It is currently available in source form only from https://github.com/tom42/argp
 * Although argp-standalone contains glibc's getopt implementation it does not provide getopt through its headers. Doing so would be messy e.g. on Cygwin which provides getopt but not argp.
 
 # Compatibility
-I haven't done any extensive testing, but I have successfully built version 1.0 and run the tests with the following compilers:
+I haven't done any extensive testing, but I have successfully built version 1.0.0 and run the tests with the following compilers:
 * Visual Studio 2019, both for x86 and x64
 * i686-pc-windows-msvc clang 10.0.0. This is what's supplied with Visual Studio 2019. Did not run the tests since running 'nmake test' didn't do anything.
 * Cygwin gcc 10.2.0 for x64, with newlib
@@ -50,5 +50,5 @@ I haven't done any extensive testing, but I have successfully built version 1.0 
 * gettext support
 
 # History
-* 2020-12-29: Version 1.0, based on glibc 2.24.  
+* 2020-12-29: Version 1.0.0, based on glibc 2.24.  
   glibc 2.24 was simpler to get going than the back then current glibc 2.32. Functionally there should not be much of a difference.
