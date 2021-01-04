@@ -1,5 +1,5 @@
 # argp-standalone: standalone version of glibc's argp functions.
-# Copyright (C) 2020 Thomas Mathys <tom42@github.com>
+# Copyright (C) 2020 Thomas Mathys
 #
 # argp-standalone is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
