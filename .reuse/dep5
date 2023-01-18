@@ -1,9 +1,0 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: argp-standalone
-Upstream-Contact: Thomas Mathys <>
-Source: https://github.com/tom42/argp-standalone
-
-Files: *
-Copyright: 1996-2016 Free Software Foundation, Inc. <>
-           2020 Thomas Mathys <>
-License: LGPL-2.1-or-later
