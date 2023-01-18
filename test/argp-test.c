@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* Test program for argp argument parser
    Copyright (C) 1997-2016 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
