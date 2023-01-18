@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* Hierarchial argument parsing help output
    Copyright (C) 1995-2016 Free Software Foundation, Inc.
    This file is part of the GNU C Library.

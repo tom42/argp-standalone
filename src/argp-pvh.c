@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* Default definition for ARGP_PROGRAM_VERSION_HOOK.
    Copyright (C) 1996-2016 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
