@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2020 Thomas Mathys
+SPDX-License-Identifier: LGPL-2.1-or-later
+argp-standalone: standalone version of glibc's argp functions.
+-->
+
 # argp-standalone
 argp-standalone is another standalone version of the argp argument parsing functions from glibc by Thomas Mathys.
 It is distributed under the terms of the GNU LGPL v2.1.
