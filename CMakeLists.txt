@@ -3,7 +3,7 @@
 # argp-standalone: standalone version of glibc's argp functions.
 
 cmake_minimum_required(VERSION 3.17.3)
-project(argp-standalone VERSION 1.0.0 LANGUAGES C)
+project(argp-standalone VERSION 1.0.3 LANGUAGES C)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   set(IS_MAIN_PROJECT TRUE)
