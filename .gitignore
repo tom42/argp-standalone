@@ -56,3 +56,9 @@ dkms.conf
 
 # Build directory in top level source directory
 /build*
+
+# Qt Creator files
+CMakeLists.txt.user
+
+# Temporary files
+*~
