@@ -1749,7 +1749,7 @@ __argp_state_help (const struct argp_state *state, FILE *stream, unsigned flags)
 #ifdef weak_alias
 weak_alias (__argp_state_help, argp_state_help)
 #endif
-
+
 /* If appropriate, print the printf string FMT and following args, preceded
    by the program name and `:', to stderr, and followed by a `Try ... --help'
    message, then exit (1).  */
@@ -1872,7 +1872,12 @@ __argp_failure (const struct argp_state *state, int status, int errnum,
 	      putc_unlocked (':', stream);
 	      putc_unlocked (' ', stream);
 # if defined(HAVE_STRERROR_R) && HAVE_STRERROR_R
-	      fputs (__strerror_r (errnum, buf, sizeof (buf)), stream);
+#if __APPLE__
+        (void) __strerror_r (errnum, buf, sizeof (buf));
+        fputs (buf, stream);
+#else	      
+      fputs (__strerror_r (errnum, buf, sizeof (buf)), stream);
+#endif
 # else
 	      fputs (strerror (errnum), stream);
 # endif

@@ -49,7 +49,11 @@ char *alloca ();
 #include <stdlib.h>
 #include <string.h>
 #if defined(HAVE_UNISTD_H) && HAVE_UNISTD_H
+#if __APPLE__
+unsigned int sleep(unsigned int seconds);
+#else
 # include <unistd.h>
+#endif
 #endif
 #include <limits.h>
 #include "argp-getopt.h"
