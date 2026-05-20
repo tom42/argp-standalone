@@ -20,3 +20,14 @@ jobs:
       matrix:
         c_compiler: [clang, gcc]
         build_type: [Release, Debug]
+
+    steps:
+
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+
+    - name: Checkout sources
+      uses: actions/checkout@v6
