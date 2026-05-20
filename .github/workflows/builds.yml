@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2026 Thomas Mathys
+# SPDX-License-Identifier: MIT
+
+name: Builds
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    name: Linux Builds (${{matrix.c_compiler}}, ${{matrix.build_type}})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        c_compiler: [clang, gcc]
+        build_type: [Release, Debug]
