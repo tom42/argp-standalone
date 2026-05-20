@@ -85,6 +85,26 @@ jobs:
       working-directory: ${{steps.strings.outputs.build-output-dir}}
       run: ctest --build-config ${{matrix.build_type}}
 
+  build-macos:
+    name: MacOS Builds
+    runs-on: macos-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        build_type: [Release, Debug]
+
+    steps:
+
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+
+    - name: Checkout sources
+      uses: actions/checkout@v6
+
   quality:
     name: Static Quality Checks
     runs-on: ubuntu-latest
