@@ -84,3 +84,20 @@ jobs:
     - name: Test
       working-directory: ${{steps.strings.outputs.build-output-dir}}
       run: ctest --build-config ${{matrix.build_type}}
+
+  quality:
+    name: Static Quality Checks
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+
+    steps:
+
+    - name: Checkout sources
+      uses: actions/checkout@v6
+
+    - name: Run reuse lint
+      shell: bash
+      run: |
+        reuse lint
