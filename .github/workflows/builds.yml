@@ -47,3 +47,40 @@ jobs:
     - name: Test
       working-directory: ${{steps.strings.outputs.build-output-dir}}
       run: ctest --build-config ${{matrix.build_type}}
+
+  build-windows:
+    name: Windows Builds (${{matrix.arch}}, ${{matrix.build_type}})
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        arch: [x64, Win32]
+        build_type: [Release, Debug]
+
+    steps:
+
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+
+    - name: Checkout sources
+      uses: actions/checkout@v6
+
+    - name: Configure CMake
+      run: >
+        cmake
+        -B ${{steps.strings.outputs.build-output-dir}}
+        -S ${{github.workspace}}
+        -A ${{matrix.arch}}
+        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+
+    - name: Build
+      run: |
+        cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
+
+    - name: Test
+      working-directory: ${{steps.strings.outputs.build-output-dir}}
+      run: ctest --build-config ${{matrix.build_type}}
