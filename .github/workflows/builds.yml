@@ -97,6 +97,11 @@ jobs:
     - name: Checkout sources
       uses: actions/checkout@v6
 
+    - name: Install reuse
+      shell: bash
+      run: |
+        pipx install reuse
+
     - name: Run reuse lint
       shell: bash
       run: |
