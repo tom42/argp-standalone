@@ -105,6 +105,21 @@ jobs:
     - name: Checkout sources
       uses: actions/checkout@v6
 
+    - name: Configure CMake
+      run: >
+        cmake
+        -B ${{steps.strings.outputs.build-output-dir}}
+        -S ${{github.workspace}}
+        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+
+    - name: Build
+      run: |
+        cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
+
+    - name: Test
+      working-directory: ${{steps.strings.outputs.build-output-dir}}
+      run: ctest --build-config ${{matrix.build_type}}
+
   quality:
     name: Static Quality Checks
     runs-on: ubuntu-latest
