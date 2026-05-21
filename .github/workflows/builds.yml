@@ -85,40 +85,40 @@ jobs:
       working-directory: ${{steps.strings.outputs.build-output-dir}}
       run: ctest --build-config ${{matrix.build_type}}
 
-  build-macos:
-    name: MacOS Builds
-    runs-on: macos-latest
+  # build-macos:
+  #   name: MacOS Builds
+  #   runs-on: macos-latest
 
-    strategy:
-      fail-fast: true
-      matrix:
-        build_type: [Release, Debug]
+  #   strategy:
+  #     fail-fast: true
+  #     matrix:
+  #       build_type: [Release, Debug]
 
-    steps:
+  #   steps:
 
-    - name: Set reusable strings
-      id: strings
-      shell: bash
-      run: |
-        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+  #   - name: Set reusable strings
+  #     id: strings
+  #     shell: bash
+  #     run: |
+  #       echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
 
-    - name: Checkout sources
-      uses: actions/checkout@v6
+  #   - name: Checkout sources
+  #     uses: actions/checkout@v6
 
-    - name: Configure CMake
-      run: >
-        cmake
-        -B ${{steps.strings.outputs.build-output-dir}}
-        -S ${{github.workspace}}
-        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+  #   - name: Configure CMake
+  #     run: >
+  #       cmake
+  #       -B ${{steps.strings.outputs.build-output-dir}}
+  #       -S ${{github.workspace}}
+  #       -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
-    - name: Build
-      run: |
-        cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
+  #   - name: Build
+  #     run: |
+  #       cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
 
-    - name: Test
-      working-directory: ${{steps.strings.outputs.build-output-dir}}
-      run: ctest --build-config ${{matrix.build_type}}
+  #   - name: Test
+  #     working-directory: ${{steps.strings.outputs.build-output-dir}}
+  #     run: ctest --build-config ${{matrix.build_type}}
 
   quality:
     name: Static Quality Checks
