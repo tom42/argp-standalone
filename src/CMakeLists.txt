@@ -3,15 +3,6 @@
 # argp-standalone: standalone version of glibc's argp functions.
 
 set(
-  HEADERS
-  "${argp-standalone_SOURCE_DIR}/include/argp-standalone/argp.h"
-  argp-compat.h
-  argp-fmtstream.h
-  argp-getopt.h
-  argp-getopt_int.h
-  argp-namefrob.h)
-
-set(
   SOURCES
   argp-ba.c
   argp-compat.c
@@ -26,9 +17,7 @@ set(
   getopt.c
   getopt1.c)
 
-add_library(argp-standalone ${HEADERS} ${SOURCES})
-
-source_group(TREE "${PROJECT_SOURCE_DIR}" FILES ${HEADERS} ${SOURCES})
+add_library(argp-standalone ${SOURCES})
 
 target_compile_definitions(argp-standalone PRIVATE HAVE_CONFIG_H)
 
