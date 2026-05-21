@@ -37,6 +37,7 @@ jobs:
         cmake
         -B ${{steps.strings.outputs.build-output-dir}}
         -S ${{github.workspace}}
+        --preset dev-linux
         -DCMAKE_C_COMPILER=${{matrix.c_compiler}}
         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
@@ -74,6 +75,7 @@ jobs:
         cmake
         -B ${{steps.strings.outputs.build-output-dir}}
         -S ${{github.workspace}}
+        --preset dev-windows
         -A ${{matrix.arch}}
         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
@@ -110,6 +112,7 @@ jobs:
   #       cmake
   #       -B ${{steps.strings.outputs.build-output-dir}}
   #       -S ${{github.workspace}}
+  #       --preset dev-macos
   #       -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
   #   - name: Build
