@@ -12,7 +12,6 @@ else()
 endif()
 
 if(IS_MAIN_PROJECT)
-  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
   include(CTest)
 endif()
 
