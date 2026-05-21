@@ -1,0 +1,43 @@
+{
+  "$comment": [
+    "SPDX-FileCopyrightText: 2026 Thomas Mathys",
+    "SPDX-License-Identifier: LGPL-2.1-or-later"
+  ],
+  "version": 10,
+  "configurePresets": [
+    {
+      "name": "dev-base",
+      "description": "Development/CI with warnings enabled",
+      "hidden": true,
+      "cacheVariables": {
+        "argp_standalone_BUILD_TESTING": "ON"
+      }
+    },
+    {
+      "name": "dev-linux",
+      "inherits": "dev-base"
+    },
+    {
+      "name": "dev-linux-clang",
+      "inherits": "dev-linux",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang"
+      }
+    },
+    {
+      "name": "dev-linux-gcc",
+      "inherits": "dev-linux",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc"
+      }
+    },
+    {
+      "name": "dev-windows",
+      "inherits": "dev-base"
+    },
+    {
+      "name": "dev-macos",
+      "inherits": "dev-base"
+    }
+  ]
+}
