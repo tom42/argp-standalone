@@ -5,14 +5,20 @@
 cmake_minimum_required(VERSION 3.17.3)
 project(argp-standalone VERSION 1.0.3 LANGUAGES C)
 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-  set(IS_MAIN_PROJECT TRUE)
-else()
-  set(IS_MAIN_PROJECT FALSE)
-endif()
 
-if(IS_MAIN_PROJECT)
-  include(CTest)
+################################################################################
+# Options
+################################################################################
+
+option(argp_standalone_BUILD_TESTING "Build argp-standalone tests" OFF)
+
+
+################################################################################
+# Set up testing
+################################################################################
+
+if(argp_standalone_BUILD_TESTING)
+  enable_testing()
 endif()
 
 
@@ -111,7 +117,6 @@ endif()
 ################################################################################
 
 add_subdirectory(src)
-
-if((IS_MAIN_PROJECT OR argp-standalone_BUILD_TESTING) AND BUILD_TESTING)
+if(argp_standalone_BUILD_TESTING)
   add_subdirectory(test)
 endif()
