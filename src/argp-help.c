@@ -1749,7 +1749,7 @@ __argp_state_help (const struct argp_state *state, FILE *stream, unsigned flags)
 #ifdef weak_alias
 weak_alias (__argp_state_help, argp_state_help)
 #endif
-
+
 /* If appropriate, print the printf string FMT and following args, preceded
    by the program name and `:', to stderr, and followed by a `Try ... --help'
    message, then exit (1).  */
