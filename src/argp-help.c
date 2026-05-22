@@ -1876,7 +1876,7 @@ __argp_failure (const struct argp_state *state, int status, int errnum,
         (void) __strerror_r (errnum, buf, sizeof (buf));
         fputs (buf, stream);
 #else	      
-      fputs (__strerror_r (errnum, buf, sizeof (buf)), stream);
+	      fputs (__strerror_r (errnum, buf, sizeof (buf)), stream);
 #endif
 # else
 	      fputs (strerror (errnum), stream);
