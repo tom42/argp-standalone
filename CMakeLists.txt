@@ -97,11 +97,6 @@ else()
   add_compile_options(-Wall -Wno-char-subscripts)
 endif()
 
-if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
-  # gcc and clang need -fgnu89-inline to compile and link release builds
-  add_compile_options(-fgnu89-inline)
-endif()
-
 
 ################################################################################
 # Subdirectories

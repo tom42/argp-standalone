@@ -36,3 +36,13 @@ target_include_directories(
 if(WIN32)
   target_compile_definitions(argp-standalone PRIVATE _CRT_SECURE_NO_WARNINGS)
 endif()
+
+
+################################################################################
+# Compiler specific options
+################################################################################
+
+if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
+  # gcc and clang need -fgnu89-inline to compile and link release builds
+  target_compile_options(argp-standalone PRIVATE -fgnu89-inline)
+endif()
