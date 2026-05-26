@@ -89,10 +89,7 @@ configure_file(config.h.in config.h)
 ################################################################################
 
 if(WIN32)
-  add_compile_definitions(
-    _CRT_DECLARE_GLOBAL_VARIABLES_DIRECTLY
-    _CRT_NONSTDC_NO_DEPRECATE
-    _CRT_SECURE_NO_WARNINGS)
+  add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
 endif()
 
 
