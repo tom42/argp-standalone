@@ -11,6 +11,7 @@ project(argp-standalone VERSION 1.0.3 LANGUAGES C)
 ################################################################################
 
 option(argp_standalone_BUILD_TESTING "Build argp-standalone tests" OFF)
+option(argp_standalone_ENABLE_WARNINGS "Build argp-standalone with warnings enabled" OFF)
 
 
 ################################################################################
