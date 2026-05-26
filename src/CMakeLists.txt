@@ -27,3 +27,12 @@ target_include_directories(
   "${PROJECT_BINARY_DIR}"
   PUBLIC
   ../include/argp-standalone)
+
+
+################################################################################
+# OS specific options
+################################################################################
+
+if(WIN32)
+  target_compile_definitions(argp-standalone PRIVATE _CRT_SECURE_NO_WARNINGS)
+endif()
