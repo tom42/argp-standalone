@@ -20,6 +20,7 @@ set(
 add_library(argp-standalone ${SOURCES})
 
 target_compile_definitions(argp-standalone PRIVATE HAVE_CONFIG_H)
+argp_standalone_target_enable_warnings(argp-standalone)
 
 target_include_directories(
   argp-standalone

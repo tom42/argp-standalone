@@ -10,7 +10,8 @@
       "description": "Development/CI with warnings enabled",
       "hidden": true,
       "cacheVariables": {
-        "argp_standalone_BUILD_TESTING": "ON"
+        "argp_standalone_BUILD_TESTING": "ON",
+        "argp_standalone_ENABLE_WARNINGS": "ON"
       }
     },
     {

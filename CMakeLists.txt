@@ -4,6 +4,7 @@
 
 cmake_minimum_required(VERSION 3.17.3)
 project(argp-standalone VERSION 1.0.3 LANGUAGES C)
+list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 
 ################################################################################
@@ -86,21 +87,10 @@ configure_file(config.h.in config.h)
 
 
 ################################################################################
-# Global compiler specific options
+# Build our own code
 ################################################################################
 
-if(MSVC)
-  add_compile_options(/W3)
-  # x64: suppress mostly harmless warnings about 64 to 32 bit conversion.
-  add_compile_options(/wd4244 /wd4267)
-else()
-  add_compile_options(-Wall -Wno-char-subscripts)
-endif()
-
-
-################################################################################
-# Subdirectories
-################################################################################
+include(ArgpStandaloneEnableWarnings)
 
 add_subdirectory(src)
 if(argp_standalone_BUILD_TESTING)
