@@ -1872,7 +1872,12 @@ __argp_failure (const struct argp_state *state, int status, int errnum,
 	      putc_unlocked (':', stream);
 	      putc_unlocked (' ', stream);
 # if defined(HAVE_STRERROR_R) && HAVE_STRERROR_R
+#if __APPLE__
+	      (void) __strerror_r (errnum, buf, sizeof (buf));
+	      fputs (buf, stream);
+#else	      
 	      fputs (__strerror_r (errnum, buf, sizeof (buf)), stream);
+#endif
 # else
 	      fputs (strerror (errnum), stream);
 # endif
