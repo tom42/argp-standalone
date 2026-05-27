@@ -38,6 +38,11 @@ if(WIN32)
   target_compile_definitions(argp-standalone PRIVATE _CRT_SECURE_NO_WARNINGS)
 endif()
 
+if(APPLE)
+  # We currently use the strchrnul() provided by macOS, but that requires 15.4.
+  set(CMAKE_OSX_DEPLOYMENT_TARGET 15.4)
+endif()
+
 
 ################################################################################
 # Compiler specific options

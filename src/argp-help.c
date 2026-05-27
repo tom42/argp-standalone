@@ -1716,7 +1716,7 @@ __argp_short_program_name (void)
   /* FIXME: What now? Miles suggests that it is better to use NULL,
      but currently the value is passed on directly to fputs_unlocked,
      so that requires more changes. */
-# if __GNUC__
+# if __GNUC__ && !(__APPLE__ && __MACH__)
 #  warning No reasonable value to return
 # endif /* __GNUC__ */
   return "";
@@ -1872,7 +1872,12 @@ __argp_failure (const struct argp_state *state, int status, int errnum,
 	      putc_unlocked (':', stream);
 	      putc_unlocked (' ', stream);
 # if defined(HAVE_STRERROR_R) && HAVE_STRERROR_R
+#  if __APPLE__ && __MACH__
+	      (void) __strerror_r (errnum, buf, sizeof (buf));
+	      fputs (buf, stream);
+#  else
 	      fputs (__strerror_r (errnum, buf, sizeof (buf)), stream);
+#  endif
 # else
 	      fputs (strerror (errnum), stream);
 # endif
