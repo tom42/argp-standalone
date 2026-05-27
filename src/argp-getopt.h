@@ -176,7 +176,7 @@ extern int __posix_getopt (int ___argc, char *const *___argv,
 #  endif
 # endif
 #else /* not __GNU_LIBRARY__ */
-# if __APPLE__
+# if __APPLE__ && __MACH__
 extern int getopt (int argc, char *const *argv, const char *optstring);
 # else
 extern int getopt ();
