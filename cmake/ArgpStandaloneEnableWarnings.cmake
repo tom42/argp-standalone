@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2026 Thomas Mathys
 # SPDX-License-Identifier: LGPL-2.1-or-later
-# argp-standalone: standalone version of glibc's argp functions.
+# argp-standalone - standalone version of glibc's argp functions.
 
 function(argp_standalone_target_enable_warnings target)
 

@@ -176,9 +176,13 @@ extern int __posix_getopt (int ___argc, char *const *___argv,
 #  endif
 # endif
 #else /* not __GNU_LIBRARY__ */
-# if __APPLE__ && __MACH__
-extern int getopt (int argc, char *const *argv, const char *optstring);
-# else
+/*
+ * The following declaration may conflict with the declaration from unistd.h.
+ * Since getopt itself compiles without this declaration and argp-standalone
+ * only provides argp but not getopt to its clients we simply remove this
+ * declaration.
+ */
+# if 0
 extern int getopt ();
 # endif
 #endif /* __GNU_LIBRARY__ */

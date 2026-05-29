@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2020 Thomas Mathys
 # SPDX-License-Identifier: LGPL-2.1-or-later
-# argp-standalone: standalone version of glibc's argp functions.
+# argp-standalone - standalone version of glibc's argp functions.
 
 cmake_minimum_required(VERSION 3.17.3)
 project(argp-standalone VERSION 1.0.3 LANGUAGES C)
