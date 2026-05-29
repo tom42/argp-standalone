@@ -182,7 +182,9 @@ extern int __posix_getopt (int ___argc, char *const *___argv,
  * only provides argp but not getopt to its clients we simply remove this
  * declaration.
  */
-/* extern int getopt (); */
+# if 0
+extern int getopt ();
+# endif
 #endif /* __GNU_LIBRARY__ */
 
 #ifndef __need_getopt
