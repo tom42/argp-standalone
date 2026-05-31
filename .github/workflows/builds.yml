@@ -70,11 +70,12 @@ jobs:
     - name: Checkout sources
       uses: actions/checkout@v6
 
-    - name: Install MinGW
+    - name: Install MinGW and WinE
       shell: bash
       run: |
+        sudo dpkg --add-architecture i386
         sudo apt update
-        sudo apt install gcc-mingw-w64 wine
+        sudo apt install gcc-mingw-w64 wine wine32:i386
 
     - name: Configure CMake
       run: >
