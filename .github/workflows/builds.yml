@@ -74,7 +74,7 @@ jobs:
       shell: bash
       run: |
         sudo apt update
-        sudo apt install gcc-mingw-w64 binfmt-support wine wine-binfmt
+        sudo apt install gcc-mingw-w64 wine
 
     - name: Configure CMake
       run: >

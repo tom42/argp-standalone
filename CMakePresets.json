@@ -41,7 +41,8 @@
       "inherits": "dev-base",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "i686-w64-mingw32-gcc",
-        "CMAKE_SYSTEM_NAME": "Windows"
+        "CMAKE_SYSTEM_NAME": "Windows",
+        "CMAKE_CROSSCOMPILING_EMULATOR": "wine"
       }
     },
     {
@@ -49,7 +50,8 @@
       "inherits": "dev-base",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
-        "CMAKE_SYSTEM_NAME": "Windows"
+        "CMAKE_SYSTEM_NAME": "Windows",
+        "CMAKE_CROSSCOMPILING_EMULATOR": "wine"
       }
     },
     {
