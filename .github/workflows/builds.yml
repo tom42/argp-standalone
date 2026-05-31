@@ -73,9 +73,8 @@ jobs:
     - name: Install MinGW and WinE
       shell: bash
       run: |
-        sudo dpkg --add-architecture i386
         sudo apt update
-        sudo apt install gcc-mingw-w64 wine wine32:i386
+        sudo apt install gcc-mingw-w64 wine wine32
 
     - name: Configure CMake
       run: >
