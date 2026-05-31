@@ -54,7 +54,10 @@
     },
     {
       "name": "dev-macos",
-      "inherits": "dev-base"
+      "inherits": "dev-base",
+      "cacheVariables": {
+        "CMAKE_C_FLAGS": "-Wno-cpp"
+      }
     }
   ]
 }
