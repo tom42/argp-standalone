@@ -56,7 +56,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        preset: [dev-mingw-32, dev-mingw-64]
+        preset: [dev-mingw-64]
         build_type: [Release, Debug]
 
     steps:
