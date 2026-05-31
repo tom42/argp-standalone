@@ -78,8 +78,8 @@ check_symbol_exists(strndup string.h HAVE_STRNDUP)
 # Check for variables
 check_symbol_exists(program_invocation_short_name errno.h HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME)
 check_symbol_exists(program_invocation_name errno.h HAVE_DECL_PROGRAM_INVOCATION_NAME)
-check_variable_exists(__progname HAVE___PROGNAME)
 check_symbol_exists(__argv stdlib.h HAVE_DECL___ARGV_NAME)
+check_variable_exists(__progname HAVE___PROGNAME)
 
 # Check for types
 check_type_size(ssize_t SSIZE_T)
