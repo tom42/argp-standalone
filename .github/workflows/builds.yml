@@ -72,7 +72,9 @@ jobs:
 
     - name: Install MinGW
       shell: bash
-      run: sudo apt install gcc-mingw-w64 wine wine-binfmt
+      run: |
+        sudo apt update
+        sudo apt install gcc-mingw-w64 wine wine-binfmt
 
     - name: Configure CMake
       run: >
