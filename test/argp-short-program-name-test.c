@@ -6,9 +6,7 @@
 #undef NDEBUG
 #include <assert.h>
 #include <string.h>
-
-char* __argp_basename(char* name);
-char* __argp_short_program_name();
+#include "argp-namefrob.h"
 
 int main(int argc, char** argv)
 {

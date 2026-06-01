@@ -17,6 +17,7 @@ target_link_libraries(argp-test PRIVATE argp-standalone)
 
 add_executable(argp-short-program-name-test argp-short-program-name-test.c)
 argp_standalone_target_enable_warnings(argp-short-program-name-test)
+target_include_directories(argp-short-program-name-test PRIVATE ../src)
 target_link_libraries(argp-short-program-name-test PRIVATE argp-standalone)
 
 add_executable(tst-argp1 tst-argp1.c)
