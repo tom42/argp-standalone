@@ -51,7 +51,7 @@ check_symbol_exists(putc_unlocked stdio.h HAVE_DECL_PUTC_UNLOCKED)
 check_symbol_exists(fputs_unlocked stdio.h HAVE_DECL_FPUTS_UNLOCKED)
 check_symbol_exists(fwrite_unlocked stdio.h HAVE_DECL_FWRITE_UNLOCKED)
 
-# Check for strerror_r and strerror
+# Check for strerror_r etc.
 # We only check for functions and their declarations here.
 # The decision which one to use is made in the argp sources.
 # We define all of HAVE_STRERROR_R, HAVE_DECL_STRERROR_R and
@@ -61,6 +61,7 @@ check_symbol_exists(fwrite_unlocked stdio.h HAVE_DECL_FWRITE_UNLOCKED)
 check_function_exists(strerror_r HAVE_STRERROR_R)
 check_symbol_exists(strerror_r string.h HAVE_DECL_STRERROR_R)
 check_symbol_exists(strerror string.h HAVE_DECL_STRERROR)
+check_symbol_exists(strerror_s string.h HAVE_DECL_STRERROR_S)
 
 # Check for miscellaneous functions
 check_symbol_exists(asprintf stdio.h HAVE_ASPRINTF)
