@@ -83,5 +83,5 @@ char* argp_compat_strndup(const char* s, size_t n)
 // TODO: should we check for the BSD function instead in CMakeLists?
 char* argp_compat_strerror(int errnum, char buf[], size_t size)
 {
-    return "";
+  return strerror(errnum);
 }
