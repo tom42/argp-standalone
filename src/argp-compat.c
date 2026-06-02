@@ -72,3 +72,16 @@ char* argp_compat_strndup(const char* s, size_t n)
   return result;
 }
 #endif
+
+// TODO: implement: strerror_r
+// TODO: implement: strerror_s
+// TODO: implement: strerror
+// TODO: document: this falls back to strerror and is therefore not necessarily thread-safe
+// TODO: test: maybe use the existing one?
+// TODO: replace BSD and strerror path with this, one way or another
+// TODO: ensure _GNU_SOURCE is not defined here so we get the BSD variant
+// TODO: should we check for the BSD function instead in CMakeLists?
+char* argp_compat_strerror(int errnum, char buf[], size_t size)
+{
+    return "";
+}
