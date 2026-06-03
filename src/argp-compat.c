@@ -78,13 +78,15 @@ char* argp_compat_strndup(const char* s, size_t n)
 // TODO: replace BSD and strerror path with this, one way or another
 // TODO: ensure _GNU_SOURCE is not defined here so we get the BSD variant (have another preprocessor check right here or inside the function)
 // TODO: at the beginning of this file, set up required stuff to ensure the BSD variant is taken
-//       * Undef _GNU_SOURCE (bark if it is defined, since that is in principle a build error?)
-//       * Also define the POSIX API level since that is really how it's done properly?
 //       * Also explain why (we do not want to have to detect whether GNU or BSD strerror is used, since that is hairy in C)
 // TODO: should we check for the BSD function instead in CMakeLists?
 // TODO: remember to also fix all items in argp-compat.h
 char* argp_compat_strerror(int errnum, char buf[], size_t size)
 {
+#ifdef _GNU_SOURCE
+#error _GNU_SOURCE must not be defined here
+#endif
+
   /* Prefer strerror_s. It's the most sane API, actually. */
 #if defined(HAVE_DECL_STRERROR_S) && HAVE_DECL_STRERROR_S
   strerror_s(buf, size, errnum);
