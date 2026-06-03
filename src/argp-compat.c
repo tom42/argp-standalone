@@ -86,6 +86,12 @@ char* argp_compat_strerror(int errnum, char buf[], size_t size)
 {
 #if defined(HAVE_DECL_STRERROR_R) && HAVE_DECL_STRERROR_R
   // TODO: strerror_r returns error code here. Handle it: need to clarify, but in case of error I think the buffer is not written to, so we should do so.
+  //       Quote from random page: POSIX states that the contents of buf are unspecified on error, although this implementation guarantees a NUL-terminated string for all except n of 0.
+  //       So we better maybe
+  //       * If the return code is 0 (no error) write "no error", possibly truncated
+  //       * Possibly specially handle ERANGE if buffer is too short (then again, now?)
+  //       * In call other cases, write "unknown error", possibly truncated
+  //       * Doesn't need to be too smart, client code should simply supply a large enough buffer, it's not like the messages are normally very long
   strerror_r(errnum, buf, size);
   return buf;
 #elif defined(HAVE_DECL_STRERROR_S) && HAVE_DECL_STRERROR_S
