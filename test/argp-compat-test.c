@@ -28,14 +28,14 @@ void test_argp_compat_strerror(void)
 void test_argp_compat_strerror_no_error(void)
 {
   char buf[200];
-  argp_compat_strerror(0, buf, sizeof(buf));
+  char* str = argp_compat_strerror(0, buf, sizeof(buf));
 
-  int result = !strcmp(buf, "No error") || !strcmp(buf, "Success");
+  int result = !strcmp(str, "No error") || !strcmp(str, "Success");
 
   if (!result)
   {
     char message[400];
-    snprintf(message, sizeof(message), "Unexpected error message: %s", buf);
+    snprintf(message, sizeof(message), "Unexpected error message: %s", str);
     TEST_FAIL_MESSAGE(message);
   }
 }
