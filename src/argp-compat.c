@@ -105,6 +105,12 @@ const char* argp_compat_strerror(int errnum, char buf[], size_t size)
   //       * In call other cases, write "unknown error", possibly truncated
   //       * Doesn't need to be too smart, client code should simply supply a large enough buffer, it's not like the messages are normally very long
   //       * Should we handle a minimum size here? Then again, why bother?
+
+  if (!errnum)
+  {
+    return "No error";
+  }
+
   int result = strerror_r(errnum, buf, size);
   (void)result; // TODO: actually do something with result
   return buf;
