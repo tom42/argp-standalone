@@ -24,11 +24,25 @@ void test_argp_compat_strerror(void)
   TEST_ASSERT_EQUAL_STRING("Permission denied", argp_compat_strerror(EACCES, buf, sizeof(buf)));
 }
 
+void test_argp_compat_strerror_buffer_too_short(void)
+{
+  // Note: cppreference states that
+  // "If the message had to be truncated to fit the buffer and bufsz is greater than 3,
+  // then only bufsz-4 bytes are written, and the characters "..." are appended before
+  // the null terminator."
+  // At least Microsoft's standard library doesn't appear to do so.
+  char buf[5];
+  TEST_ASSERT_EQUAL_STRING("Perm", argp_compat_strerror(EACCES, buf, sizeof(buf)));
+  TEST_ASSERT_EQUAL_STRING("P", argp_compat_strerror(EACCES, buf, 2));
+  TEST_ASSERT_EQUAL_STRING("", argp_compat_strerror(EACCES, buf, 1));
+}
+
 int main(int argc, char** argv)
 {
   g_argv = argv;
   UNITY_BEGIN();
   RUN_TEST(test__argp_short_program_name);
   RUN_TEST(test_argp_compat_strerror);
+  RUN_TEST(test_argp_compat_strerror_buffer_too_short);
   return UNITY_END();
 }

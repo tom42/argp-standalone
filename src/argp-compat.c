@@ -79,6 +79,7 @@ char* argp_compat_strndup(const char* s, size_t n)
 // TODO: at the beginning of this file, set up required stuff to ensure the BSD variant is taken
 //       * Undef _GNU_SOURCE (bark if it is defined, since that is in principle a build error?)
 //       * Also define the POSIX API level since that is really how it's done properly?
+//       * Also explain why (we do not want to have to detect whether GNU or BSD strerror is used, since that is hairy in C)
 // TODO: should we check for the BSD function instead in CMakeLists?
 // TODO: remember to also fix all items in argp-compat.h
 char* argp_compat_strerror(int errnum, char buf[], size_t size)
@@ -88,7 +89,6 @@ char* argp_compat_strerror(int errnum, char buf[], size_t size)
   strerror_r(errnum, buf, size);
   return buf;
 #elif defined(HAVE_DECL_STRERROR_S) && HAVE_DECL_STRERROR_S
-  // TODO: strerror_s returns an error code here. Do we need to do anything with it? Does strerror_s return a zero terminated string in any case?
   strerror_s(buf, size, errnum);
   return buf;
 #else
