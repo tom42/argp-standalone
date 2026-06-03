@@ -3,8 +3,16 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  * argp-standalone - standalone version of glibc's argp functions.
  */
+
+/*
+ * Ensure we get the POSIX version of strerror_r.
+ * We do not try to use the GNU version if available.
+ * We'd have to be able to detect whether we have GNU or POSIX,
+ * and that is just hairy and not worth the trouble.
+ */
 #undef _GNU_SOURCE
 #define _POSIX_C_SOURCE 200112L
+
 #include <string.h>
 #include "argp-compat.h"
 
@@ -76,9 +84,6 @@ char* argp_compat_strndup(const char* s, size_t n)
 
 // TODO: document: this falls back to strerror and is therefore not necessarily thread-safe
 // TODO: replace BSD and strerror path with this, one way or another
-// TODO: ensure _GNU_SOURCE is not defined here so we get the BSD variant (have another preprocessor check right here or inside the function)
-// TODO: at the beginning of this file, set up required stuff to ensure the BSD variant is taken
-//       * Also explain why (we do not want to have to detect whether GNU or BSD strerror is used, since that is hairy in C)
 // TODO: should we check for the BSD function instead in CMakeLists?
 // TODO: remember to also fix all items in argp-compat.h
 char* argp_compat_strerror(int errnum, char buf[], size_t size)
