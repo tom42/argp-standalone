@@ -24,6 +24,12 @@ void test_argp_compat_strerror(void)
   TEST_ASSERT_EQUAL_STRING("Permission denied", argp_compat_strerror(EACCES, buf, sizeof(buf)));
 }
 
+void test_argp_compat_strerror_no_error(void)
+{
+  char buf[200];
+  TEST_ASSERT_EQUAL_STRING("No error", argp_compat_strerror(0, buf, sizeof(buf)));
+}
+
 void test_argp_compat_strerror_buffer_too_short(void)
 {
   // Note: cppreference states that
@@ -43,6 +49,7 @@ int main(int argc, char** argv)
   UNITY_BEGIN();
   RUN_TEST(test__argp_short_program_name);
   RUN_TEST(test_argp_compat_strerror);
+  RUN_TEST(test_argp_compat_strerror_no_error);
   RUN_TEST(test_argp_compat_strerror_buffer_too_short);
   return UNITY_END();
 }
