@@ -32,7 +32,7 @@ void test_argp_compat_strerror_no_error(void)
 
 void test_argp_compat_strerror_buffer_too_short(void)
 {
-  // Note: cppreference states that
+  // Note: cppreference states regarding strerror_s that
   // "If the message had to be truncated to fit the buffer and bufsz is greater than 3,
   // then only bufsz-4 bytes are written, and the characters "..." are appended before
   // the null terminator."
