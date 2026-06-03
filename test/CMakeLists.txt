@@ -15,7 +15,7 @@ argp_standalone_target_enable_warnings(argp-test)
 target_include_directories(argp-test PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(argp-test PRIVATE argp-standalone)
 
-add_executable(argp-compat-test argp-compat-test.c)
+add_executable(argp-compat-test argp-compat-test.c unity.c)
 argp_standalone_target_enable_warnings(argp-compat-test)
 target_include_directories(argp-compat-test PRIVATE ../src)
 target_link_libraries(argp-compat-test PRIVATE argp-standalone)
