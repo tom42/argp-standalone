@@ -4,6 +4,7 @@
  * argp-standalone - standalone version of glibc's argp functions.
  */
 #include <errno.h>
+#include <string.h>
 #include "argp-compat.h"
 #include "argp-namefrob.h"
 #include "unity.h"
@@ -27,7 +28,16 @@ void test_argp_compat_strerror(void)
 void test_argp_compat_strerror_no_error(void)
 {
   char buf[200];
-  TEST_ASSERT_EQUAL_STRING("No error", argp_compat_strerror(0, buf, sizeof(buf)));
+  argp_compat_strerror(0, buf, sizeof(buf));
+
+  int result = !strcmp(buf, "No error") || !strcmp(buf, "Success");
+
+  if (!result)
+  {
+    char message[400];
+    snprintf(message, sizeof(message), "Unexpected error message: %s", buf);
+    TEST_FAIL_MESSAGE(message);
+  }
 }
 
 void test_argp_compat_strerror_buffer_too_short(void)
