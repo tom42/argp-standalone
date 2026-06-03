@@ -73,16 +73,25 @@ char* argp_compat_strndup(const char* s, size_t n)
 }
 #endif
 
-// TODO: implement: strerror_r
-// TODO: implement: strerror_s
-// TODO: implement: strerror
 // TODO: document: this falls back to strerror and is therefore not necessarily thread-safe
-// TODO: test: maybe use the existing one?
 // TODO: replace BSD and strerror path with this, one way or another
-// TODO: ensure _GNU_SOURCE is not defined here so we get the BSD variant
+// TODO: ensure _GNU_SOURCE is not defined here so we get the BSD variant (have another preprocessor check right here or inside the function)
+// TODO: at the beginning of this file, set up required stuff to ensure the BSD variant is taken
+//       * Undef _GNU_SOURCE (bark if it is defined, since that is in principle a build error?)
+//       * Also define the POSIX API level since that is really how it's done properly?
 // TODO: should we check for the BSD function instead in CMakeLists?
 // TODO: remember to also fix all items in argp-compat.h
 char* argp_compat_strerror(int errnum, char buf[], size_t size)
 {
+#if defined(HAVE_DECL_STRERROR_R) && HAVE_DECL_STRERROR_R
+  // TODO: strerror_r returns error code here. Handle it: need to clarify, but in case of error I think the buffer is not written to, so we should do so.
+  strerror_r(errnum, buf, size);
+  return buf;
+#elif defined(HAVE_DECL_STRERROR_S) && HAVE_DECL_STRERROR_S
+  // TODO: strerror_s returns an error code here. Do we need to do anything with it? Does strerror_s return a zero terminated string in any case?
+  strerror_s(buf, size, errnum);
+  return buf;
+#else
   return strerror(errnum);
+#endif
 }
