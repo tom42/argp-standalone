@@ -85,6 +85,7 @@ char* argp_compat_strndup(const char* s, size_t n)
 // TODO: remember to also fix all items in argp-compat.h
 char* argp_compat_strerror(int errnum, char buf[], size_t size)
 {
+  /* Prefer strerror_s. It's the most sane API, actually. */
 #if defined(HAVE_DECL_STRERROR_S) && HAVE_DECL_STRERROR_S
   strerror_s(buf, size, errnum);
   return buf;
