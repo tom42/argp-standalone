@@ -23,6 +23,7 @@ void test_argp_compat_strerror(void)
 {
   char buf[200];
   TEST_ASSERT_EQUAL_STRING("Permission denied", argp_compat_strerror(EACCES, buf, sizeof(buf)));
+  TEST_ASSERT_EQUAL_STRING("No such file or directory", argp_compat_strerror(ENOENT, buf, sizeof(buf)));
 }
 
 void test_argp_compat_strerror_no_error(void)
