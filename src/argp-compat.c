@@ -92,7 +92,8 @@ char* argp_compat_strerror(int errnum, char buf[], size_t size)
   //       * Possibly specially handle ERANGE if buffer is too short (then again, now?)
   //       * In call other cases, write "unknown error", possibly truncated
   //       * Doesn't need to be too smart, client code should simply supply a large enough buffer, it's not like the messages are normally very long
-  strerror_r(errnum, buf, size);
+  int result = strerror_r(errnum, buf, size);
+  (void)result; // TODO: actually do something with result
   return buf;
 #elif defined(HAVE_DECL_STRERROR_S) && HAVE_DECL_STRERROR_S
   strerror_s(buf, size, errnum);
