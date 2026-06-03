@@ -16,11 +16,10 @@ static void test__argp_short_program_name(char** argv)
 
 static void test_argp_compat_strerror()
 {
-	// TODO: get access to argp_compat_strerror somehow
-	// TODO: pass correct args: is the buf/sizeof(buf) thing correct?
-	// TODO: awesome: it already gets unwieldy: can we source a tiny unit test framework for C with better assertion messages?
-	char buf[200];
-	assert(strcmp(argp_compat_strerror(EACCES, buf, sizeof(buf)), "") == 0);
+  // TODO: pass correct args: is the buf/sizeof(buf) thing correct?
+  // TODO: awesome: it already gets unwieldy: can we source a tiny unit test framework for C with better assertion messages?
+  char buf[200];
+  assert(strcmp(argp_compat_strerror(EACCES, buf, sizeof(buf)), "") == 0);
 }
 
 int main(int argc, char** argv)
