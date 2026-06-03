@@ -28,7 +28,7 @@ void test_argp_compat_strerror(void)
 void test_argp_compat_strerror_no_error(void)
 {
   char buf[200];
-  char* str = argp_compat_strerror(0, buf, sizeof(buf));
+  const char* str = argp_compat_strerror(0, buf, sizeof(buf));
 
   int result = !strcmp(str, "No error") || !strcmp(str, "Success");
 

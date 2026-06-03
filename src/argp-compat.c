@@ -86,7 +86,7 @@ char* argp_compat_strndup(const char* s, size_t n)
 // TODO: replace BSD and strerror path with this, one way or another
 // TODO: should we check for the BSD function instead in CMakeLists?
 // TODO: remember to also fix all items in argp-compat.h
-char* argp_compat_strerror(int errnum, char buf[], size_t size)
+const char* argp_compat_strerror(int errnum, char buf[], size_t size)
 {
 #ifdef _GNU_SOURCE
 #error _GNU_SOURCE must not be defined here
