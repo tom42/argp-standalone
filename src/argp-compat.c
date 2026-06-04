@@ -112,6 +112,14 @@ const char* argp_compat_strerror(int errnum, char buf[], size_t size)
   }
 
   int result = strerror_r(errnum, buf, size);
+  // TODO: ensure buf is terminated
+
+  // TODO: error handling
+  //       * 0 => no error => good
+  //       * EINVAL => invalid error code => ??? supply own error message ???
+  //       * ERANGE => buffer too short => ??? supply own error message ???
+  //       * other  => ??? supply own error message ???
+
   (void)result; // TODO: actually do something with result
   return buf;
 #else
