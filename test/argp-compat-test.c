@@ -14,7 +14,7 @@ void tearDown() {}
 
 static char** g_argv;
 
-void test__argp_short_program_name(void)
+void test___argp_short_program_name(void)
 {
   TEST_ASSERT_EQUAL_STRING(__argp_basename(g_argv[0]), __argp_short_program_name());
 }
@@ -58,7 +58,7 @@ int main(int argc, char** argv)
 {
   g_argv = argv;
   UNITY_BEGIN();
-  RUN_TEST(test__argp_short_program_name);
+  RUN_TEST(test___argp_short_program_name);
   RUN_TEST(test_argp_compat_strerror);
   RUN_TEST(test_argp_compat_strerror_no_error);
   RUN_TEST(test_argp_compat_strerror_buffer_too_short);
