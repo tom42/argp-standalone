@@ -16,6 +16,19 @@ void tearDown() {}
 
 static char** g_argv;
 
+int is_one_of(const char* s, const char* const alternatives[], size_t n_alternatives)
+{
+  for (int i = 0; i < n_alternatives; ++i)
+  {
+    if (!strcmp(s, alternatives[i]))
+    {
+      return 1;
+    }
+  }
+
+  return 0;
+}
+
 void test___argp_short_program_name(void)
 {
   TEST_ASSERT_EQUAL_STRING(__argp_basename(g_argv[0]), __argp_short_program_name());
