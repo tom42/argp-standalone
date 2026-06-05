@@ -9,22 +9,7 @@
 #include "argp-namefrob.h"
 #include "unity.h"
 
-#define COUNT_OF(x) ((sizeof(x) / sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
-
 static char** g_argv;
-
-int is_one_of(const char* s, const char* const alternatives[], size_t n_alternatives)
-{
-  for (int i = 0; i < n_alternatives; ++i)
-  {
-    if (!strcmp(s, alternatives[i]))
-    {
-      return 1;
-    }
-  }
-
-  return 0;
-}
 
 void test___argp_short_program_name(void)
 {
