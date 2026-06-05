@@ -27,15 +27,8 @@ void test_argp_compat_strerror_no_error(void)
 {
   char buf[200];
   const char* str = argp_compat_strerror(0, buf, sizeof(buf));
-
   int result = !strcmp(str, "No error") || !strcmp(str, "Success");
-
-  if (!result)
-  {
-    char message[400];
-    snprintf(message, sizeof(message), "Unexpected error message: %s", str);
-    TEST_FAIL_MESSAGE(message);
-  }
+  TEST_ASSERT_TRUE_MESSAGE(result, str);
 }
 
 void test_argp_compat_strerror_unknown_error(void)
