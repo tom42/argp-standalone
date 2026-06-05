@@ -11,9 +11,6 @@
 
 #define COUNT_OF(x) ((sizeof(x) / sizeof(0[x])) / ((size_t)(!(sizeof(x) % sizeof(0[x])))))
 
-void setUp() {}
-void tearDown() {}
-
 static char** g_argv;
 
 int is_one_of(const char* s, const char* const alternatives[], size_t n_alternatives)
@@ -74,6 +71,10 @@ void test_argp_compat_strerror_buffer_too_short(void)
   TEST_ASSERT_EQUAL_STRING("P", argp_compat_strerror(EACCES, buf, 2));
   TEST_ASSERT_EQUAL_STRING("", argp_compat_strerror(EACCES, buf, 1));
 }
+
+void setUp() {}
+
+void tearDown() {}
 
 int main(int argc, char** argv)
 {
