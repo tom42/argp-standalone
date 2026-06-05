@@ -13,6 +13,8 @@
 #undef _GNU_SOURCE
 #define _POSIX_C_SOURCE 200112L
 
+#include <errno.h>
+#include <stdio.h>
 #include <string.h>
 #include "argp-compat.h"
 
@@ -117,15 +119,20 @@ const char* argp_compat_strerror(int errnum, char buf[], size_t size)
   int result = strerror_r(errnum, buf, size);
   /* TODO: ensure buf is terminated */
 
+  switch (result)
+  {
+    case EINVAL:
+      snprintf(buf, size, "Unknown error %d", errnum);
+      break;
+  }
+
   /*
    * TODO: error handling
    *       * 0 => no error => good
-   *       * EINVAL => invalid error code => ??? supply own error message ???
    *       * ERANGE => buffer too short => ??? supply own error message ???
    *       * other  => ??? supply own error message ???
    */
 
-  (void)result; /* TODO: actually do something with result */
   return buf;
 #else
   return strerror(errnum);
