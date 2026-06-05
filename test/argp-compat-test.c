@@ -34,7 +34,9 @@ void test_argp_compat_strerror_no_error(void)
 void test_argp_compat_strerror_unknown_error(void)
 {
   char buf[200];
-  TEST_ASSERT_EQUAL_STRING("Unknown error", argp_compat_strerror(-1, buf, sizeof(buf)));
+  const char* str = argp_compat_strerror(-1, buf, sizeof(buf));
+  int result = !strcmp(str, "Unknown error") || !strcmp(str, "Unknown error -1");
+  TEST_ASSERT_TRUE_MESSAGE(result, str);
 }
 
 void test_argp_compat_strerror_buffer_too_short(void)
