@@ -82,10 +82,12 @@ char* argp_compat_strndup(const char* s, size_t n)
 }
 #endif
 
-// TODO: document: this falls back to strerror and is therefore not necessarily thread-safe
-// TODO: replace BSD and strerror path with this, one way or another
-// TODO: should we check for the BSD function instead in CMakeLists?
-// TODO: remember to also fix all items in argp-compat.h
+/*
+ * TODO: document: this falls back to strerror and is therefore not necessarily thread-safe
+ * TODO: replace BSD and strerror path with this, one way or another
+ * TODO: should we check for the BSD function instead in CMakeLists?
+ * TODO: remember to also fix all items in argp-compat.h
+ */
 const char* argp_compat_strerror(int errnum, char buf[], size_t size)
 {
 #ifdef _GNU_SOURCE
@@ -97,13 +99,15 @@ const char* argp_compat_strerror(int errnum, char buf[], size_t size)
   strerror_s(buf, size, errnum);
   return buf;
 #elif defined(HAVE_DECL_STRERROR_R) && HAVE_DECL_STRERROR_R
-  // TODO: strerror_r returns error code here. Handle it: need to clarify, but in case of error I think the buffer is not written to, so we should do so.
-  //       Quote from random page: POSIX states that the contents of buf are unspecified on error, although this implementation guarantees a NUL-terminated string for all except n of 0.
-  //       So we better maybe
-  //       * Possibly specially handle ERANGE if buffer is too short (then again, now?)
-  //       * In call other cases, write "unknown error", possibly truncated
-  //       * Doesn't need to be too smart, client code should simply supply a large enough buffer, it's not like the messages are normally very long
-  //       * Should we handle a minimum size here? Then again, why bother?
+  /*
+   * TODO: strerror_r returns error code here. Handle it: need to clarify, but in case of error I think the buffer is not written to, so we should do so.
+   *       Quote from random page: POSIX states that the contents of buf are unspecified on error, although this implementation guarantees a NUL-terminated string for all except n of 0.
+   *       So we better maybe
+   *       * Possibly specially handle ERANGE if buffer is too short (then again, now?)
+   *       * In call other cases, write "unknown error", possibly truncated
+   *       * Doesn't need to be too smart, client code should simply supply a large enough buffer, it's not like the messages are normally very long
+   *       * Should we handle a minimum size here? Then again, why bother?
+   */
 
   if (!errnum)
   {
@@ -111,15 +115,17 @@ const char* argp_compat_strerror(int errnum, char buf[], size_t size)
   }
 
   int result = strerror_r(errnum, buf, size);
-  // TODO: ensure buf is terminated
+  /* TODO: ensure buf is terminated */
 
-  // TODO: error handling
-  //       * 0 => no error => good
-  //       * EINVAL => invalid error code => ??? supply own error message ???
-  //       * ERANGE => buffer too short => ??? supply own error message ???
-  //       * other  => ??? supply own error message ???
+  /*
+   * TODO: error handling
+   *       * 0 => no error => good
+   *       * EINVAL => invalid error code => ??? supply own error message ???
+   *       * ERANGE => buffer too short => ??? supply own error message ???
+   *       * other  => ??? supply own error message ???
+   */
 
-  (void)result; // TODO: actually do something with result
+  (void)result; /* TODO: actually do something with result */
   return buf;
 #else
   return strerror(errnum);

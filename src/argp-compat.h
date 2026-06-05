@@ -56,8 +56,10 @@ char* argp_compat_strndup(const char* s, size_t n);
 #define strndup argp_compat_strndup
 #endif
 
-// TODO: do we provide this unconditionally? Probably, yes?
-// TODO: use this from argp (either by hacking source or using preprocessor redirection)
+/*
+ * TODO: do we provide this unconditionally? Probably, yes?
+ * TODO: use this from argp (either by hacking source or using preprocessor redirection)
+ */
 const char* argp_compat_strerror(int errnum, char buf[], size_t size);
 
 #endif
