@@ -101,12 +101,7 @@ const char* argp_compat_strerror(int errnum, char buf[], size_t size)
   strerror_s(buf, size, errnum);
   return buf;
 #elif defined(HAVE_DECL_STRERROR_R) && HAVE_DECL_STRERROR_R
-  /*
-   * TODO: strerror_r returns error code here. Handle it: need to clarify, but in case of error I think the buffer is not written to, so we should do so.
-   *       Quote from random page: POSIX states that the contents of buf are unspecified on error, although this implementation guarantees a NUL-terminated string for all except n of 0.
-   *       So we better maybe
-   *       * Should we handle a minimum size here? Then again, why bother?
-   */
+  /* TODO: Should we handle a minimum size here? Then again, why bother? */
 
   if (!errnum)
   {
@@ -115,9 +110,12 @@ const char* argp_compat_strerror(int errnum, char buf[], size_t size)
 
   int result = strerror_r(errnum, buf, size);
 
-  /* Some implementations might not terminate if the buffer is too short. */
+  /* Some implementations might not terminate the string
+     if the buffer is too short. */
   buf[size - 1] = 0;
 
+  /* Some implementations might not write to buf on error.
+     Ensure buf always contains a message. */
   switch (result)
   {
     case 0:
