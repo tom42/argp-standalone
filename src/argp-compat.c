@@ -126,12 +126,14 @@ const char* argp_compat_strerror(int errnum, char buf[], size_t size)
     case EINVAL:
       snprintf(buf, size, "Unknown error %d", errnum);
       break;
+    case ERANGE:
+      snprintf(buf, size, "Buffer too short (strerror_r)");
+      break;
   }
 
   /*
    * TODO: error handling
    *       * 0 => no error => good
-   *       * ERANGE => buffer too short => ??? supply own error message ???
    *       * other  => ??? supply own error message ???
    */
 

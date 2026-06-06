@@ -5,6 +5,7 @@
  */
 #include <errno.h>
 #include <string.h>
+#include "config.h"
 #include "argp-compat.h"
 #include "argp-namefrob.h"
 #include "unity.h"
@@ -47,9 +48,16 @@ void test_argp_compat_strerror_buffer_too_short(void)
   // the null terminator."
   // At least Microsoft's standard library doesn't appear to do so.
   char buf[5];
+#if defined(HAVE_DECL_STRERROR_S) && HAVE_DECL_STRERROR_S
   TEST_ASSERT_EQUAL_STRING("Perm", argp_compat_strerror(EACCES, buf, sizeof(buf)));
   TEST_ASSERT_EQUAL_STRING("P", argp_compat_strerror(EACCES, buf, 2));
   TEST_ASSERT_EQUAL_STRING("", argp_compat_strerror(EACCES, buf, 1));
+#else
+  // Message comes from our strerror_r wrapper handling ERANGE.
+  TEST_ASSERT_EQUAL_STRING("Buff", argp_compat_strerror(EACCES, buf, sizeof(buf)));
+  TEST_ASSERT_EQUAL_STRING("B", argp_compat_strerror(EACCES, buf, 2));
+  TEST_ASSERT_EQUAL_STRING("", argp_compat_strerror(EACCES, buf, 1));
+#endif
 }
 
 void setUp() {}
