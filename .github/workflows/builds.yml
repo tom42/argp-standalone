@@ -1,189 +1,205 @@
-# SPDX-FileCopyrightText: 2026 Thomas Mathys
-# SPDX-License-Identifier: LGPL-2.1-or-later
+# # SPDX-FileCopyrightText: 2026 Thomas Mathys
+# # SPDX-License-Identifier: LGPL-2.1-or-later
 
-name: Builds
+# name: Builds
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch:
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+#   workflow_dispatch:
 
-jobs:
-  build-linux:
-    name: Linux Builds (${{matrix.c_compiler}}, ${{matrix.build_type}})
-    runs-on: ubuntu-latest
+# jobs:
+#   build-linux:
+#     name: Linux Builds (${{matrix.c_compiler}}, ${{matrix.build_type}})
+#     runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: true
-      matrix:
-        c_compiler: [clang, gcc]
-        build_type: [Release, Debug]
+#     strategy:
+#       fail-fast: true
+#       matrix:
+#         c_compiler: [clang, gcc]
+#         build_type: [Release, Debug]
 
-    steps:
+#     steps:
 
-    - name: Set reusable strings
-      id: strings
-      shell: bash
-      run: |
-        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+#     - name: Set reusable strings
+#       id: strings
+#       shell: bash
+#       run: |
+#         echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
 
-    - name: Checkout sources
-      uses: actions/checkout@v6
+#     - name: Checkout sources
+#       uses: actions/checkout@v6
 
-    - name: Configure CMake
-      run: >
-        cmake
-        -B ${{steps.strings.outputs.build-output-dir}}
-        -S ${{github.workspace}}
-        --preset dev-linux
-        -DCMAKE_C_COMPILER=${{matrix.c_compiler}}
-        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+#     - name: Configure CMake
+#       run: >
+#         cmake
+#         -B ${{steps.strings.outputs.build-output-dir}}
+#         -S ${{github.workspace}}
+#         --preset dev-linux
+#         -DCMAKE_C_COMPILER=${{matrix.c_compiler}}
+#         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
-    - name: Build
-      run: |
-        cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
+#     - name: Build
+#       run: |
+#         cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
 
-    - name: Test
-      working-directory: ${{steps.strings.outputs.build-output-dir}}
-      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
+#     - name: Test
+#       working-directory: ${{steps.strings.outputs.build-output-dir}}
+#       run: ctest --build-config ${{matrix.build_type}} --output-on-failure
+
+#   build-mingw:
+#     name: MinGW Builds (${{matrix.preset}}, ${{matrix.build_type}})
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       fail-fast: true
+#       matrix:
+#         preset: [dev-mingw-64]
+#         build_type: [Release, Debug]
+
+#     steps:
+
+#     - name: Set reusable strings
+#       id: strings
+#       shell: bash
+#       run: |
+#         echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+
+#     - name: Checkout sources
+#       uses: actions/checkout@v6
+
+#     - name: Install MinGW and WinE
+#       shell: bash
+#       run: |
+#         sudo apt update
+#         sudo apt install gcc-mingw-w64 wine
+
+#     - name: Configure CMake
+#       run: >
+#         cmake
+#         -B ${{steps.strings.outputs.build-output-dir}}
+#         -S ${{github.workspace}}
+#         --preset ${{matrix.preset}}
+#         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+
+#     - name: Build
+#       run: |
+#         cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
+
+#     - name: Test
+#       working-directory: ${{steps.strings.outputs.build-output-dir}}
+#       run: ctest --build-config ${{matrix.build_type}} --output-on-failure
+
+#   build-windows:
+#     name: Windows Builds (${{matrix.arch}}, ${{matrix.build_type}})
+#     runs-on: windows-latest
+
+#     strategy:
+#       fail-fast: true
+#       matrix:
+#         arch: [x64, Win32]
+#         build_type: [Release, Debug]
+
+#     steps:
+
+#     - name: Set reusable strings
+#       id: strings
+#       shell: bash
+#       run: |
+#         echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+
+#     - name: Checkout sources
+#       uses: actions/checkout@v6
+
+#     - name: Configure CMake
+#       run: >
+#         cmake
+#         -B ${{steps.strings.outputs.build-output-dir}}
+#         -S ${{github.workspace}}
+#         --preset dev-windows
+#         -A ${{matrix.arch}}
+#         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+
+#     - name: Build
+#       run: |
+#         cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
+
+#     - name: Test
+#       working-directory: ${{steps.strings.outputs.build-output-dir}}
+#       run: ctest --build-config ${{matrix.build_type}} --output-on-failure
+
+#   build-macos:
+#     name: MacOS Builds (${{matrix.build_type}})
+#     runs-on: macos-latest
+
+#     strategy:
+#       fail-fast: true
+#       matrix:
+#         build_type: [Release, Debug]
+
+#     steps:
+
+#     - name: Set reusable strings
+#       id: strings
+#       shell: bash
+#       run: |
+#         echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+
+#     - name: Checkout sources
+#       uses: actions/checkout@v6
+
+#     - name: Configure CMake
+#       run: >
+#         cmake
+#         -B ${{steps.strings.outputs.build-output-dir}}
+#         -S ${{github.workspace}}
+#         --preset dev-macos
+#         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+
+#     - name: Build
+#       run: |
+#         cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
+
+#     - name: Test
+#       working-directory: ${{steps.strings.outputs.build-output-dir}}
+#       run: ctest --build-config ${{matrix.build_type}} --output-on-failure
+
+#   quality:
+#     name: Static Quality Checks
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       fail-fast: true
+
+#     steps:
+
+#     - name: Checkout sources
+#       uses: actions/checkout@v6
+
+#     - name: Install reuse
+#       shell: bash
+#       run: |
+#         pipx install reuse
+
+#     - name: Run reuse lint
+#       shell: bash
+#       run: |
+#         reuse lint
 
   build-mingw:
-    name: MinGW Builds (${{matrix.preset}}, ${{matrix.build_type}})
-    runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: true
-      matrix:
-        preset: [dev-mingw-64]
-        build_type: [Release, Debug]
-
-    steps:
-
-    - name: Set reusable strings
-      id: strings
-      shell: bash
-      run: |
-        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
-
-    - name: Checkout sources
-      uses: actions/checkout@v6
-
-    - name: Install MinGW and WinE
-      shell: bash
-      run: |
-        sudo apt update
-        sudo apt install gcc-mingw-w64 wine
-
-    - name: Configure CMake
-      run: >
-        cmake
-        -B ${{steps.strings.outputs.build-output-dir}}
-        -S ${{github.workspace}}
-        --preset ${{matrix.preset}}
-        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
-
-    - name: Build
-      run: |
-        cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
-
-    - name: Test
-      working-directory: ${{steps.strings.outputs.build-output-dir}}
-      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
-
-  build-windows:
-    name: Windows Builds (${{matrix.arch}}, ${{matrix.build_type}})
+    name: MinGW Builds # TODO: fix up with names from matrix if applicable
     runs-on: windows-latest
 
-    strategy:
-      fail-fast: true
-      matrix:
-        arch: [x64, Win32]
-        build_type: [Release, Debug]
-
-    steps:
-
-    - name: Set reusable strings
-      id: strings
-      shell: bash
-      run: |
-        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
-
-    - name: Checkout sources
-      uses: actions/checkout@v6
-
-    - name: Configure CMake
-      run: >
-        cmake
-        -B ${{steps.strings.outputs.build-output-dir}}
-        -S ${{github.workspace}}
-        --preset dev-windows
-        -A ${{matrix.arch}}
-        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
-
-    - name: Build
-      run: |
-        cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
-
-    - name: Test
-      working-directory: ${{steps.strings.outputs.build-output-dir}}
-      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
-
-  build-macos:
-    name: MacOS Builds (${{matrix.build_type}})
-    runs-on: macos-latest
-
-    strategy:
-      fail-fast: true
-      matrix:
-        build_type: [Release, Debug]
-
-    steps:
-
-    - name: Set reusable strings
-      id: strings
-      shell: bash
-      run: |
-        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
-
-    - name: Checkout sources
-      uses: actions/checkout@v6
-
-    - name: Configure CMake
-      run: >
-        cmake
-        -B ${{steps.strings.outputs.build-output-dir}}
-        -S ${{github.workspace}}
-        --preset dev-macos
-        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
-
-    - name: Build
-      run: |
-        cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
-
-    - name: Test
-      working-directory: ${{steps.strings.outputs.build-output-dir}}
-      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
-
-  quality:
-    name: Static Quality Checks
-    runs-on: ubuntu-latest
-
+    # TODO: add build matrix if applicable
     strategy:
       fail-fast: true
 
+    # TODO: real build
     steps:
-
-    - name: Checkout sources
-      uses: actions/checkout@v6
-
-    - name: Install reuse
-      shell: bash
-      run: |
-        pipx install reuse
-
-    - name: Run reuse lint
-      shell: bash
-      run: |
-        reuse lint
+      - name: "See whether compiler is there"
+        shell: bash
+        run: |
+          gcc --version
+          which gcc
