@@ -123,6 +123,8 @@ const char* argp_compat_strerror(int errnum, char buf[], size_t size)
 
   switch (result)
   {
+    case 0:
+      break;
     case EINVAL:
       snprintf(buf, size, "Unknown error %d", errnum);
       break;
