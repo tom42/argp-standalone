@@ -58,6 +58,7 @@ dkms.conf
 /build*
 
 # Qt Creator files
+.qtcreator
 CMakeLists.txt.user
 
 # Temporary files

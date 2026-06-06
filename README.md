@@ -10,7 +10,6 @@ It is distributed under the terms of the GNU LGPL v2.1.
 It is currently available in source form only from https://github.com/tom42/argp-standalone.
 
 # Missing things
-* glibc compiles its argp sources using the -fexceptions option. argp-standalone currently doesn't do this; even with -fexceptions I don't think letting exceptions propagate into C code is a particularly good idea.
 * gettext is currently not supported.
 * Although argp-standalone contains glibc's getopt implementation it does not provide getopt through its headers. Doing so would be messy e.g. on Cygwin which provides getopt but not argp.
 
@@ -51,8 +50,6 @@ I haven't done any extensive testing, but I have successfully built version 1.0.
 * Factor out duplicated ad hoc implementations of what's basically basename (search for occurrences of ARGP_PATH_SEPARATOR). Provide better implementations where possible. The current implementation has various shortcomings:
   * On Windows it only recognizes \ as the path separator, but should probably recognize both \ and /
   * It returns an empty string if the path ends with the path separator. This is normally not the case but I've seen it happening.
-* Fix the preprocessor #warning in __argp_short_program_name:
-  * On Windows we could fall back to GetModuleFileName
 * gettext support
 
 # History

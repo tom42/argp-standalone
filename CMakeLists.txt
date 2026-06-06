@@ -58,10 +58,13 @@ check_symbol_exists(fwrite_unlocked stdio.h HAVE_DECL_FWRITE_UNLOCKED)
 # HAVE_DECL_STRERROR here because the argp sources expect
 # it to be done that way. Normally we'd just use a single
 # call to check_symbol_exists to probe for a function.
+cmake_push_check_state(RESET)
+set(CMAKE_REQUIRED_DEFINITIONS -D_POSIX_C_SOURCE=200112L)
 check_function_exists(strerror_r HAVE_STRERROR_R)
 check_symbol_exists(strerror_r string.h HAVE_DECL_STRERROR_R)
 check_symbol_exists(strerror string.h HAVE_DECL_STRERROR)
 check_symbol_exists(strerror_s string.h HAVE_DECL_STRERROR_S)
+cmake_pop_check_state()
 
 # Check for miscellaneous functions
 check_symbol_exists(asprintf stdio.h HAVE_ASPRINTF)

@@ -1,8 +1,6 @@
-/*
- * SPDX-FileCopyrightText: 2020 Thomas Mathys
- * SPDX-License-Identifier: LGPL-2.1-or-later
- * argp-standalone - standalone version of glibc's argp functions.
- */
+/* SPDX-FileCopyrightText: 2020 Thomas Mathys
+   SPDX-License-Identifier: LGPL-2.1-or-later
+   argp-standalone - standalone version of glibc's argp functions. */
 
 /* Headers */
 #cmakedefine01 HAVE_MEMPCPY_H
@@ -17,10 +15,11 @@
 #cmakedefine01 HAVE_DECL_FPUTS_UNLOCKED
 #cmakedefine01 HAVE_DECL_FWRITE_UNLOCKED
 
-/* strerror_r and strerror */
+/* strerror_r etc. */
 #cmakedefine01 HAVE_STRERROR_R
 #cmakedefine01 HAVE_DECL_STRERROR_R
 #cmakedefine01 HAVE_DECL_STRERROR
+#cmakedefine01 HAVE_DECL_STRERROR_S
 
 /* Miscellaneous functions */
 #cmakedefine01 HAVE_ASPRINTF

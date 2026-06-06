@@ -1,9 +1,16 @@
-/*
- * SPDX-FileCopyrightText: 2020 Thomas Mathys
- * SPDX-License-Identifier: LGPL-2.1-or-later
- * argp-standalone - standalone version of glibc's argp functions.
- */
+/* SPDX-FileCopyrightText: 2020 Thomas Mathys
+   SPDX-License-Identifier: LGPL-2.1-or-later
+   argp-standalone - standalone version of glibc's argp functions. */
 
+/* Ensure we get the POSIX version of strerror_r.
+   We do not try to use the GNU version if available.
+   We'd have to be able to detect whether we have GNU or POSIX,
+   and that is just hairy and not worth the trouble. */
+#undef _GNU_SOURCE
+#define _POSIX_C_SOURCE 200112L
+
+#include <errno.h>
+#include <stdio.h>
 #include <string.h>
 #include "argp-compat.h"
 
@@ -72,3 +79,54 @@ char* argp_compat_strndup(const char* s, size_t n)
   return result;
 }
 #endif
+
+const char* argp_compat_strerror(int errnum, char buf[], size_t size)
+{
+#ifdef _GNU_SOURCE
+#error _GNU_SOURCE must not be defined here
+#endif
+
+  if (size < 1)
+  {
+    return "";
+  }
+
+  /* Prefer strerror_s. It's the most sane API, actually. */
+#if defined(HAVE_DECL_STRERROR_S) && HAVE_DECL_STRERROR_S
+  strerror_s(buf, size, errnum);
+  return buf;
+#elif defined(HAVE_DECL_STRERROR_R) && HAVE_DECL_STRERROR_R
+
+  if (!errnum)
+  {
+    return "No error";
+  }
+
+  int result = strerror_r(errnum, buf, size);
+
+  /* Some implementations might not terminate the string
+     if the buffer is too short. */
+  buf[size - 1] = 0;
+
+  /* Some implementations might not write to buf on error.
+     Ensure buf always contains a message. */
+  switch (result)
+  {
+    case 0:
+      break;
+    case EINVAL:
+      snprintf(buf, size, "Unknown error %d", errnum);
+      break;
+    case ERANGE:
+      snprintf(buf, size, "ERANGE from strerror_r");
+      break;
+    default:
+      snprintf(buf, size, "Error %d from strerror_r", result);
+      break;
+  }
+
+  return buf;
+#else
+  return strerror(errnum);
+#endif
+}

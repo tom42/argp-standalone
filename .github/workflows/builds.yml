@@ -47,7 +47,7 @@ jobs:
 
     - name: Test
       working-directory: ${{steps.strings.outputs.build-output-dir}}
-      run: ctest --build-config ${{matrix.build_type}}
+      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
 
   build-mingw:
     name: MinGW Builds (${{matrix.preset}}, ${{matrix.build_type}})
@@ -128,7 +128,7 @@ jobs:
 
     - name: Test
       working-directory: ${{steps.strings.outputs.build-output-dir}}
-      run: ctest --build-config ${{matrix.build_type}}
+      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
 
   build-macos:
     name: MacOS Builds (${{matrix.build_type}})
@@ -164,7 +164,7 @@ jobs:
 
     - name: Test
       working-directory: ${{steps.strings.outputs.build-output-dir}}
-      run: ctest --build-config ${{matrix.build_type}}
+      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
 
   quality:
     name: Static Quality Checks

@@ -1,8 +1,6 @@
-/*
- * SPDX-FileCopyrightText: 2020 Thomas Mathys
- * SPDX-License-Identifier: LGPL-2.1-or-later
- * argp-standalone - standalone version of glibc's argp functions.
- */
+/* SPDX-FileCopyrightText: 2020 Thomas Mathys
+   SPDX-License-Identifier: LGPL-2.1-or-later
+   argp-standalone - standalone version of glibc's argp functions. */
 
 #ifndef ARGP_COMPAT_H_INCLUDED
 #define ARGP_COMPAT_H_INCLUDED
@@ -55,5 +53,11 @@ const char* argp_compat_strchrnul(const char* s, int c);
 char* argp_compat_strndup(const char* s, size_t n);
 #define strndup argp_compat_strndup
 #endif
+
+/* Do not redirect strerror_r to argp_compat_strerror. argp is already
+   redirecting strerror_r while argp_compat_strerror uses strerror_r.
+   It is simpler to just modify argp to call argp_compat_strerror.
+   Luckily strerror_r is not called in many places. */
+const char* argp_compat_strerror(int errnum, char buf[], size_t size);
 
 #endif
