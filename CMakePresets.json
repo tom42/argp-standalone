@@ -37,7 +37,7 @@
       "inherits": "dev-base"
     },
     {
-      "name": "dev-mingw-32",
+      "name": "dev-linux-mingw-32",
       "inherits": "dev-base",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "i686-w64-mingw32-gcc",
@@ -46,7 +46,7 @@
       }
     },
     {
-      "name": "dev-mingw-64",
+      "name": "dev-linux-mingw-64",
       "inherits": "dev-base",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
