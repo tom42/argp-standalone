@@ -50,13 +50,12 @@ jobs:
       run: ctest --build-config ${{matrix.build_type}} --output-on-failure
 
   build-mingw:
-    name: MinGW Builds (${{matrix.preset}}, ${{matrix.build_type}})
-    runs-on: ubuntu-latest
+    name: MinGW Builds (${{matrix.build_type}})
+    runs-on: windows-latest
 
     strategy:
       fail-fast: true
       matrix:
-        preset: [dev-mingw-64]
         build_type: [Release, Debug]
 
     steps:
@@ -70,18 +69,12 @@ jobs:
     - name: Checkout sources
       uses: actions/checkout@v6
 
-    - name: Install MinGW and WinE
-      shell: bash
-      run: |
-        sudo apt update
-        sudo apt install gcc-mingw-w64 wine
-
     - name: Configure CMake
       run: >
         cmake
         -B ${{steps.strings.outputs.build-output-dir}}
         -S ${{github.workspace}}
-        --preset ${{matrix.preset}}
+        -DCMAKE_C_COMPILER=gcc
         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
     - name: Build
