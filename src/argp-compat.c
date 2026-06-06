@@ -81,7 +81,6 @@ char* argp_compat_strndup(const char* s, size_t n)
 #endif
 
 /*
- * TODO: document: this falls back to strerror and is therefore not necessarily thread-safe
  * TODO: replace BSD and strerror path with this, one way or another
  * TODO: should we check for the BSD function instead in CMakeLists?
  * TODO: remember to also fix all items in argp-compat.h
