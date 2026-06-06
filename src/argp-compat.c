@@ -89,12 +89,16 @@ const char* argp_compat_strerror(int errnum, char buf[], size_t size)
 #error _GNU_SOURCE must not be defined here
 #endif
 
+  if (size < 1)
+  {
+    return "";
+  }
+
   /* Prefer strerror_s. It's the most sane API, actually. */
 #if defined(HAVE_DECL_STRERROR_S) && HAVE_DECL_STRERROR_S
   strerror_s(buf, size, errnum);
   return buf;
 #elif defined(HAVE_DECL_STRERROR_R) && HAVE_DECL_STRERROR_R
-  /* TODO: Should we handle a minimum size here? Then again, why bother? */
 
   if (!errnum)
   {
