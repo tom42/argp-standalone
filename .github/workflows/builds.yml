@@ -1,16 +1,16 @@
 # # SPDX-FileCopyrightText: 2026 Thomas Mathys
 # # SPDX-License-Identifier: LGPL-2.1-or-later
 
-# name: Builds
+name: Builds
 
-# on:
-#   push:
-#     branches: [ "main" ]
-#   pull_request:
-#     branches: [ "main" ]
-#   workflow_dispatch:
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
 
-# jobs:
+jobs:
 #   build-linux:
 #     name: Linux Builds (${{matrix.c_compiler}}, ${{matrix.build_type}})
 #     runs-on: ubuntu-latest
