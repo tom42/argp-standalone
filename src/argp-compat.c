@@ -1,15 +1,11 @@
-/*
- * SPDX-FileCopyrightText: 2020 Thomas Mathys
- * SPDX-License-Identifier: LGPL-2.1-or-later
- * argp-standalone - standalone version of glibc's argp functions.
- */
+/* SPDX-FileCopyrightText: 2020 Thomas Mathys
+   SPDX-License-Identifier: LGPL-2.1-or-later
+   argp-standalone - standalone version of glibc's argp functions. */
 
-/*
- * Ensure we get the POSIX version of strerror_r.
- * We do not try to use the GNU version if available.
- * We'd have to be able to detect whether we have GNU or POSIX,
- * and that is just hairy and not worth the trouble.
- */
+/* Ensure we get the POSIX version of strerror_r.
+   We do not try to use the GNU version if available.
+   We'd have to be able to detect whether we have GNU or POSIX,
+   and that is just hairy and not worth the trouble. */
 #undef _GNU_SOURCE
 #define _POSIX_C_SOURCE 200112L
 
