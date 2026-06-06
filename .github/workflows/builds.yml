@@ -75,6 +75,7 @@ jobs:
         -B ${{steps.strings.outputs.build-output-dir}}
         -S ${{github.workspace}}
         -G Ninja
+        --preset=dev-windows
         -DCMAKE_C_COMPILER=gcc
         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
