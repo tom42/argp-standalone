@@ -33,10 +33,6 @@
       }
     },
     {
-      "name": "dev-windows",
-      "inherits": "dev-base"
-    },
-    {
       "name": "dev-linux-mingw-32",
       "inherits": "dev-base",
       "cacheVariables": {
@@ -53,6 +49,10 @@
         "CMAKE_SYSTEM_NAME": "Windows",
         "CMAKE_CROSSCOMPILING_EMULATOR": "wine"
       }
+    },
+    {
+      "name": "dev-windows",
+      "inherits": "dev-base"
     },
     {
       "name": "dev-macos",
