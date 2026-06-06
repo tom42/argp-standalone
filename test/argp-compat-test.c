@@ -54,8 +54,8 @@ void test_argp_compat_strerror_buffer_too_short(void)
   TEST_ASSERT_EQUAL_STRING("", argp_compat_strerror(EACCES, buf, 1));
 #else
   // Message comes from our strerror_r wrapper handling ERANGE.
-  TEST_ASSERT_EQUAL_STRING("Buff", argp_compat_strerror(EACCES, buf, sizeof(buf)));
-  TEST_ASSERT_EQUAL_STRING("B", argp_compat_strerror(EACCES, buf, 2));
+  TEST_ASSERT_EQUAL_STRING("ERAN", argp_compat_strerror(EACCES, buf, sizeof(buf)));
+  TEST_ASSERT_EQUAL_STRING("E", argp_compat_strerror(EACCES, buf, 2));
   TEST_ASSERT_EQUAL_STRING("", argp_compat_strerror(EACCES, buf, 1));
 #endif
 }
