@@ -203,4 +203,4 @@ jobs:
         run: |
           gcc --version
           which gcc
-          ls /c/mingw64/bin
+          ls /c/mingw64/bin/*gcc*exe
