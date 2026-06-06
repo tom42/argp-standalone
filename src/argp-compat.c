@@ -118,7 +118,7 @@ const char* argp_compat_strerror(int errnum, char buf[], size_t size)
 
   int result = strerror_r(errnum, buf, size);
 
-  /* Buggy implementations might not terminate if the buffer is too short. */
+  /* Some implementations might not terminate if the buffer is too short. */
   buf[size - 1] = 0;
 
   switch (result)
