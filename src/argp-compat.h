@@ -54,10 +54,10 @@ char* argp_compat_strndup(const char* s, size_t n);
 #define strndup argp_compat_strndup
 #endif
 
-/*
- * TODO: do we provide this unconditionally? Probably, yes?
- * TODO: use this from argp (either by hacking source or using preprocessor redirection)
- */
+/* Do not redirect strerror_r to argp_compat_strerror. argp is already
+   redirecting strerror_r while argp_compat_strerror uses strerror_r.
+   It is simpler to just modify argp to call argp_compat_strerror.
+   Luckily strerror_r is not called in many places. */
 const char* argp_compat_strerror(int errnum, char buf[], size_t size);
 
 #endif

@@ -1870,9 +1870,9 @@ __argp_failure (const struct argp_state *state, int status, int errnum,
 
 	  if (errnum)
 	    {
-#if defined(_LIBC) || (defined(HAVE_STRERROR_R) && HAVE_STRERROR_R)
+/* #if defined(_LIBC) || (defined(HAVE_STRERROR_R) && HAVE_STRERROR_R) */
 	      char buf[200];
-#endif
+/* #endif */
 
 #ifdef _LIBC
 	      __fxprintf (stream, ": %s",
@@ -1880,11 +1880,14 @@ __argp_failure (const struct argp_state *state, int status, int errnum,
 #else
 	      putc_unlocked (':', stream);
 	      putc_unlocked (' ', stream);
+	      fputs (argp_compat_strerror (errnum, buf, sizeof (buf)), stream);
+#if 0
 # if defined(HAVE_STRERROR_R) && HAVE_STRERROR_R
 	      fputs (__strerror_r (errnum, buf, sizeof (buf)), stream);
 # else
 	      fputs (strerror (errnum), stream);
 # endif
+#endif
 #endif
 	    }
 

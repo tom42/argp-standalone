@@ -81,9 +81,7 @@ char* argp_compat_strndup(const char* s, size_t n)
 #endif
 
 /*
- * TODO: replace BSD and strerror path with this, one way or another
  * TODO: should we check for the BSD function instead in CMakeLists?
- * TODO: remember to also fix all items in argp-compat.h
  */
 const char* argp_compat_strerror(int errnum, char buf[], size_t size)
 {
