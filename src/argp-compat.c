@@ -80,9 +80,6 @@ char* argp_compat_strndup(const char* s, size_t n)
 }
 #endif
 
-/*
- * TODO: should we check for the BSD function instead in CMakeLists?
- */
 const char* argp_compat_strerror(int errnum, char buf[], size_t size)
 {
 #ifdef _GNU_SOURCE
