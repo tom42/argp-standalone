@@ -235,8 +235,6 @@ jobs:
       run: |
         cmake --build $(cygpath "${{steps.strings.outputs.build-output-dir}}") --config ${{matrix.build_type}}
 
-    # TODO: fully flesh this out (see another build)
-    # TODO: can we not pass the working directory to ctest directly?
     - name: Test
       working-directory: ${{steps.strings.outputs.build-output-dir}}
       run: ctest --build-config ${{matrix.build_type}} --output-on-failure
