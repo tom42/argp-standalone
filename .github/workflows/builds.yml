@@ -218,7 +218,7 @@ jobs:
       shell: bash
       run: where cmake gcc make
 
-    # TODO: fully flesh this out (see another build)
+    # TODO: see what's missing here (see another build)
     # TODO: probably this is not going to work because we need to convert paths to something cygwin understands
     # TODO: seems to work, so it is just missing proper configuration or what?
     - name: Configure CMake
@@ -226,6 +226,7 @@ jobs:
         cmake
         -B $(cygpath "${{steps.strings.outputs.build-output-dir}}")
         -S $(cygpath "${{github.workspace}}")
+        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
     # TODO: fully flesh this out (see another build)
     - name: Build
