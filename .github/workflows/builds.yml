@@ -196,3 +196,9 @@ jobs:
 
     - name: Checkout sources
       uses: actions/checkout@v6
+
+    - name: Install Cygwin
+      uses: cygwin/cygwin-install-action@v6
+      with:
+        packages: cmake gcc-core
+        #packages: make cmake gcc-core gcc-g++ binutils cygwin-devel w32api-headers w32api-runtime
