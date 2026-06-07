@@ -229,9 +229,7 @@ jobs:
         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
         -DCMAKE_C_FLAGS=-Wno-char-subscripts
 
-    # TODO: fully flesh this out (see another build)
     - name: Build
-      shell: bash
       run: |
         cmake --build $(cygpath "${{steps.strings.outputs.build-output-dir}}") --config ${{matrix.build_type}}
 
