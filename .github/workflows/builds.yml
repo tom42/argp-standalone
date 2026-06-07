@@ -201,7 +201,7 @@ jobs:
     - name: Install Cygwin
       uses: cygwin/cygwin-install-action@v6
       with:
-        packages: cmake gcc-core
+        packages: cmake gcc-core make
 
     # TODO: This uses powershell, which I'd prefer not to use
     - name: Set Cygwin PATH
