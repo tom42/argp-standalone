@@ -204,10 +204,6 @@ jobs:
     - name: Checkout sources
       uses: actions/checkout@v6
 
-    # TODO: remove once not needed anymore
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-
     - name: Install Cygwin
       uses: cygwin/cygwin-install-action@v6
       with:
@@ -234,9 +230,13 @@ jobs:
         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
     # TODO: fully flesh this out (see another build)
+    # TODO: remove debug output (ls)
     - name: Build
       shell: bash
       run: |
+        ls /cygdrive/d/a/argp-standalone
+        ls /cygdrive/d/a/argp-standalone/argp-standalone
+        ls /cygdrive/d/a/argp-standalone/argp-standalone/src/argp-ba.c
         cmake --build $(cygpath "${{steps.strings.outputs.build-output-dir}}") --config ${{matrix.build_type}}
 
     # TODO: fully flesh this out (see another build)
