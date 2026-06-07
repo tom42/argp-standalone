@@ -234,8 +234,7 @@ jobs:
     - name: Build
       shell: bash
       run: |
-        ls /cygdrive/d/a/argp-standalone/argp-standalone
-        ls /cygdrive/d/a/argp-standalone/argp-standalone/src/argp-ba.c
+        ls $(cygpath "D:\a\argp-standalone\argp-standalone\src\argp-ba.c")
         cmake --build $(cygpath "${{steps.strings.outputs.build-output-dir}}") --config ${{matrix.build_type}}
 
     # TODO: fully flesh this out (see another build)
