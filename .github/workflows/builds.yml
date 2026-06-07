@@ -213,6 +213,19 @@ jobs:
     # TODO: is this even needed? Documentation states that cygwin is already prepended to the path
     #       => No it is not needed, but we can ensure the path is clean, which is probably a good thing
     #       => See eg https://github.com/cygwin/cygwin-install-action#path
+    # TODO: REALLY NEED TO FIGURE OUT HOW TO DO THIS CORRECTLY:
+    #       * Does it even make a difference compared to what we get by default?
+    #       * Should we overwrite or append to GITHUB_PATH?
+    #         * Does it matter?
+    #       * Let's debug this
+    #         * Dump, without our stuff below
+    #           * PATH
+    #           * Content of GITHUB_PATH
+    #         * Add our stuff below
+    #         * Dump again
+    #           * PATH
+    #           * Content of GITHUB_PATH
+    #         * Decide what to do
     - name: Set clean PATH for Cygwin
       shell: bash
       run: echo "/usr/bin:$(cygpath ${SYSTEMROOT})/system32" > $GITHUB_PATH
