@@ -215,8 +215,6 @@ jobs:
       shell: bash
       run: |
         printenv $PATH
-        #echo "/usr/bin:$(cygpath C:/Windows)/system32" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
-        #cat $env:GITHUB_PATH
 
     # TODO: remove this
     # TODO: what is it about that pipefail thing documented here: https://github.com/cygwin/cygwin-install-action#cygwin-install-github-action
