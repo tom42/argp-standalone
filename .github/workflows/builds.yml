@@ -190,7 +190,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        build_type: [Debug] # TODO: add release build once stuff works
+        build_type: [Release, Debug]
 
     steps:
 
