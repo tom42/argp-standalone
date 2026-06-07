@@ -212,7 +212,16 @@ jobs:
       shell: bash
       run: where cmake gcc make
 
-    # TODO: fully flesh this out
+    # TODO: fully flesh this out (see another build)
     - name: Configure CMake
       run: >
         cmake
+
+    # TODO: fully flesh this out (see another build)
+    - name: Build
+      run: |
+        cmake --build
+
+    # TODO: fully flesh this out (see another build)
+    - name: Test
+      run: ctest
