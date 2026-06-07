@@ -217,8 +217,8 @@ jobs:
     - name: Configure CMake
       run: >
         cmake
-        -B ${{steps.strings.outputs.build-output-dir}}
-        -S ${{github.workspace}}
+        -B $(cygpath "${{steps.strings.outputs.build-output-dir}}")
+        -S $(cygpath "${{github.workspace}}")
 
     # TODO: fully flesh this out (see another build)
     - name: Build
