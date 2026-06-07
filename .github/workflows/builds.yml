@@ -215,7 +215,7 @@ jobs:
     #       => See eg https://github.com/cygwin/cygwin-install-action#path
     - name: Set Cygwin PATH
       shell: bash
-      run: printenv GITHUB_ENV && printenv PATH
+      run: printenv GITHUB_PATH  && printenv PATH
 
     # TODO: remove this
     # TODO: what is it about that pipefail thing documented here: https://github.com/cygwin/cygwin-install-action#cygwin-install-github-action
