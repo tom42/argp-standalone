@@ -204,6 +204,10 @@ jobs:
     - name: Checkout sources
       uses: actions/checkout@v6
 
+    # TODO: remove once not needed anymore
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+
     - name: Install Cygwin
       uses: cygwin/cygwin-install-action@v6
       with:
