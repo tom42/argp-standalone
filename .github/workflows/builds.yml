@@ -212,7 +212,6 @@ jobs:
     # TODO: REMOVE DEBUG OUTPUT
     # TODO: is this even needed? Documentation states that cygwin is already prepended to the path
     - name: Set Cygwin PATH
-      shell: bash
       run: |
         printenv PATH
 
