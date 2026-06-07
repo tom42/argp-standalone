@@ -216,7 +216,7 @@ jobs:
     # TODO: remove this
     - name: See what I'm doing
       shell: bash
-      run: where cmake gcc make
+      run: where cmake gcc make ls
 
     # TODO: see what's missing here (see another build)
     # TODO: probably this is not going to work because we need to convert paths to something cygwin understands
@@ -234,7 +234,6 @@ jobs:
     - name: Build
       shell: bash
       run: |
-        ls /cygdrive/d/a/argp-standalone
         ls /cygdrive/d/a/argp-standalone/argp-standalone
         ls /cygdrive/d/a/argp-standalone/argp-standalone/src/argp-ba.c
         cmake --build $(cygpath "${{steps.strings.outputs.build-output-dir}}") --config ${{matrix.build_type}}
