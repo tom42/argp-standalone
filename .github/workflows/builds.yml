@@ -203,6 +203,8 @@ jobs:
     - name: Checkout sources
       uses: actions/checkout@v6
 
+    # This prepends Cygwin's /usr/bin to PATH. No additional setup is needed.
+    # See https://github.com/cygwin/cygwin-install-action#path.
     - name: Install Cygwin
       uses: cygwin/cygwin-install-action@v6
       with:
