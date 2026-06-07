@@ -209,8 +209,12 @@ jobs:
         packages: cmake gcc-core ninja
 
     # TODO: This uses powershell, which I'd prefer not to use
+    # TODO: REMOVE DEBUG OUTPUT
     - name: Set Cygwin PATH
-      run: echo "/usr/bin:$(cygpath C:/Windows)/system32" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
+      run: |
+        type $env:GITHUB_PATH
+        echo "/usr/bin:$(cygpath C:/Windows)/system32" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
+        type $env:GITHUB_PATH
 
     # TODO: remove this
     - name: See what I'm doing
