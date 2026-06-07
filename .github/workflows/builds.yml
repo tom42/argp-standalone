@@ -210,12 +210,7 @@ jobs:
       with:
         packages: cmake gcc-core ninja
 
-    # TODO: remove this
     # TODO: what is it about that pipefail thing documented here: https://github.com/cygwin/cygwin-install-action#cygwin-install-github-action
-    - name: See what I'm doing
-      shell: bash
-      run: where cmake gcc ninja ls && echo XXX && printenv
-
     # TODO: see what's missing here (see another build)
     # TODO: probably this is not going to work because we need to convert paths to something cygwin understands
     # TODO: seems to work, so it is just missing proper configuration or what?
