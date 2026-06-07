@@ -226,6 +226,7 @@ jobs:
     #           * PATH
     #           * Content of GITHUB_PATH
     #         * Decide what to do
+    #           * Note: an option is also NOT TO SET THE PATH AT ALL OURSELVES!
     - name: Set clean PATH for Cygwin
       shell: bash
       run: echo "/usr/bin:$(cygpath ${SYSTEMROOT})/system32" > $GITHUB_PATH
