@@ -186,6 +186,12 @@ jobs:
   build-cygwin:
     name: Cygwin Builds (${{matrix.build_type}})
     runs-on: windows-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        build_type: [Debug] # TODO: add release build once stuff works
+
     steps:
 
     # TODO: do we need this? How can we get it to work with cygwin?
