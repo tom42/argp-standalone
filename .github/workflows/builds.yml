@@ -187,4 +187,12 @@ jobs:
     name: Cygwin Builds
     runs-on: windows-latest
     steps:
-    - run: git config --list
+
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+
+    - name: Checkout sources
+      uses: actions/checkout@v6
