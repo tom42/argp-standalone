@@ -210,8 +210,6 @@ jobs:
       with:
         packages: cmake gcc-core ninja
 
-    # TODO: see what's missing here (see another build)
-    # TODO: seems to work, so it is just missing proper configuration or what?
     # TODO: specify generator with -G or should we just pull in a preset?
     #       => generator should go into base preset
     #       => C flags should go into a cygwin specific preset (or suppress them in our CMake script, after all this is where we mess with warnings, so it's all in one place)
