@@ -213,9 +213,12 @@ jobs:
       run: where cmake gcc make
 
     # TODO: fully flesh this out (see another build)
+    # TODO: probably this is not going to work because we need to convert paths to something cygwin understands
     - name: Configure CMake
       run: >
         cmake
+        -B ${{steps.strings.outputs.build-output-dir}}
+        -S ${{github.workspace}}
 
     # TODO: fully flesh this out (see another build)
     - name: Build
