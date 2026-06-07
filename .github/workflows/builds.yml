@@ -207,7 +207,7 @@ jobs:
     - name: Install Cygwin
       uses: cygwin/cygwin-install-action@v6
       with:
-        packages: cmake gcc-core make ninja # TODO: use make or ninja?
+        packages: cmake gcc-core ninja
 
     # TODO: This uses powershell, which I'd prefer not to use
     - name: Set Cygwin PATH
@@ -216,7 +216,7 @@ jobs:
     # TODO: remove this
     - name: See what I'm doing
       shell: bash
-      run: where cmake gcc make ninja ls
+      run: where cmake gcc ninja ls
 
     # TODO: see what's missing here (see another build)
     # TODO: probably this is not going to work because we need to convert paths to something cygwin understands
