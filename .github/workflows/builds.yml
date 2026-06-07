@@ -188,6 +188,7 @@ jobs:
     runs-on: windows-latest
     steps:
 
+    # TODO: do we need this? How can we get it to work with cygwin?
     - name: Set reusable strings
       id: strings
       shell: bash
@@ -202,7 +203,11 @@ jobs:
       with:
         packages: cmake gcc-core
 
+    # TODO: This uses powershell, which I'd prefer not to use
     - name: Set Cygwin PATH
       run: echo "/usr/bin:$(cygpath C:/Windows)/system32" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
 
-    - run: where cmake gcc make
+    # TODO: remove this
+    - name: See what I'm doing
+      shell: bash
+      run: where cmake gcc make
