@@ -222,6 +222,7 @@ jobs:
     # TODO: probably this is not going to work because we need to convert paths to something cygwin understands
     # TODO: seems to work, so it is just missing proper configuration or what?
     - name: Configure CMake
+      shell: bash
       run: >
         cmake
         -B $(cygpath "${{steps.strings.outputs.build-output-dir}}")
@@ -230,6 +231,7 @@ jobs:
 
     # TODO: fully flesh this out (see another build)
     - name: Build
+      shell: bash
       run: |
         cmake --build $(cygpath "${{steps.strings.outputs.build-output-dir}}") --config ${{matrix.build_type}}
 
