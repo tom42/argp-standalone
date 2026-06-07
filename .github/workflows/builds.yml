@@ -211,3 +211,8 @@ jobs:
     - name: See what I'm doing
       shell: bash
       run: where cmake gcc make
+
+    # TODO: fully flesh this out
+    - name: Configure CMake
+      run: >
+        cmake
