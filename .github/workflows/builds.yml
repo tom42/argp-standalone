@@ -212,8 +212,8 @@ jobs:
     # TODO: REMOVE DEBUG OUTPUT
     # TODO: is this even needed? Documentation states that cygwin is already prepended to the path
     - name: Set Cygwin PATH
-      run: |
-        printenv PATH
+      shell: bash
+      run: printenv PATH
 
     # TODO: remove this
     # TODO: what is it about that pipefail thing documented here: https://github.com/cygwin/cygwin-install-action#cygwin-install-github-action
