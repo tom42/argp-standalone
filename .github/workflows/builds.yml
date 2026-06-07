@@ -210,16 +210,13 @@ jobs:
       with:
         packages: cmake gcc-core ninja
 
-    # TODO: what is it about that pipefail thing documented here: https://github.com/cygwin/cygwin-install-action#cygwin-install-github-action
     # TODO: see what's missing here (see another build)
-    # TODO: probably this is not going to work because we need to convert paths to something cygwin understands
     # TODO: seems to work, so it is just missing proper configuration or what?
     # TODO: specify generator with -G or should we just pull in a preset?
     #       => generator should go into base preset
     #       => C flags should go into a cygwin specific preset (or suppress them in our CMake script, after all this is where we mess with warnings, so it's all in one place)
     #       => Rationale: this is not github action specific, anybody building locally needs the C flags too. And frankly it does not matter to me whether I am using Ninja or make locally
     - name: Configure CMake
-      shell: bash
       run: >
         cmake
         -B $(cygpath "${{steps.strings.outputs.build-output-dir}}")
