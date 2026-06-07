@@ -228,6 +228,7 @@ jobs:
         cmake
         -B $(cygpath "${{steps.strings.outputs.build-output-dir}}")
         -S $(cygpath "${{github.workspace}}")
+        --preset dev-linux-gcc
         -G Ninja
         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
