@@ -11,6 +11,10 @@ function(argp_standalone_target_enable_warnings target)
   if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
     target_compile_options(${target} PRIVATE -Werror)
     target_compile_options(${target} PRIVATE -Wall)
+    if(CYGWIN)
+      # Disable warnings caused by Cygwin's <ctype.h>.
+      target_compile_options(${target} PRIVATE -Wno-char-subscripts)
+    endif()
   endif()
 
   if(MSVC)
