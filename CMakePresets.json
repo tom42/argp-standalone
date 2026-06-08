@@ -16,7 +16,8 @@
     },
     {
       "name": "dev-linux",
-      "inherits": "dev-base"
+      "inherits": "dev-base",
+      "generator": "Ninja"
     },
     {
       "name": "dev-linux-clang",
