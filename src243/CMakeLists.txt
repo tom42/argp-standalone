@@ -7,7 +7,8 @@ add_library(
   argp-standalone243
   argp-ba.c
   argp-eexst.c
-  argp-fmtstream.c)
+  argp-fmtstream.c
+  argp-fs-xinl.c)
 
 target_compile_definitions(argp-standalone243 PRIVATE HAVE_CONFIG_H)
 argp_standalone_target_enable_warnings(argp-standalone243)
@@ -27,7 +28,6 @@ target_include_directories(
 #       * include/argp-fmtstream.h
 #       * All the getopt stuff
 #       * argp src:
-#         * argp-fs-xinl.c
 #         * argp-help.c
 #         * argp-parse.c
 #         * argp-pv.c
