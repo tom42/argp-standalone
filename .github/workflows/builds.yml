@@ -11,177 +11,155 @@ on:
   workflow_dispatch:
 
 jobs:
-  # build-linux:
-  #   name: Linux Builds (${{matrix.c_compiler}}, ${{matrix.build_type}})
-  #   runs-on: ubuntu-latest
+  build-linux:
+    name: Linux Builds (${{matrix.c_compiler}}, ${{matrix.build_type}})
+    runs-on: ubuntu-latest
 
-  #   strategy:
-  #     fail-fast: true
-  #     matrix:
-  #       c_compiler: [clang, gcc]
-  #       build_type: [Release, Debug]
+    strategy:
+      fail-fast: true
+      matrix:
+        c_compiler: [clang, gcc]
+        build_type: [Release, Debug]
 
-  #   steps:
+    steps:
 
-  #   - name: Set reusable strings
-  #     id: strings
-  #     shell: bash
-  #     run: |
-  #       echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
 
-  #   - name: Checkout sources
-  #     uses: actions/checkout@v6
+    - name: Checkout sources
+      uses: actions/checkout@v6
 
-  #   - name: Configure CMake
-  #     run: >
-  #       cmake
-  #       -B ${{steps.strings.outputs.build-output-dir}}
-  #       -S ${{github.workspace}}
-  #       --preset dev-linux
-  #       -DCMAKE_C_COMPILER=${{matrix.c_compiler}}
-  #       -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+    - name: Configure CMake
+      run: >
+        cmake
+        -B ${{steps.strings.outputs.build-output-dir}}
+        -S ${{github.workspace}}
+        --preset dev-linux
+        -DCMAKE_C_COMPILER=${{matrix.c_compiler}}
+        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
-  #   - name: Build
-  #     run: |
-  #       cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
+    - name: Build
+      run: |
+        cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
 
-  #   - name: Test
-  #     working-directory: ${{steps.strings.outputs.build-output-dir}}
-  #     run: ctest --build-config ${{matrix.build_type}} --output-on-failure
+    - name: Test
+      working-directory: ${{steps.strings.outputs.build-output-dir}}
+      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
 
-  # build-mingw:
-  #   name: MinGW Builds (${{matrix.build_type}})
-  #   runs-on: windows-latest
+  build-mingw:
+    name: MinGW Builds (${{matrix.build_type}})
+    runs-on: windows-latest
 
-  #   strategy:
-  #     fail-fast: true
-  #     matrix:
-  #       build_type: [Release, Debug]
+    strategy:
+      fail-fast: true
+      matrix:
+        build_type: [Release, Debug]
 
-  #   steps:
+    steps:
 
-  #   - name: Set reusable strings
-  #     id: strings
-  #     shell: bash
-  #     run: |
-  #       echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
 
-  #   - name: Checkout sources
-  #     uses: actions/checkout@v6
+    - name: Checkout sources
+      uses: actions/checkout@v6
 
-  #   - name: Configure CMake
-  #     run: >
-  #       cmake
-  #       -B ${{steps.strings.outputs.build-output-dir}}
-  #       -S ${{github.workspace}}
-  #       -G Ninja
-  #       --preset=dev-windows
-  #       -DCMAKE_C_COMPILER=gcc
-  #       -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+    - name: Configure CMake
+      run: >
+        cmake
+        -B ${{steps.strings.outputs.build-output-dir}}
+        -S ${{github.workspace}}
+        -G Ninja
+        --preset=dev-windows
+        -DCMAKE_C_COMPILER=gcc
+        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
-  #   - name: Build
-  #     run: |
-  #       cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
+    - name: Build
+      run: |
+        cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
 
-  #   - name: Test
-  #     working-directory: ${{steps.strings.outputs.build-output-dir}}
-  #     run: ctest --build-config ${{matrix.build_type}} --output-on-failure
+    - name: Test
+      working-directory: ${{steps.strings.outputs.build-output-dir}}
+      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
 
-  # build-windows:
-  #   name: Windows Builds (${{matrix.arch}}, ${{matrix.build_type}})
-  #   runs-on: windows-latest
+  build-windows:
+    name: Windows Builds (${{matrix.arch}}, ${{matrix.build_type}})
+    runs-on: windows-latest
 
-  #   strategy:
-  #     fail-fast: true
-  #     matrix:
-  #       arch: [x64, Win32]
-  #       build_type: [Release, Debug]
+    strategy:
+      fail-fast: true
+      matrix:
+        arch: [x64, Win32]
+        build_type: [Release, Debug]
 
-  #   steps:
+    steps:
 
-  #   - name: Set reusable strings
-  #     id: strings
-  #     shell: bash
-  #     run: |
-  #       echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
 
-  #   - name: Checkout sources
-  #     uses: actions/checkout@v6
+    - name: Checkout sources
+      uses: actions/checkout@v6
 
-  #   - name: Configure CMake
-  #     run: >
-  #       cmake
-  #       -B ${{steps.strings.outputs.build-output-dir}}
-  #       -S ${{github.workspace}}
-  #       --preset dev-windows
-  #       -A ${{matrix.arch}}
-  #       -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+    - name: Configure CMake
+      run: >
+        cmake
+        -B ${{steps.strings.outputs.build-output-dir}}
+        -S ${{github.workspace}}
+        --preset dev-windows
+        -A ${{matrix.arch}}
+        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
-  #   - name: Build
-  #     run: |
-  #       cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
+    - name: Build
+      run: |
+        cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
 
-  #   - name: Test
-  #     working-directory: ${{steps.strings.outputs.build-output-dir}}
-  #     run: ctest --build-config ${{matrix.build_type}} --output-on-failure
+    - name: Test
+      working-directory: ${{steps.strings.outputs.build-output-dir}}
+      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
 
-  # build-macos:
-  #   name: MacOS Builds (${{matrix.build_type}})
-  #   runs-on: macos-latest
+  build-macos:
+    name: MacOS Builds (${{matrix.build_type}})
+    runs-on: macos-latest
 
-  #   strategy:
-  #     fail-fast: true
-  #     matrix:
-  #       build_type: [Release, Debug]
+    strategy:
+      fail-fast: true
+      matrix:
+        build_type: [Release, Debug]
 
-  #   steps:
+    steps:
 
-  #   - name: Set reusable strings
-  #     id: strings
-  #     shell: bash
-  #     run: |
-  #       echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
 
-  #   - name: Checkout sources
-  #     uses: actions/checkout@v6
+    - name: Checkout sources
+      uses: actions/checkout@v6
 
-  #   - name: Configure CMake
-  #     run: >
-  #       cmake
-  #       -B ${{steps.strings.outputs.build-output-dir}}
-  #       -S ${{github.workspace}}
-  #       --preset dev-macos
-  #       -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+    - name: Configure CMake
+      run: >
+        cmake
+        -B ${{steps.strings.outputs.build-output-dir}}
+        -S ${{github.workspace}}
+        --preset dev-macos
+        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
 
-  #   - name: Build
-  #     run: |
-  #       cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
+    - name: Build
+      run: |
+        cmake --build ${{steps.strings.outputs.build-output-dir}} --config ${{matrix.build_type}}
 
-  #   - name: Test
-  #     working-directory: ${{steps.strings.outputs.build-output-dir}}
-  #     run: ctest --build-config ${{matrix.build_type}} --output-on-failure
-
-  # quality:
-  #   name: Static Quality Checks
-  #   runs-on: ubuntu-latest
-
-  #   strategy:
-  #     fail-fast: true
-
-  #   steps:
-
-  #   - name: Checkout sources
-  #     uses: actions/checkout@v6
-
-  #   - name: Install reuse
-  #     shell: bash
-  #     run: |
-  #       pipx install reuse
-
-  #   - name: Run reuse lint
-  #     shell: bash
-  #     run: |
-  #       reuse lint
+    - name: Test
+      working-directory: ${{steps.strings.outputs.build-output-dir}}
+      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
 
   build-cygwin:
     name: Cygwin Builds (${{matrix.build_type}})
@@ -225,3 +203,25 @@ jobs:
     - name: Test
       working-directory: ${{steps.strings.outputs.build-output-dir}}
       run: ctest --build-config ${{matrix.build_type}} --output-on-failure
+
+  quality:
+    name: Static Quality Checks
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true
+
+    steps:
+
+    - name: Checkout sources
+      uses: actions/checkout@v6
+
+    - name: Install reuse
+      shell: bash
+      run: |
+        pipx install reuse
+
+    - name: Run reuse lint
+      shell: bash
+      run: |
+        reuse lint
