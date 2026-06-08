@@ -33,7 +33,7 @@
 /* Variables */
 #cmakedefine01 HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
 #cmakedefine01 HAVE_DECL_PROGRAM_INVOCATION_NAME
-#cmakedefine01 HAVE_DECL___ARGV_NAME
+#cmakedefine01 HAVE_DECL___ARGV
 #cmakedefine01 HAVE___PROGNAME
 
 /* Types */
