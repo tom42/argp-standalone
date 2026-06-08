@@ -161,6 +161,49 @@ jobs:
       working-directory: ${{steps.strings.outputs.build-output-dir}}
       run: ctest --build-config ${{matrix.build_type}} --output-on-failure
 
+  build-cygwin:
+    name: Cygwin Builds (${{matrix.build_type}})
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: true
+      matrix:
+        build_type: [Release, Debug]
+
+    steps:
+
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: |
+        echo "build-output-dir=${{github.workspace}}/build" >> "$GITHUB_OUTPUT"
+
+    - name: Checkout sources
+      uses: actions/checkout@v6
+
+    # This prepends Cygwin's /usr/bin to PATH. No additional setup is needed.
+    # See https://github.com/cygwin/cygwin-install-action#path.
+    - name: Install Cygwin
+      uses: cygwin/cygwin-install-action@v6
+      with:
+        packages: cmake gcc-core ninja
+
+    - name: Configure CMake
+      run: >
+        cmake
+        -B $(cygpath "${{steps.strings.outputs.build-output-dir}}")
+        -S $(cygpath "${{github.workspace}}")
+        --preset dev-linux-gcc
+        -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
+
+    - name: Build
+      run: |
+        cmake --build $(cygpath "${{steps.strings.outputs.build-output-dir}}") --config ${{matrix.build_type}}
+
+    - name: Test
+      working-directory: ${{steps.strings.outputs.build-output-dir}}
+      run: ctest --build-config ${{matrix.build_type}} --output-on-failure
+
   quality:
     name: Static Quality Checks
     runs-on: ubuntu-latest
