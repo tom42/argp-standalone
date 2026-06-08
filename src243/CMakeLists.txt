@@ -6,7 +6,8 @@
 add_library(
   argp-standalone243
   argp-ba.c
-  argp-eexst.c)
+  argp-eexst.c
+  argp-fmtstream.c)
 
 target_compile_definitions(argp-standalone243 PRIVATE HAVE_CONFIG_H)
 argp_standalone_target_enable_warnings(argp-standalone243)
@@ -15,6 +16,7 @@ target_include_directories(
   argp-standalone243
   PRIVATE
   "${PROJECT_BINARY_DIR}"
+  "${CMAKE_CURRENT_SOURCE_DIR}"
   PUBLIC
   ../include/argp-standalone243) # TODO: rename directory once the old one is gone
 
@@ -25,11 +27,8 @@ target_include_directories(
 #       * include/argp-fmtstream.h
 #       * All the getopt stuff
 #       * argp src:
-#         * argp-fmtstream.c
-#         * argp-fmtstream.h
 #         * argp-fs-xinl.c
 #         * argp-help.c
-#         * argp-namefrob.h
 #         * argp-parse.c
 #         * argp-pv.c
 #         * argp-pvh.c
