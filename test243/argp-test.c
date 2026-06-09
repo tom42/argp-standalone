@@ -212,12 +212,12 @@ help_filter (int key, const char *text, void *input)
   if (key == ARGP_KEY_HELP_POST_DOC && text)
     {
       time_t now = time (0);
-      new_text = xasprintf (text, ctime (&now));
+      asprintf(&new_text, text, ctime(&now)); // TODO: changed this to use asprintf not xasprintf
     }
   else if (key == 'f')
     /* Show the default for the --foonly option.  */
-    new_text = xasprintf ("%s (ZOT defaults to %x)",
-		          text, params->foonly_default);
+    asprintf (&new_text, "%s (ZOT defaults to %x)", // TODO: changed this to use asprintf not xasprintf
+	      text, params->foonly_default);
   else
     new_text = (char *)text;
 
