@@ -8,7 +8,10 @@ add_library(
   argp-ba.c
   argp-eexst.c
   argp-fmtstream.c
-  argp-fs-xinl.c)
+  argp-fs-xinl.c
+  argp-pv.c
+  argp-pvh.c
+  argp-xinl.c)
 
 target_compile_definitions(argp-standalone243 PRIVATE HAVE_CONFIG_H)
 argp_standalone_target_enable_warnings(argp-standalone243)
@@ -21,6 +24,11 @@ target_include_directories(
   PUBLIC
   ../include/argp-standalone243) # TODO: rename directory once the old one is gone
 
+# TODO: add all missing flags and stuff (see CMakeLists from 1.1.0)
+# TODO: we have now two public argp headers. Question is
+#       * The shorter one, what is it good for?
+#       * Where on a GNU/Linux system do these headers get installed? What's the directory structure?
+#       * Do we even need the shorter header?
 # TODO: we have now suddenly a subdirectory in include: include/argp-standalone243/argp. Do we want this? Should we hide this a little bit better?
 # TODO: port stuff below
 # TODO: ensure we have all files:
@@ -30,19 +38,17 @@ target_include_directories(
 #       * argp src:
 #         * argp-help.c
 #         * argp-parse.c
-#         * argp-pv.c
-#         * argp-pvh.c
-#         * argp-test.c
-#         * argp-xinl.c
 #         * argp.h
 #         * bits/argp-ldbl.h
-#         * bug-argp1.c
-#         * bug-argp2.c
 #         * Makefile
+#       * This goes into tests (figure out how one is supposed to run the tests?
+#         * argp-test.c
 #         * tst-argp1.c
 #         * tst-argp2.c
 #         * tst-ldbl-argp.c
-#         * Versions
+#       * What to do with these? Last time we deleted them, but is there a way they should be run?
+#         * bug-argp1.c
+#         * bug-argp2.c
 if(0)
 set(
   SOURCES
