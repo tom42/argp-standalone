@@ -1978,11 +1978,12 @@ __argp_failure_internal (const struct argp_state *state, int status,
 #else
 	      putc_unlocked (':', stream);
 	      putc_unlocked (' ', stream);
-# ifdef HAVE_STRERROR_R
+	      fputs (argp_compat_strerror (errnum, buf, sizeof (buf)), stream);
+/*# ifdef HAVE_STRERROR_R // TODO: do we annotate it somehow?
 	      fputs (__strerror_r (errnum, buf, sizeof (buf)), stream);
 # else
 	      fputs (strerror (errnum), stream);
-# endif
+# endif*/
 #endif
 	    }
 
