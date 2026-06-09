@@ -142,8 +142,9 @@ extern char *__argp_basename (char *name);
 #define __set_errno(e) (errno = (e))
 #endif
 
-#if defined _LIBC || HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
+// TODO: annotate?
+/*#if defined _LIBC || HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
 # define __argp_short_program_name()	(program_invocation_short_name)
-#else
+#else*/
 extern char *__argp_short_program_name (void);
-#endif
+//#endif // TODO: annotate?
