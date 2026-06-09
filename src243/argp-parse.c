@@ -23,10 +23,12 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
+#if defined(HAVE_UNISTD_H) && HAVE_UNISTD_H // TODO: do we mark this somehow?
+# include <unistd.h>
+#endif
 #include <limits.h>
-#include <getopt.h>
-#include <getopt_int.h>
+#include "argp-getopt.h" // TODO: do we mark this somehow?
+#include "argp-getopt_int.h"
 
 #ifndef _
 /* This is for other GNU distributions with internationalized messages.
