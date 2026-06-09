@@ -32,7 +32,7 @@
 # define __getopt_argv_const const
 #endif
 
-#include <bits/getopt_core.h>
-#include <bits/getopt_ext.h>
+#include "argp-getopt_core.h" // TODO: had to fix stuff here
+#include "argp-getopt_ext.h" // TODO: had to fix stuff here
 
 #endif /* getopt.h */
