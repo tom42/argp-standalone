@@ -580,7 +580,7 @@ hol_entry_short_iterate (const struct hol_entry *entry,
    Stop when such a call returns a non-zero value, and return this value.
    If all FUNC invocations returned 0, return 0.  */
 static inline int
-__attribute__ ((always_inline))
+//__attribute__ ((always_inline)) // TODO: attribute
 hol_entry_long_iterate (const struct hol_entry *entry,
 			int (*func)(const struct argp_option *opt,
 				    const struct argp_option *real,
