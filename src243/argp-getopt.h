@@ -21,7 +21,7 @@
 #ifndef _GETOPT_H
 #define _GETOPT_H 1
 
-#include <features.h>
+//#include <features.h> // TODO: not really? Do we really need this?
 
 /* The type of the 'argv' argument to getopt_long and getopt_long_only
    is properly 'char **', since both functions may write to the array
