@@ -2,10 +2,16 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 # argp-standalone - standalone version of glibc's argp functions.
 
+add_executable(argp-test243 argp-test.c) # TODO: rename once old test is deleted
+target_compile_definitions(argp-test243 PRIVATE HAVE_CONFIG_H)
+
+target_include_directories(argp-test243 PRIVATE "${PROJECT_BINARY_DIR}")
+target_link_libraries(argp-test243 PRIVATE argp-standalone)
+add_test(NAME argp-test243 COMMAND argp-test243)
+
 # TODO: port stuff below
 if(0)
-add_executable(argp-test argp-test.c)
-target_compile_definitions(argp-test PRIVATE HAVE_CONFIG_H)
+
 if(WIN32)
   target_compile_definitions(argp-test PRIVATE _CRT_NONSTDC_NO_DEPRECATE)
   target_compile_definitions(argp-test PRIVATE _CRT_SECURE_NO_WARNINGS)
