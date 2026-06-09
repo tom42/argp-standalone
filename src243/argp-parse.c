@@ -51,6 +51,7 @@
 
 #include <argp.h>
 #include "argp-namefrob.h"
+#include "argp-compat.h" // TODO: mark this?
 
 /* Getopt return values.  */
 #define KEY_END (-1)		/* The end of the options.  */
