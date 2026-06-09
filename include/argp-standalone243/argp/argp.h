@@ -389,8 +389,8 @@ extern const char *argp_program_version;
    calls this function with a stream to print the version to and a pointer to
    the current parsing state, and then exits (unless the ARGP_NO_EXIT flag is
    used).  This variable takes precedent over ARGP_PROGRAM_VERSION.  */
-extern void (*argp_program_version_hook) (FILE *__restrict __stream,
-					  struct argp_state *__restrict
+extern void (*argp_program_version_hook) (FILE */*__restrict*/ __stream, // TODO: __restrict: what do do? Why was it not a problem so far?
+					  struct argp_state */*__restrict*/ // TODO: __restrict: what do do? Why was it not a problem so far?
 					  __state);
 
 /* If defined or set by the user program, it should point to string that is
