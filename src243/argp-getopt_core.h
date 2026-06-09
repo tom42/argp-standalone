@@ -25,7 +25,7 @@
    a protective #error, because the guard macro for getopt.h in
    gnulib is not fixed.  */
 
-__BEGIN_DECLS
+//__BEGIN_DECLS // TODO: what is this? what should we do with it?
 
 /* For communication from 'getopt' to the caller.
    When 'getopt' finds an option that takes an argument,
@@ -89,8 +89,8 @@ extern int optopt;
    writable.  */
 
 extern int getopt (int ___argc, char *const *___argv, const char *__shortopts)
-       __THROW __nonnull ((2, 3));
+       /*__THROW __nonnull ((2, 3))*/; // TODO: __throw
 
-__END_DECLS
+//__END_DECLS // TODO: what is this? what should we do with it?
 
 #endif /* getopt_core.h */
