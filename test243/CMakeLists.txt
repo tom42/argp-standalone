@@ -6,7 +6,7 @@ add_executable(argp-test243 argp-test.c) # TODO: rename once old test is deleted
 target_compile_definitions(argp-test243 PRIVATE HAVE_CONFIG_H)
 
 target_include_directories(argp-test243 PRIVATE "${PROJECT_BINARY_DIR}")
-target_link_libraries(argp-test243 PRIVATE argp-standalone)
+target_link_libraries(argp-test243 PRIVATE argp-standalone243)
 add_test(NAME argp-test243 COMMAND argp-test243)
 
 # TODO: port stuff below
