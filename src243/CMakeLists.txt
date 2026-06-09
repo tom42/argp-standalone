@@ -9,6 +9,7 @@ add_library(
   argp-eexst.c
   argp-fmtstream.c
   argp-fs-xinl.c
+  argp-help.c
   argp-pv.c
   argp-pvh.c
   argp-xinl.c)
@@ -36,7 +37,6 @@ target_include_directories(
 #       * include/argp-fmtstream.h
 #       * All the getopt stuff
 #       * argp src:
-#         * argp-help.c
 #         * argp-parse.c
 #         * argp.h
 #         * bits/argp-ldbl.h
