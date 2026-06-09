@@ -1,0 +1,41 @@
+# SPDX-FileCopyrightText: 2020 Thomas Mathys
+# SPDX-License-Identifier: LGPL-2.1-or-later
+# argp-standalone - standalone version of glibc's argp functions.
+
+# TODO: port stuff below
+if(0)
+add_executable(argp-test argp-test.c)
+target_compile_definitions(argp-test PRIVATE HAVE_CONFIG_H)
+if(WIN32)
+  target_compile_definitions(argp-test PRIVATE _CRT_NONSTDC_NO_DEPRECATE)
+  target_compile_definitions(argp-test PRIVATE _CRT_SECURE_NO_WARNINGS)
+endif()
+if(CMAKE_C_COMPILER_ID MATCHES "GNU")
+  target_compile_options(argp-test PRIVATE -Wno-unused-result)
+endif()
+argp_standalone_target_enable_warnings(argp-test)
+target_include_directories(argp-test PRIVATE "${PROJECT_BINARY_DIR}")
+target_link_libraries(argp-test PRIVATE argp-standalone)
+add_test(NAME argp-test COMMAND argp-test)
+
+add_executable(argp-compat-test argp-compat-test.c unity.c)
+argp_standalone_target_enable_warnings(argp-compat-test)
+target_include_directories(argp-compat-test PRIVATE "${PROJECT_BINARY_DIR}" ../src)
+target_link_libraries(argp-compat-test PRIVATE argp-standalone)
+add_test(NAME argp-compat-test COMMAND argp-compat-test)
+
+add_executable(argp-failure-test argp-failure-test.c)
+target_link_libraries(argp-failure-test PRIVATE argp-standalone)
+add_test(NAME argp-failure-test COMMAND argp-failure-test)
+set_tests_properties(argp-failure-test PROPERTIES PASS_REGULAR_EXPRESSION "Error message format string: Permission denied")
+
+add_executable(tst-argp1 tst-argp1.c)
+argp_standalone_target_enable_warnings(tst-argp1)
+target_link_libraries(tst-argp1 PRIVATE argp-standalone)
+add_test(NAME tst-argp1 COMMAND tst-argp1)
+
+add_executable(tst-argp2 tst-argp2.c)
+argp_standalone_target_enable_warnings(tst-argp2)
+target_link_libraries(tst-argp2 PRIVATE argp-standalone)
+add_test(NAME tst-argp2 COMMAND tst-argp2)
+endif()
