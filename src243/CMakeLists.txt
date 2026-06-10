@@ -6,6 +6,7 @@
 add_library(
   argp-standalone243
   argp-ba.c
+  argp-compat.c
   argp-eexst.c
   argp-fmtstream.c
   argp-fs-xinl.c
