@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: LGPL-2.1-or-later */
+/* Copyright (C) 1995-2026 Free Software Foundation, Inc. */
 #ifndef _ARGP_H
 #include <argp/argp.h>
 
@@ -12,6 +14,7 @@ __argp_failure_internal (const struct argp_state *state, int status,
 			 int errnum, const char *fmt, va_list ap,
 			 unsigned int mode_flags);
 
+// TODO: do we even need this entire file?
 // TODO: what to do with this?
 /*#ifndef _ISOMAC
 extern __typeof (__argp_error) __argp_error attribute_hidden;
