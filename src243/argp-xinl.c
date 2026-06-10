@@ -32,7 +32,7 @@
 void
 __argp_usage (const struct argp_state *__state)
 {
-  __argp_state_help (__state, stderr, ARGP_HELP_STD_USAGE);
+  argp_state_help (__state, stderr, ARGP_HELP_STD_USAGE); // TODO: had to mess around here - why do we even keep this file? It's just adding additional trouble?
 }
 //weak_alias (__argp_usage, argp_usage) // TODO: commented out: MSVC does not know weak_alias
 
