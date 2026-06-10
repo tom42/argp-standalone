@@ -32,6 +32,8 @@
 # else
 #  ifdef _AIX
 #pragma alloca
+#  elif defined(_WIN32) // TODO: annotate? And for the sake of consistency, add it to all other files that have this entire alloca mantra?
+#   define alloca _alloca
 #  else
 #   ifndef alloca /* predefined by HP cc +Olibcalls */
 char *alloca ();
