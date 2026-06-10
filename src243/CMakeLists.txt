@@ -27,6 +27,7 @@ target_include_directories(
   PUBLIC
   ../include/argp-standalone243) # TODO: rename directory once the old one is gone
 
+# TODO: is -fgnu89-inline still necessary? Doesn't look like so?
 # TODO: what to do with __restrict? Comment it out  everywhere, no?
 # TODO: when done possibly run a diff what we changed and then mark source locations with some sort of marker comment?
 # TODO: add all missing flags and stuff (see CMakeLists from 1.1.0)
