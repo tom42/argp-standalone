@@ -21,12 +21,12 @@
 # include <config.h>
 #endif
 
-#include "getopt.h"
+#include "argp-getopt.h" // TODO: annotate?
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
+//#include <unistd.h> // TODO: comment our or include only if available?
 
 #ifdef _LIBC
 /* When used as part of glibc, error printing must be done differently
@@ -41,8 +41,9 @@
 # define flockfile(fp) _IO_flockfile (fp)
 # define funlockfile(fp) _IO_funlockfile (fp)
 #else
-# include "gettext.h"
-# define _(msgid) gettext (msgid)
+/*# include "gettext.h"
+# define _(msgid) gettext (msgid)*/ // TODO: annotate: argp-standalone has no gettext
+# define _(msgid) msgid // TODO: annotate: argp-standalone has no gettext
 /* When used standalone, flockfile and funlockfile might not be
    available.  */
 # if (!defined _POSIX_THREAD_SAFE_FUNCTIONS \
@@ -78,7 +79,7 @@
    non-option argument.  If it is '-', both functions will report
    non-option arguments as arguments to the option character '\x01'.  */
 
-#include "getopt_int.h"
+#include "argp-getopt_int.h"
 
 /* For communication from 'getopt' to the caller.
    When 'getopt' finds an option that takes an argument,
@@ -378,8 +379,8 @@ process_long_option (int argc, char **argv, const char *optstring,
 /* Initialize internal data upon the first call to getopt.  */
 
 static const char *
-_getopt_initialize (_GL_UNUSED int argc,
-		    _GL_UNUSED char **argv, const char *optstring,
+_getopt_initialize (/*_GL_UNUSED*/ int argc, // TODO: what is _GL_UNUSED? Where would it be defined?
+		    /*_GL_UNUSED*/ char **argv, const char *optstring, // TODO: what is _GL_UNUSED? Where would it be defined?
 		    struct _getopt_data *d, int posixly_correct)
 {
   /* Start processing options with ARGV-element 1 (since ARGV-element 0
