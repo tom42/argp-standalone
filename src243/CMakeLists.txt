@@ -43,7 +43,16 @@ if(APPLE)
   set(CMAKE_OSX_DEPLOYMENT_TARGET 15.4)
 endif()
 
-# TODO: is -fgnu89-inline still necessary? Doesn't look like so?
+
+################################################################################
+# Compiler specific options
+################################################################################
+
+if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
+  # gcc and clang need -fgnu89-inline to compile and link release builds
+  target_compile_options(argp-standalone243 PRIVATE -fgnu89-inline)
+endif()
+
 # TODO: what to do with __restrict? Comment it out  everywhere, no?
 # TODO: when done possibly run a diff what we changed and then mark source locations with some sort of marker comment?
 # TODO: add all missing flags and stuff (see CMakeLists from 1.1.0)
@@ -98,26 +107,4 @@ target_include_directories(
   ../include/argp-standalone)
 
 
-################################################################################
-# OS specific options
-################################################################################
-
-if(WIN32)
-  target_compile_definitions(argp-standalone PRIVATE _CRT_SECURE_NO_WARNINGS)
-endif()
-
-if(APPLE)
-  # We currently use the strchrnul() provided by macOS, but that requires 15.4.
-  set(CMAKE_OSX_DEPLOYMENT_TARGET 15.4)
-endif()
-
-
-################################################################################
-# Compiler specific options
-################################################################################
-
-if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
-  # gcc and clang need -fgnu89-inline to compile and link release builds
-  target_compile_options(argp-standalone PRIVATE -fgnu89-inline)
-endif()
 endif()
