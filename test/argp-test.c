@@ -46,7 +46,7 @@ int random(void)
  * Implementation of asprintf() for systems that don't have it.
  * Suitable for test purposes only, not for production code.
  */
-#if defined(HAVE_ASPRINTF) && ! HAVE_ASPRINTF
+#if defined(HAVE_ASPRINTF) && !HAVE_ASPRINTF
 #include <stdarg.h>
 void asprintf(char** strp, const char* fmt, ...)
 {
