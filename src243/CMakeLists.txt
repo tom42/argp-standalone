@@ -14,7 +14,8 @@ add_library(
   argp-parse.c
   argp-pv.c
   argp-pvh.c
-  argp-xinl.c)
+  argp-xinl.c
+  getopt1.c)
 
 target_compile_definitions(argp-standalone243 PRIVATE HAVE_CONFIG_H)
 argp_standalone_target_enable_warnings(argp-standalone243)
