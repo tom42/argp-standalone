@@ -29,6 +29,15 @@ target_include_directories(
   PUBLIC
   ../include/argp-standalone243) # TODO: rename directory once the old one is gone
 
+
+################################################################################
+# OS specific options
+################################################################################
+
+if(WIN32)
+  target_compile_definitions(argp-standalone243 PRIVATE _CRT_SECURE_NO_WARNINGS)
+endif()
+
 # TODO: is -fgnu89-inline still necessary? Doesn't look like so?
 # TODO: what to do with __restrict? Comment it out  everywhere, no?
 # TODO: when done possibly run a diff what we changed and then mark source locations with some sort of marker comment?
