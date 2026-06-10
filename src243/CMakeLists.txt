@@ -15,6 +15,7 @@ add_library(
   argp-pv.c
   argp-pvh.c
   argp-xinl.c
+  getopt.c
   getopt1.c)
 
 target_compile_definitions(argp-standalone243 PRIVATE HAVE_CONFIG_H)
