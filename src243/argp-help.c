@@ -1818,6 +1818,10 @@ char *__argp_basename (char *name)
   return short_name ? short_name + 1 : name;
 }
 
+#if defined(HAVE___PROGNAME) && HAVE___PROGNAME
+extern char* __progname;
+#endif
+
 char *
 __argp_short_program_name (void)
 {
