@@ -1821,10 +1821,15 @@ char *__argp_basename (char *name)
 char *
 __argp_short_program_name (void)
 {
-# if HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
+  /* Order matters here: attempt most preferred mechanism first. */
+# if defined(HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME) && HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
   return program_invocation_short_name;
-# elif HAVE_DECL_PROGRAM_INVOCATION_NAME
+# elif defined(HAVE_DECL_PROGRAM_INVOCATION_NAME) && HAVE_DECL_PROGRAM_INVOCATION_NAME
   return __argp_basename (program_invocation_name);
+# elif defined(HAVE_DECL___ARGV) && HAVE_DECL___ARGV
+  return __argp_basename(__argv[0]);
+# elif defined(HAVE___PROGNAME) && HAVE___PROGNAME
+  return __progname;
 # else
   /* FIXME: What now? Miles suggests that it is better to use NULL,
      but currently the value is passed on directly to fputs_unlocked,
