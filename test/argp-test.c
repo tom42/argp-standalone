@@ -56,6 +56,17 @@ void asprintf(char** strp, const char* fmt, ...)
 
   /* Since this is test code we don't bother checking whether malloc returns 0. */
   *strp = malloc(bufsize);
+  if (!*strp)
+  {
+    // TODO: not sure what asprintf should be doing here. This looks more like xasprintf, but that's actually what 2.43 would like to use
+    //       The check we added here is just a temporary workaround to suppress warnings in the CI build
+    //       * Maybe probe for xasprintf instead
+    //       * Find or write a proper xasprintf replacement
+    //       * Use that here (also replace the feature macros)
+    //       * Consider moving this new xasprintf and random above into some sort of test support library
+    //         * We could use argp-compat, but the issue is that the replacement is not production ready, so better not.
+    exit(1);
+  }
 
   /* Format text and ensure it is terminated in any case. */
   vsnprintf(*strp, bufsize, fmt, ap);
