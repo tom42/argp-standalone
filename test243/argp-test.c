@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <stdio.h> // TODO: get asprintf for mingw?
 #include <argp.h>
 
 /*
