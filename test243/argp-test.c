@@ -17,6 +17,10 @@
    License along with the GNU C Library; if not, see
    <https://www.gnu.org/licenses/>.  */
 
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE 1
+#endif
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -24,7 +28,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include <stdio.h> // TODO: get asprintf for mingw?
 #include <argp.h>
 
 /*
