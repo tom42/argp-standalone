@@ -28,6 +28,8 @@
 
 //__BEGIN_DECLS // TODO: what is this? what should we do with it?
 
+// TODO: document why we comment this out
+#if 0
 /* For communication from 'getopt' to the caller.
    When 'getopt' finds an option that takes an argument,
    the argument value is returned here.
@@ -58,6 +60,7 @@ extern int opterr;
 /* Set to an option character which was unrecognized.  */
 
 extern int optopt;
+#endif
 
 /* Get definitions and prototypes for functions to process the
    arguments in ARGV (ARGC of them, minus the program name) for
