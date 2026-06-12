@@ -4,10 +4,13 @@
 
 add_executable(argp-test argp-test.c)
 target_compile_definitions(argp-test PRIVATE HAVE_CONFIG_H)
-
 if(WIN32)
   target_compile_definitions(argp-test PRIVATE _CRT_NONSTDC_NO_DEPRECATE)
   target_compile_definitions(argp-test PRIVATE _CRT_SECURE_NO_WARNINGS)
+endif()
+if(CMAKE_C_COMPILER_ID MATCHES "GNU")
+  # TODO: this is because of asprintf usage. See whether it is still necessary once we use xasprintf.
+  target_compile_options(argp-test PRIVATE -Wno-unused-result)
 endif()
 argp_standalone_target_enable_warnings(argp-test)
 target_include_directories(argp-test PRIVATE "${PROJECT_BINARY_DIR}")
@@ -18,11 +21,6 @@ add_test(NAME argp-test COMMAND argp-test) # TODO: figure out how this test is s
 # TODO: figure out how to correctly run tests (what arguments to pass to them and how to verify)
 #       hopefully we can do without glibc's test framework, I'd rather not use that
 if(0)
-if(CMAKE_C_COMPILER_ID MATCHES "GNU")
-  target_compile_options(argp-test PRIVATE -Wno-unused-result)
-endif()
-
-
 add_executable(argp-compat-test argp-compat-test.c unity.c)
 argp_standalone_target_enable_warnings(argp-compat-test)
 target_include_directories(argp-compat-test PRIVATE "${PROJECT_BINARY_DIR}" ../src)
