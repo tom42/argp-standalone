@@ -17,15 +17,16 @@ target_include_directories(argp-test PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(argp-test PRIVATE argp-standalone)
 add_test(NAME argp-test COMMAND argp-test) # TODO: figure out how this test is supposed to be run
 
-# TODO: port stuff below
-# TODO: figure out how to correctly run tests (what arguments to pass to them and how to verify)
-#       hopefully we can do without glibc's test framework, I'd rather not use that
-if(0)
 add_executable(argp-compat-test argp-compat-test.c unity.c)
 argp_standalone_target_enable_warnings(argp-compat-test)
 target_include_directories(argp-compat-test PRIVATE "${PROJECT_BINARY_DIR}" ../src)
 target_link_libraries(argp-compat-test PRIVATE argp-standalone)
 add_test(NAME argp-compat-test COMMAND argp-compat-test)
+
+# TODO: port stuff below
+# TODO: figure out how to correctly run tests (what arguments to pass to them and how to verify)
+#       hopefully we can do without glibc's test framework, I'd rather not use that
+if(0)
 
 add_executable(argp-failure-test argp-failure-test.c)
 target_link_libraries(argp-failure-test PRIVATE argp-standalone)
