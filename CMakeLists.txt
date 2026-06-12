@@ -99,7 +99,7 @@ configure_file(config.h.in config.h)
 
 include(ArgpStandaloneEnableWarnings)
 
-add_subdirectory(src243) # TODO: rename this into src
+add_subdirectory(src)
 if(argp_standalone_BUILD_TESTING)
-  add_subdirectory(test243) # TODO: rename this into test
+  add_subdirectory(test)
 endif()

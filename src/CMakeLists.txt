@@ -27,7 +27,7 @@ target_include_directories(
   "${PROJECT_BINARY_DIR}"
   "${CMAKE_CURRENT_SOURCE_DIR}"
   PUBLIC
-  ../include/argp-standalone243) # TODO: rename directory once the old one is gone
+  ../include/argp-standalone)
 
 
 ################################################################################
