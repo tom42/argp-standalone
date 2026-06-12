@@ -23,15 +23,15 @@ target_include_directories(argp-compat-test PRIVATE "${PROJECT_BINARY_DIR}" ../s
 target_link_libraries(argp-compat-test PRIVATE argp-standalone)
 add_test(NAME argp-compat-test COMMAND argp-compat-test)
 
-# TODO: port stuff below
-# TODO: figure out how to correctly run tests (what arguments to pass to them and how to verify)
-#       hopefully we can do without glibc's test framework, I'd rather not use that
-if(0)
-
 add_executable(argp-failure-test argp-failure-test.c)
 target_link_libraries(argp-failure-test PRIVATE argp-standalone)
 add_test(NAME argp-failure-test COMMAND argp-failure-test)
 set_tests_properties(argp-failure-test PROPERTIES PASS_REGULAR_EXPRESSION "Error message format string: Permission denied")
+
+# TODO: port stuff below
+# TODO: figure out how to correctly run tests (what arguments to pass to them and how to verify)
+#       hopefully we can do without glibc's test framework, I'd rather not use that
+if(0)
 
 add_executable(tst-argp1 tst-argp1.c)
 argp_standalone_target_enable_warnings(tst-argp1)
