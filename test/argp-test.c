@@ -30,6 +30,7 @@
 #include <string.h>
 #include <argp.h>
 
+// TODO: move random() and (x)asprintf into some test support header/library. I do not wish to see these here all the time
 /*
  * Implementation of random() for systems that don't have it.
  * Suitable for test purposes only, not for production code.
