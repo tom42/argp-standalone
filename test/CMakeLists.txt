@@ -9,12 +9,13 @@ if(WIN32)
   target_compile_definitions(argp-test PRIVATE _CRT_SECURE_NO_WARNINGS)
 endif()
 if(CMAKE_C_COMPILER_ID MATCHES "GNU")
+  # TODO: this is because of asprintf usage. See whether it is still necessary once we use xasprintf.
   target_compile_options(argp-test PRIVATE -Wno-unused-result)
 endif()
 argp_standalone_target_enable_warnings(argp-test)
 target_include_directories(argp-test PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(argp-test PRIVATE argp-standalone)
-add_test(NAME argp-test COMMAND argp-test)
+add_test(NAME argp-test COMMAND argp-test) # TODO: figure out how this test is supposed to be run
 
 add_executable(argp-compat-test argp-compat-test.c unity.c)
 argp_standalone_target_enable_warnings(argp-compat-test)
@@ -30,9 +31,15 @@ set_tests_properties(argp-failure-test PROPERTIES PASS_REGULAR_EXPRESSION "Error
 add_executable(tst-argp1 tst-argp1.c)
 argp_standalone_target_enable_warnings(tst-argp1)
 target_link_libraries(tst-argp1 PRIVATE argp-standalone)
-add_test(NAME tst-argp1 COMMAND tst-argp1)
+add_test(NAME tst-argp1 COMMAND tst-argp1) # TODO: figure out how this test is supposed to be run
+
+# TODO: port stuff below
+# TODO: figure out how to correctly run tests (what arguments to pass to them and how to verify)
+#       hopefully we can do without glibc's test framework, I'd rather not use that
+if(0)
 
 add_executable(tst-argp2 tst-argp2.c)
 argp_standalone_target_enable_warnings(tst-argp2)
 target_link_libraries(tst-argp2 PRIVATE argp-standalone)
 add_test(NAME tst-argp2 COMMAND tst-argp2)
+endif()

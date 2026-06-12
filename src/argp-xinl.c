@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* Real definitions for extern inline functions in argp.h
-   Copyright (C) 1997-2016 Free Software Foundation, Inc.
+   Copyright (C) 1997-2026 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
    Written by Miles Bader <miles@gnu.ai.mit.edu>.
 
@@ -16,7 +16,7 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>
@@ -26,19 +26,35 @@
 # include <features.h>
 #endif
 
-#ifndef __USE_EXTERN_INLINES
-# define __USE_EXTERN_INLINES	1
-#endif
-#define ARGP_EI
-#undef __OPTIMIZE__
-#define __OPTIMIZE__ 1
-#include "argp.h"
+#include <argp.h>
 
-/* Add weak aliases.  */
-#if _LIBC - 0 && defined (weak_alias)
+//#ifdef _LIBC // TODO: this is odd: this is the only place where these functions still have definitions - why do we compile them only if in _LIBC?
 
-weak_alias (__argp_usage, argp_usage)
-weak_alias (__option_is_short, _option_is_short)
-weak_alias (__option_is_end, _option_is_end)
+void
+__argp_usage (const struct argp_state *__state)
+{
+  argp_state_help (__state, stderr, ARGP_HELP_STD_USAGE); // TODO: had to mess around here - why do we even keep this file? It's just adding additional trouble?
+}
+//weak_alias (__argp_usage, argp_usage) // TODO: commented out: MSVC does not know weak_alias
 
-#endif
+int
+_option_is_short (const struct argp_option *__opt) // TODO: had to rename this from __option_is_short to _option_is_short because there is no weak alias anymore
+{
+  if (__opt->flags & OPTION_DOC)
+    return 0;
+  else
+    {
+      int __key = __opt->key;
+      return __key > 0 && __key <= UCHAR_MAX && isprint (__key);
+    }
+}
+//weak_alias (__option_is_short, _option_is_short) // TODO: commented out: MSVC does not know weak_alias
+
+int
+_option_is_end (const struct argp_option *__opt) // TODO: had to rename this from __option_is_end to _option_is_end because there is no weak alias anymore
+{
+  return !__opt->key && !__opt->name && !__opt->doc && !__opt->group;
+}
+//weak_alias (__option_is_end, _option_is_end) // TODO: commented out: MSVC does not know weak_alias
+
+//#endif // TODO: this is odd: this is the only place where these functions still have definitions - why do we compile them only if in _LIBC?

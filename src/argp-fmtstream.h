@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* Word-wrapping and line-truncating streams.
-   Copyright (C) 1997-2016 Free Software Foundation, Inc.
+   Copyright (C) 1997-2026 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
    Written by Miles Bader <miles@gnu.ai.mit.edu>.
 
@@ -16,7 +16,7 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 /* This package emulates glibc `line_wrap_stream' semantics for systems that
    don't have that.  If the system does have it, it is just a wrapper for
@@ -26,31 +26,12 @@
 #ifndef _ARGP_FMTSTREAM_H
 #define _ARGP_FMTSTREAM_H
 
-#ifdef HAVE_CONFIG_H
-# include <config.h>
-#endif
-
 #include <stdio.h>
 #include <string.h>
 #if defined(HAVE_UNISTD_H) && HAVE_UNISTD_H
 # include <unistd.h>
 #endif
 #include "argp-compat.h"
-
-#ifndef __attribute__
-/* This feature is available in gcc versions 2.5 and later.  */
-# if __GNUC__ < 2 || (__GNUC__ == 2 && __GNUC_MINOR__ < 5) || \
-  defined __STRICT_ANSI__
-#  define __attribute__(Spec) /* empty */
-# endif
-/* The __-protected variants of `format' and `printf' attributes
-   are accepted by gcc versions 2.6.4 (effectively 2.7) and later.  */
-# if __GNUC__ < 2 || (__GNUC__ == 2 && __GNUC_MINOR__ < 7) || \
-  defined __STRICT_ANSI__
-#  define __format__ format
-#  define __printf__ printf
-# endif
-#endif
 
 #if defined (__GNU_LIBRARY__) && defined (HAVE_LINEWRAP_H)
 /* line_wrap_stream is available, so use that.  */
@@ -119,6 +100,8 @@ struct argp_fmtstream
 
 typedef struct argp_fmtstream *argp_fmtstream_t;
 
+//__BEGIN_DECLS // TODO: what is this? what should we do with it?
+
 /* Return an argp_fmtstream that outputs to STREAM, and which prefixes lines
    written on it with LMARGIN spaces and limits them to RMARGIN columns
    total.  If WMARGIN >= 0, words that extend past RMARGIN are wrapped by
@@ -128,22 +111,25 @@ typedef struct argp_fmtstream *argp_fmtstream_t;
 extern argp_fmtstream_t __argp_make_fmtstream (FILE *__stream,
 					       size_t __lmargin,
 					       size_t __rmargin,
-					       ssize_t __wmargin);
+					       ssize_t __wmargin)
+     /*attribute_hidden*/; // TODO: attribute
 extern argp_fmtstream_t argp_make_fmtstream (FILE *__stream,
 					     size_t __lmargin,
 					     size_t __rmargin,
 					     ssize_t __wmargin);
 
 /* Flush __FS to its stream, and free it (but don't close the stream).  */
-extern void __argp_fmtstream_free (argp_fmtstream_t __fs);
+extern void __argp_fmtstream_free (argp_fmtstream_t __fs)
+     /*attribute_hidden*/; // TODO: attribute
 extern void argp_fmtstream_free (argp_fmtstream_t __fs);
 
 extern ssize_t __argp_fmtstream_printf (argp_fmtstream_t __fs,
 					const char *__fmt, ...)
-     __attribute__ ((__format__ (printf, 2, 3)));
+     /*__attribute__ ((__format__ (printf, 2, 3)))*/ // TODO: attribute
+     /*attribute_hidden*/; // TODO: attribute
 extern ssize_t argp_fmtstream_printf (argp_fmtstream_t __fs,
 				      const char *__fmt, ...)
-     __attribute__ ((__format__ (printf, 2, 3)));
+     /*__attribute__ ((__format__ (printf, 2, 3)))*/; // TODO: attribute
 
 extern int __argp_fmtstream_putc (argp_fmtstream_t __fs, int __ch);
 extern int argp_fmtstream_putc (argp_fmtstream_t __fs, int __ch);
@@ -152,7 +138,8 @@ extern int __argp_fmtstream_puts (argp_fmtstream_t __fs, const char *__str);
 extern int argp_fmtstream_puts (argp_fmtstream_t __fs, const char *__str);
 
 extern size_t __argp_fmtstream_write (argp_fmtstream_t __fs,
-				      const char *__str, size_t __len);
+				      const char *__str, size_t __len)
+     /*attribute_hidden*/; // TODO: attribute
 extern size_t argp_fmtstream_write (argp_fmtstream_t __fs,
 				    const char *__str, size_t __len);
 
@@ -188,9 +175,11 @@ extern size_t __argp_fmtstream_point (argp_fmtstream_t __fs);
 
 /* Internal routines.  */
 extern void _argp_fmtstream_update (argp_fmtstream_t __fs);
-extern void __argp_fmtstream_update (argp_fmtstream_t __fs);
+extern void __argp_fmtstream_update (argp_fmtstream_t __fs)
+     /*attribute_hidden*/; // TODO: attribute
 extern int _argp_fmtstream_ensure (argp_fmtstream_t __fs, size_t __amount);
-extern int __argp_fmtstream_ensure (argp_fmtstream_t __fs, size_t __amount);
+extern int __argp_fmtstream_ensure (argp_fmtstream_t __fs, size_t __amount)
+     /*attribute_hidden*/; // TODO: attribute
 
 #ifdef __OPTIMIZE__
 /* Inline versions of above routines.  */
@@ -304,6 +293,8 @@ __argp_fmtstream_point (argp_fmtstream_t __fs)
 #endif
 
 #endif /* __OPTIMIZE__ */
+
+//__END_DECLS // TODO: what is this? what should we do with it?
 
 #endif /* ARGP_FMTSTREAM_USE_LINEWRAP */
 

@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* Name frobnication for compiling argp outside of glibc
-   Copyright (C) 1997-2016 Free Software Foundation, Inc.
+   Copyright (C) 1997-2026 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
    Written by Miles Bader <miles@gnu.ai.mit.edu>.
 
@@ -16,11 +16,7 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
-
-#ifdef HAVE_CONFIG_H
-# include <config.h>
-#endif
+   <https://www.gnu.org/licenses/>.  */
 
 #if !_LIBC
 /* This code is written for inclusion in gnu-libc, and uses names in the
@@ -81,19 +77,6 @@
 #undef __argp_fmtstream_wmargin
 #define __argp_fmtstream_wmargin argp_fmtstream_wmargin
 
-#if defined(HAVE_MEMPCPY_H) && HAVE_MEMPCPY_H
-# include "mempcpy.h"
-#endif
-#if defined(HAVE_STRCASE_H) && HAVE_STRCASE_H
-# include "strcase.h"
-#endif
-#if defined(HAVE_STRCHRNUL_H) && HAVE_STRCHRNUL_H
-# include "strchrnul.h"
-#endif
-#if defined(HAVE_STRNDUP_H) && HAVE_STRNDUP_H
-# include "strndup.h"
-#endif
-
 /* normal libc functions we call */
 #undef __flockfile
 #define __flockfile flockfile
@@ -111,8 +94,6 @@
 #define __strerror_r strerror_r
 #undef __strndup
 #define __strndup strndup
-#undef __vsnprintf
-#define __vsnprintf vsnprintf
 
 #if defined(HAVE_DECL_CLEARERR_UNLOCKED) && !HAVE_DECL_CLEARERR_UNLOCKED
 # define clearerr_unlocked(x) clearerr (x)
@@ -162,4 +143,9 @@ extern char *__argp_basename (char *name);
 #define __set_errno(e) (errno = (e))
 #endif
 
+// TODO: annotate?
+/*#if defined _LIBC || HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
+# define __argp_short_program_name()	(program_invocation_short_name)
+#else*/
 extern char *__argp_short_program_name (void);
+//#endif // TODO: annotate?

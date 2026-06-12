@@ -1,8 +1,7 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* Test program for argp argument parser
-   Copyright (C) 1997-2016 Free Software Foundation, Inc.
+   Copyright (C) 1997-2026 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
-   Written by Miles Bader <miles@gnu.ai.mit.edu>.
 
    The GNU C Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
@@ -16,7 +15,7 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE 1
@@ -31,6 +30,7 @@
 #include <string.h>
 #include <argp.h>
 
+// TODO: move random() and (x)asprintf into some test support header/library. I do not wish to see these here all the time
 /*
  * Implementation of random() for systems that don't have it.
  * Suitable for test purposes only, not for production code.
@@ -46,7 +46,7 @@ int random(void)
  * Implementation of asprintf() for systems that don't have it.
  * Suitable for test purposes only, not for production code.
  */
-#if defined(HAVE_ASPRINTF) && ! HAVE_ASPRINTF
+#if defined(HAVE_ASPRINTF) && !HAVE_ASPRINTF
 #include <stdarg.h>
 void asprintf(char** strp, const char* fmt, ...)
 {
@@ -218,11 +218,11 @@ help_filter (int key, const char *text, void *input)
   if (key == ARGP_KEY_HELP_POST_DOC && text)
     {
       time_t now = time (0);
-      asprintf (&new_text, text, ctime (&now));
+      asprintf(&new_text, text, ctime(&now)); // TODO: changed this to use asprintf not xasprintf
     }
   else if (key == 'f')
     /* Show the default for the --foonly option.  */
-    asprintf (&new_text, "%s (ZOT defaults to %x)",
+    asprintf (&new_text, "%s (ZOT defaults to %x)", // TODO: changed this to use asprintf not xasprintf
 	      text, params->foonly_default);
   else
     new_text = (char *)text;
