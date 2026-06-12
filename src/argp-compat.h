@@ -1,4 +1,3 @@
-/* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* SPDX-FileCopyrightText: 2020 Thomas Mathys
    SPDX-License-Identifier: LGPL-2.1-or-later
    argp-standalone - standalone version of glibc's argp functions. */
