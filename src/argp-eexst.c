@@ -35,7 +35,7 @@
    <sysexits.h>.  */
 error_t argp_err_exit_status =
 #if defined(HAVE_SYSEXITS_H) && HAVE_SYSEXITS_H
-EX_USAGE;
+  EX_USAGE;
 #else
-EXIT_FAILURE;
+  EXIT_FAILURE;
 #endif
