@@ -54,7 +54,10 @@ if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
 endif()
 
 # TODO: what to do with __restrict? Comment it out  everywhere, no?
+#       * No. Previous argp.h did declare this. More recent glibc's pull it in via features.h in convoluted ways. Consider putting it back into argp.h
+# TODO: _BEGIN_DECLS/_END_DECLS: this is actualy ' extern "C" {' when compiling C++ and needs to be put back in!
 # TODO: when done possibly run a diff what we changed and then mark source locations with some sort of marker comment?
+#       * In any case, clean up things!
 # TODO: add all missing flags and stuff (see CMakeLists from 1.1.0)
 # TODO: we have now two public argp headers. Question is
 #       * The shorter one, what is it good for?

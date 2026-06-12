@@ -14,7 +14,7 @@ __argp_failure_internal (const struct argp_state *state, int status,
 			 int errnum, const char *fmt, va_list ap,
 			 unsigned int mode_flags);
 
-// TODO: do we even need this entire file?
+// TODO: do we even need this entire file? => A quick test indicates that "no we do not seem to need it"
 // TODO: what to do with this?
 /*#ifndef _ISOMAC
 extern __typeof (__argp_error) __argp_error attribute_hidden;
