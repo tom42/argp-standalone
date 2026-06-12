@@ -4,7 +4,7 @@
 
 # TODO: rename once old version is out of the way
 add_library(
-  argp-standalone243
+  argp-standalone
   argp-ba.c
   argp-compat.c
   argp-eexst.c
@@ -18,11 +18,11 @@ add_library(
   getopt.c
   getopt1.c)
 
-target_compile_definitions(argp-standalone243 PRIVATE HAVE_CONFIG_H)
-argp_standalone_target_enable_warnings(argp-standalone243)
+target_compile_definitions(argp-standalone PRIVATE HAVE_CONFIG_H)
+argp_standalone_target_enable_warnings(argp-standalone)
 
 target_include_directories(
-  argp-standalone243
+  argp-standalone
   PRIVATE
   "${PROJECT_BINARY_DIR}"
   "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -35,7 +35,7 @@ target_include_directories(
 ################################################################################
 
 if(WIN32)
-  target_compile_definitions(argp-standalone243 PRIVATE _CRT_SECURE_NO_WARNINGS)
+  target_compile_definitions(argp-standalone PRIVATE _CRT_SECURE_NO_WARNINGS)
 endif()
 
 if(APPLE)
@@ -50,7 +50,7 @@ endif()
 
 if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
   # gcc and clang need -fgnu89-inline to compile and link release builds
-  target_compile_options(argp-standalone243 PRIVATE -fgnu89-inline)
+  target_compile_options(argp-standalone PRIVATE -fgnu89-inline)
 endif()
 
 # TODO: what to do with __restrict? Comment it out  everywhere, no?
@@ -63,7 +63,7 @@ endif()
 #       * The shorter one, what is it good for?
 #       * Where on a GNU/Linux system do these headers get installed? What's the directory structure?
 #       * Do we even need the shorter header?
-# TODO: we have now suddenly a subdirectory in include: include/argp-standalone243/argp. Do we want this? Should we hide this a little bit better?
+# TODO: we have now suddenly a subdirectory in include: include/argp-standalone/argp. Do we want this? Should we hide this a little bit better?
 # TODO: port stuff below
 # TODO: ensure we have all files:
 #       * include/argp.h
