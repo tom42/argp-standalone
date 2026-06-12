@@ -28,15 +28,15 @@ target_link_libraries(argp-failure-test PRIVATE argp-standalone)
 add_test(NAME argp-failure-test COMMAND argp-failure-test)
 set_tests_properties(argp-failure-test PROPERTIES PASS_REGULAR_EXPRESSION "Error message format string: Permission denied")
 
+add_executable(tst-argp1 tst-argp1.c)
+argp_standalone_target_enable_warnings(tst-argp1)
+target_link_libraries(tst-argp1 PRIVATE argp-standalone)
+add_test(NAME tst-argp1 COMMAND tst-argp1) # TODO: figure out how this test is supposed to be run
+
 # TODO: port stuff below
 # TODO: figure out how to correctly run tests (what arguments to pass to them and how to verify)
 #       hopefully we can do without glibc's test framework, I'd rather not use that
 if(0)
-
-add_executable(tst-argp1 tst-argp1.c)
-argp_standalone_target_enable_warnings(tst-argp1)
-target_link_libraries(tst-argp1 PRIVATE argp-standalone)
-add_test(NAME tst-argp1 COMMAND tst-argp1)
 
 add_executable(tst-argp2 tst-argp2.c)
 argp_standalone_target_enable_warnings(tst-argp2)
