@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 # argp-standalone - standalone version of glibc's argp functions.
 
-# TODO: rename once old version is out of the way
 add_library(
   argp-standalone
   argp-ba.c
