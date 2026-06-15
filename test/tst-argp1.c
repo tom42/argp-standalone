@@ -113,5 +113,9 @@ parse_opt (int key, char *arg, struct argp_state *state)
   return ARGP_ERR_UNKNOWN;
 }
 
-#define TEST_FUNCTION do_test ()
-#include "../test-skeleton.c"
+int
+main (int argc, char** argv)
+{
+  do_test ();
+  return 0;
+}
