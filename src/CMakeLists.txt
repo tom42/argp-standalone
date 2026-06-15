@@ -73,9 +73,6 @@ endif()
 #         * bits/argp-ldbl.h
 #         * Makefile
 #       * This goes into tests (figure out how one is supposed to run the tests?
-#         * argp-test.c
-#         * tst-argp1.c
-#         * tst-argp2.c
 #         * tst-ldbl-argp.c
 #       * What to do with these? Last time we deleted them, but is there a way they should be run?
 #         * bug-argp1.c
