@@ -38,10 +38,10 @@ argp_standalone_target_enable_warnings(tst-argp2)
 target_link_libraries(tst-argp2 PRIVATE argp-standalone)
 add_test(NAME tst-argp2 COMMAND tst-argp2) # TODO: figure out how this test is supposed to be run
 
-# TODO: figure out how this test is supposed to be run
 add_executable(tst-ldbl-argp tst-ldbl-argp.c)
 argp_standalone_target_enable_warnings(tst-ldbl-argp)
 target_link_libraries(tst-ldbl-argp PRIVATE argp-standalone)
-add_test(NAME tst-ldbl-argp-error COMMAND tst-ldbl-argp --error) # TODO: check output
+add_test(NAME tst-ldbl-argp-error COMMAND tst-ldbl-argp --error)
+set_tests_properties(tst-ldbl-argp-error PROPERTIES PASS_REGULAR_EXPRESSION "test-argp: -1.000000-2.000000-3.000000-4.000000\nTry `test-argp --help' or `test-argp --usage' for more information.\n")
 add_test(NAME tst-ldbl-argp-failure COMMAND tst-ldbl-argp --failure)
-set_tests_properties(tst-ldbl-argp-failure PROPERTIES PASS_REGULAR_EXPRESSION "test-argp: -1.000000-2.000000-3.000000-4.000000\n") # TODO: add entire regex
+set_tests_properties(tst-ldbl-argp-failure PROPERTIES PASS_REGULAR_EXPRESSION "test-argp: -1.000000-2.000000-3.000000-4.000000\n")
