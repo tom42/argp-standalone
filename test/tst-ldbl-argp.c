@@ -58,7 +58,10 @@ int
 main(int argc, char** argv)
 {
   int remaining;
+
   // TODO: might want to replace argv[0] by something reproducible here
+  argv[0] = "test-argp";
+
   argp_parse(&argp, argc, argv, 0, &remaining, NULL);
 }
 
