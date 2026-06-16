@@ -59,56 +59,6 @@ int
 main(int argc, char** argv)
 {
   int remaining;
-
-  // TODO: might want to replace argv[0] by something reproducible here
   argv[0] = "test-argp";
-
-  argp_parse(&argp, argc, argv, 0, &remaining, NULL);
-}
-
-// TODO: see how to get this compiling and later running
-/*
-int argc = 2;
-char *argv[3] = { (char *) "test-argp", NULL, NULL };
-
-static void
-do_test_call (void)
-{
-  int remaining;
   argp_parse (&argp, argc, argv, 0, &remaining, NULL);
 }
-
-static int
-do_one_test (const char *expected)
-{
-  struct support_capture_subprocess result;
-  result = support_capture_subprocess ((void *) &do_test_call, NULL);
-
-  TEST_COMPARE_STRING (result.err.buffer, expected);
-
-  return 0;
-}
-
-static int
-do_test (void)
-{
-  const char *param_error = "--error";
-  const char *expected_error =
-    "test-argp: -1.000000-2.000000-3.000000-4.000000\n"
-    "Try `test-argp --help' or `test-argp --usage' for more information.\n";
-
-  const char *param_failure = "--failure";
-  const char *expected_failure =
-    "test-argp: -1.000000-2.000000-3.000000-4.000000\n";
-
-  argv[1] = (char *) param_error;
-  do_one_test (expected_error);
-
-  argv[1] = (char *) param_failure;
-  do_one_test (expected_failure);
-
-  return 0;
-}
-
-#include <support/test-driver.c>
-*/
