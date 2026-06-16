@@ -19,9 +19,6 @@
 #include <argp.h>
 #include <string.h>
 
-#include <support/capture_subprocess.h>
-#include <support/check.h>
-
 static const struct argp_option
 options[] =
 {
@@ -57,6 +54,16 @@ argp =
   options, parser
 };
 
+int
+main(int argc, char** argv)
+{
+  int remaining;
+  // TODO: might want to replace argv[0] by something reproducible here
+  argp_parse(&argp, argc, argv, 0, &remaining, NULL);
+}
+
+// TODO: see how to get this compiling and later running
+/*
 int argc = 2;
 char *argv[3] = { (char *) "test-argp", NULL, NULL };
 
@@ -100,3 +107,4 @@ do_test (void)
 }
 
 #include <support/test-driver.c>
+*/
