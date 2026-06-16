@@ -38,7 +38,9 @@ argp_standalone_target_enable_warnings(tst-argp2)
 target_link_libraries(tst-argp2 PRIVATE argp-standalone)
 add_test(NAME tst-argp2 COMMAND tst-argp2) # TODO: figure out how this test is supposed to be run
 
+# TODO: figure out how this test is supposed to be run
 add_executable(tst-ldbl-argp tst-ldbl-argp.c)
 argp_standalone_target_enable_warnings(tst-ldbl-argp)
 target_link_libraries(tst-ldbl-argp PRIVATE argp-standalone)
-add_test(NAME tst-ldbl-argp COMMAND tst-ldbl-argp) # TODO: figure out how this test is supposed to be run
+add_test(NAME tst-ldbl-argp-error COMMAND tst-ldbl-argp --error) # TODO: check output
+add_test(NAME tst-ldbl-argp-failure COMMAND tst-ldbl-argp --failure) # TODO: check output
