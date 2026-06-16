@@ -1,3 +1,4 @@
+/* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* Testing of long double conversions in argp.h functions.
    Copyright (C) 2018-2026 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
