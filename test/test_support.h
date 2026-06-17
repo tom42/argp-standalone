@@ -71,16 +71,6 @@ static char* xasprintf(const char* fmt, ...)
   va_end(ap);
 
   return buf;
-
-	// TODO: below is test code, redo this
-#if 0
-		  /* Format text and ensure it is terminated in any case. */
-		vsnprintf(strp, bufsize, fmt, ap);
-	strp[bufsize - 1] = 0;
-	
-		
-		return strp; // This should contain "Glork a foonly (ZOT defaults to 29)" (35 characters excluding the terminating zero)
-#endif
 }
 #endif
 
