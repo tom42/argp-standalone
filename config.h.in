@@ -22,7 +22,7 @@
 #cmakedefine01 HAVE_DECL_STRERROR_S
 
 /* Miscellaneous functions */
-#cmakedefine01 HAVE_ASPRINTF
+#cmakedefine01 HAVE_XASPRINTF
 #cmakedefine01 HAVE_MEMPCPY
 #cmakedefine01 HAVE_RANDOM
 #cmakedefine01 HAVE_SLEEP

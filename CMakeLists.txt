@@ -67,7 +67,7 @@ check_symbol_exists(strerror_s string.h HAVE_DECL_STRERROR_S)
 cmake_pop_check_state()
 
 # Check for miscellaneous functions
-check_symbol_exists(asprintf stdio.h HAVE_ASPRINTF)
+check_function_exists(xasprintf HAVE_XASPRINTF)
 check_symbol_exists(mempcpy string.h HAVE_MEMPCPY)
 check_symbol_exists(random stdlib.h HAVE_RANDOM)
 check_symbol_exists(sleep unistd.h HAVE_SLEEP)
