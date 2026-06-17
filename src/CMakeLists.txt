@@ -72,8 +72,6 @@ endif()
 #         * argp.h
 #         * bits/argp-ldbl.h
 #         * Makefile
-#       * This goes into tests (figure out how one is supposed to run the tests?
-#         * tst-ldbl-argp.c
 if(0)
 set(
   SOURCES
