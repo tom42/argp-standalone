@@ -74,9 +74,6 @@ endif()
 #         * Makefile
 #       * This goes into tests (figure out how one is supposed to run the tests?
 #         * tst-ldbl-argp.c
-#       * What to do with these? Last time we deleted them, but is there a way they should be run?
-#         * bug-argp1.c
-#         * bug-argp2.c
 if(0)
 set(
   SOURCES
