@@ -44,7 +44,11 @@ static char* xasprintf(const char* fmt, ...)
 
   /* Allocate memory, abort if insufficient memory. */
   char* buf = malloc(bufsiz);
-  // TODO: abort if insufficient memorty
+  if (!buf)
+  {
+    fprintf(stderr, "xasprintf: malloc returned NULL\n");
+    exit(EXIT_FAILURE);
+  }
 
   /* Print to buffer. */
   va_start(ap, fmt);
