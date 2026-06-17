@@ -59,7 +59,7 @@ static char* xasprintf(const char* fmt, ...)
   va_end(ap);
 
   /* Calculate buffer size. The + 1 cannot overflow since slen is int. */
-  size_t bufsiz = (size_t)slen + 1;
+  const size_t bufsiz = (size_t)slen + 1;
 
   /* Allocate memory, abort if insufficient memory. */
   char* buf = xmalloc(bufsiz);
