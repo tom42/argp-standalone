@@ -31,8 +31,13 @@ static char* xasprintf(const char* fmt, ...)
   /* Measure length of resulting string. */
   va_list ap;
   va_start(ap, fmt);
-  int slen = vsnprintf(NULL, 0, fmt, ap); // TODO: this may actually fail with a negative value. Should handle that (errno is set in that case)
+  const int slen = vsnprintf(NULL, 0, fmt, ap);
   va_end(ap);
+  if (slen < 0)
+  {
+    fprintf(stderr, "xasprintf: vsnprintf returned a negative value (%d)\n", slen);
+    exit(EXIT_FAILURE);
+  }
 
   /* Calculate buffer size. The + 1 cannot overflow since slen is int. */
   size_t bufsiz = (size_t)slen + 1;
