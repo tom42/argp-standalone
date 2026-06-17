@@ -36,6 +36,18 @@ static int xvsnprintf(char* buf, size_t siz, const char* fmt, va_list ap)
   return slen;
 }
 
+static void* xmalloc(size_t siz)
+{
+  char* p = malloc(siz);
+  if (!p)
+  {
+    fprintf(stderr, "xasprintf: malloc returned NULL\n");
+    exit(EXIT_FAILURE);
+  }
+
+  return p;
+}
+
 static char* xasprintf(const char* fmt, ...)
 {
   // TODO: this is tricky. Review/debug
@@ -50,12 +62,7 @@ static char* xasprintf(const char* fmt, ...)
   size_t bufsiz = (size_t)slen + 1;
 
   /* Allocate memory, abort if insufficient memory. */
-  char* buf = malloc(bufsiz);
-  if (!buf)
-  {
-    fprintf(stderr, "xasprintf: malloc returned NULL\n");
-    exit(EXIT_FAILURE);
-  }
+  char* buf = xmalloc(bufsiz);
 
   /* Print to buffer. */
   va_start(ap, fmt);
