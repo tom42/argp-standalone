@@ -10,6 +10,7 @@
 #endif
 
 #include <stdlib.h>
+#include <stdio.h>
 
 /* Implementation of random() for systems that don't have it.
  * Suitable for test purposes only, not for production code. */
