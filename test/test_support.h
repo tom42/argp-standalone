@@ -24,6 +24,18 @@ static int random(void)
 /* Implementation of xasprintf() for systems that don't have it.
  * Suitable for test purposes only, not for production code. */
 #if defined(HAVE_XASPRINTF) && !HAVE_XASPRINTF
+static int xvsnprintf(char* buf, size_t siz, const char* fmt, va_list ap)
+{
+  const int slen = vsnprintf(buf, siz, fmt, ap);
+  if (slen < 0)
+  {
+    fprintf(stderr, "xasprintf: vsnprintf returned a negative value (%d)\n", slen);
+    exit(EXIT_FAILURE);
+  }
+
+  return slen;
+}
+
 static char* xasprintf(const char* fmt, ...)
 {
   // TODO: this is tricky. Review/debug
@@ -31,13 +43,8 @@ static char* xasprintf(const char* fmt, ...)
   /* Measure length of resulting string. */
   va_list ap;
   va_start(ap, fmt);
-  const int slen = vsnprintf(NULL, 0, fmt, ap);
+  const int slen = xvsnprintf(NULL, 0, fmt, ap);
   va_end(ap);
-  if (slen < 0)
-  {
-    fprintf(stderr, "xasprintf: vsnprintf returned a negative value (%d)\n", slen);
-    exit(EXIT_FAILURE);
-  }
 
   /* Calculate buffer size. The + 1 cannot overflow since slen is int. */
   size_t bufsiz = (size_t)slen + 1;
@@ -53,7 +60,7 @@ static char* xasprintf(const char* fmt, ...)
   /* Print to buffer. */
   va_start(ap, fmt);
   // TODO: what to pass here, bufsiz or slen?
-  vsnprintf(buf, slen, fmt, ap); // TODO: again, this may fail, although it should not. Anyway, handle it for the sake of completeness
+  xvsnprintf(buf, slen, fmt, ap);
   // TODO: is buf terminated in any case or do we have to do this ourselves?
   va_end(ap);
 
