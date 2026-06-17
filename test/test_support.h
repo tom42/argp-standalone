@@ -66,9 +66,8 @@ static char* xasprintf(const char* fmt, ...)
 
   /* Print to buffer. */
   va_start(ap, fmt);
-  // TODO: what to pass here, bufsiz or slen?
-  xvsnprintf(buf, slen, fmt, ap);
-  // TODO: is buf terminated in any case or do we have to do this ourselves?
+  xvsnprintf(buf, bufsiz, fmt, ap);
+  // TODO: is buf terminated in any case or do we have to do this ourselves? => we have. Just overwrite the last character in the buffer, but ffs ensure this does not underrun
   va_end(ap);
 
   return buf;
