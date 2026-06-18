@@ -58,7 +58,8 @@ static char* xasprintf(const char* fmt, ...)
   const int slen = xvsnprintf(NULL, 0, fmt, ap);
   va_end(ap);
 
-  /* Calculate buffer size. The +1 cannot overflow since slen is int. */
+  /* Calculate buffer size: add one for the terminating 0.
+     The +1 cannot overflow since slen is int. */
   const size_t bufsiz = (size_t)slen + 1;
 
   /* Allocate memory, abort if insufficient memory. */
