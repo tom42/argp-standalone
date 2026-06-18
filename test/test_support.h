@@ -50,8 +50,6 @@ static void* xmalloc(size_t siz)
 
 static char* xasprintf(const char* fmt, ...)
 {
-  // TODO: this is tricky. Review/debug
-
   /* Measure length of resulting string. */
   va_list ap;
   va_start(ap, fmt);
