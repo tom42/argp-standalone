@@ -29,7 +29,7 @@ static int xvsnprintf(char* buf, size_t siz, const char* fmt, va_list ap)
   const int slen = vsnprintf(buf, siz, fmt, ap);
   if (slen < 0)
   {
-    fprintf(stderr, "xasprintf: vsnprintf returned a negative value (%d)\n", slen);
+    fprintf(stderr, "xvsnprintf: vsnprintf returned a negative value (%d)\n", slen);
     exit(EXIT_FAILURE);
   }
 
@@ -41,7 +41,7 @@ static void* xmalloc(size_t siz)
   char* p = malloc(siz);
   if (!p)
   {
-    fprintf(stderr, "xasprintf: malloc returned NULL\n");
+    fprintf(stderr, "xmalloc: malloc returned NULL\n");
     exit(EXIT_FAILURE);
   }
 
