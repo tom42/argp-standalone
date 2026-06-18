@@ -67,8 +67,11 @@ static char* xasprintf(const char* fmt, ...)
   /* Print to buffer. */
   va_start(ap, fmt);
   xvsnprintf(buf, bufsiz, fmt, ap);
-  // TODO: is buf terminated in any case or do we have to do this ourselves? => we have. Just overwrite the last character in the buffer, but ffs ensure this does not underrun
   va_end(ap);
+
+  /* Ensure string is terminated. Not necessary with a conforming snprintf,
+     but remember the broken _snprintf that Microsoft has. */
+  buf[bufsiz - 1] = '\0';
 
   return buf;
 }
