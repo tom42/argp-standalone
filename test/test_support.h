@@ -9,8 +9,9 @@
 #include "config.h"
 #endif
 
-#include <stdlib.h>
+#include <stdarg.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 /* Implementation of random() for systems that don't have it.
  * Suitable for test purposes only, not for production code. */
