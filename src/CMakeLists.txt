@@ -63,37 +63,6 @@ endif()
 #       * Where on a GNU/Linux system do these headers get installed? What's the directory structure?
 #       * Do we even need the shorter header?
 # TODO: we have now suddenly a subdirectory in include: include/argp-standalone/argp. Do we want this? Should we hide this a little bit better?
-# TODO: port stuff below
 # TODO: ensure we have all files:
 #       * argp src:
 #         * Makefile (-fexceptions or not? but what is $(uses-callbacks)?)
-if(0)
-set(
-  SOURCES
-  argp-ba.c
-  argp-compat.c
-  argp-eexst.c
-  argp-fmtstream.c
-  argp-fs-xinl.c
-  argp-help.c
-  argp-parse.c
-  argp-pv.c
-  argp-pvh.c
-  argp-xinl.c
-  getopt.c
-  getopt1.c)
-
-add_library(argp-standalone ${SOURCES})
-
-target_compile_definitions(argp-standalone PRIVATE HAVE_CONFIG_H)
-argp_standalone_target_enable_warnings(argp-standalone)
-
-target_include_directories(
-  argp-standalone
-  PRIVATE
-  "${PROJECT_BINARY_DIR}"
-  PUBLIC
-  ../include/argp-standalone)
-
-
-endif()
