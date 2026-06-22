@@ -59,11 +59,6 @@ endif()
 # TODO: when done possibly run a diff what we changed and then mark source locations with some sort of marker comment?
 #       * In any case, clean up things!
 # TODO: add all missing flags and stuff (see CMakeLists from 1.1.0)
-# TODO: we have now two public argp headers. Question is
-#       * The shorter one, what is it good for?
-#       * Where on a GNU/Linux system do these headers get installed? What's the directory structure?
-#       * Do we even need the shorter header?
-# TODO: we have now suddenly a subdirectory in include: include/argp-standalone/argp. Do we want this? Should we hide this a little bit better?
 # TODO: ensure we have all files:
 #       * argp src:
 #         * Makefile (-fexceptions or not? but what is $(uses-callbacks)?)
