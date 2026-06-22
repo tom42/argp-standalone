@@ -65,13 +65,8 @@ endif()
 # TODO: we have now suddenly a subdirectory in include: include/argp-standalone/argp. Do we want this? Should we hide this a little bit better?
 # TODO: port stuff below
 # TODO: ensure we have all files:
-#       * include/argp.h
-#       * include/argp-fmtstream.h
-#       * All the getopt stuff
 #       * argp src:
-#         * argp.h
-#         * bits/argp-ldbl.h
-#         * Makefile
+#         * Makefile (-fexceptions or not? but what is $(uses-callbacks)?)
 if(0)
 set(
   SOURCES
