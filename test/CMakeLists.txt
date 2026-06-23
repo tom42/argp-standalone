@@ -20,6 +20,7 @@ target_link_libraries(argp-compat-test PRIVATE argp-standalone)
 add_test(NAME argp-compat-test COMMAND argp-compat-test)
 
 add_executable(argp-failure-test argp-failure-test.c)
+argp_standalone_target_enable_warnings(argp-failure-test)
 target_link_libraries(argp-failure-test PRIVATE argp-standalone)
 add_test(NAME argp-failure-test COMMAND argp-failure-test)
 set_tests_properties(argp-failure-test PROPERTIES PASS_REGULAR_EXPRESSION "Error message format string: Permission denied")
