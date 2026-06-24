@@ -6,6 +6,6 @@
 
 int main()
 {
-  // TODO: do something slightly more useful? (test all headers?)
+  // TODO: do something slightly more useful? (test all headers? actually no, other headers are not public)
   argp_failure(nullptr, 0, 0, "failure");
 }
