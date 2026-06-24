@@ -26,8 +26,8 @@ add_test(NAME argp-failure-test COMMAND argp-failure-test)
 set_tests_properties(argp-failure-test PROPERTIES PASS_REGULAR_EXPRESSION "Error message format string: Permission denied")
 
 add_executable(argp-cpp-test argp-cpp-test.cpp)
-# TODO: enable warnings
-# TODO: link to argp-standalione
+argp_standalone_target_enable_warnings(argp-cpp-test)
+target_link_libraries(argp-cpp-test PRIVATE argp-standalone)
 # TODO: add test(?) Or is it sufficient if we link?
 
 add_executable(tst-argp1 tst-argp1.c)
