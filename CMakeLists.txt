@@ -3,7 +3,8 @@
 # argp-standalone - standalone version of glibc's argp functions.
 
 cmake_minimum_required(VERSION 3.17.3)
-project(argp-standalone VERSION 1.0.3 LANGUAGES C)
+# TODO: may want to enable CXX only if testing is enabled, so that users don't need to have C++ just to use argp-standalone
+project(argp-standalone VERSION 1.0.3 LANGUAGES C CXX)
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 
