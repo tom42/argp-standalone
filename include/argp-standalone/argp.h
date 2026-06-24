@@ -26,8 +26,10 @@
 //#include <getopt.h> TODO: include getopt.h, once we have it (umm but we always include our version, no?)
 #include <limits.h>
 #include <errno.h>
-
-//__BEGIN_DECLS // TODO: what is this? what should we do with it?
+
+#ifdef  __cplusplus
+extern "C" {
+#endif
 
 /* error_t may or may not be available from errno.h, depending on the
    operating system.  */
@@ -557,6 +559,8 @@ __NTH (__option_is_end (const struct argp_option *__opt))
 # include <bits/argp-ldbl.h>
 #endif*/
 
-//__END_DECLS // TODO: what is this? what should we do with it?
+#ifdef  __cplusplus
+}
+#endif
 
 #endif /* argp.h */
