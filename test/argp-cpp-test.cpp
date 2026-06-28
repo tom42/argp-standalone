@@ -3,9 +3,12 @@
    argp-standalone - standalone version of glibc's argp functions. */
 
 #include <argp.h>
+#include <argp-fmtstream.h>
+#include <cstdio>
 
 int main()
 {
   // TODO: do something slightly more useful? (test all headers? actually no, other headers are not public)
   argp_failure(nullptr, 0, 0, "failure");
+  argp_fmtstream_free(argp_make_fmtstream(stdout, 0, 0, 0));
 }

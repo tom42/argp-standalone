@@ -100,7 +100,9 @@ struct argp_fmtstream
 
 typedef struct argp_fmtstream *argp_fmtstream_t;
 
-//__BEGIN_DECLS // TODO: what is this? what should we do with it?
+#ifdef  __cplusplus
+extern "C" {
+#endif
 
 /* Return an argp_fmtstream that outputs to STREAM, and which prefixes lines
    written on it with LMARGIN spaces and limits them to RMARGIN columns
@@ -294,7 +296,9 @@ __argp_fmtstream_point (argp_fmtstream_t __fs)
 
 #endif /* __OPTIMIZE__ */
 
-//__END_DECLS // TODO: what is this? what should we do with it?
+#ifdef  __cplusplus
+}
+#endif
 
 #endif /* ARGP_FMTSTREAM_USE_LINEWRAP */
 
