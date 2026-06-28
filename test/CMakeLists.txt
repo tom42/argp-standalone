@@ -27,7 +27,8 @@ set_tests_properties(argp-failure-test PROPERTIES PASS_REGULAR_EXPRESSION "Error
 
 add_executable(argp-cpp-test argp-cpp-test.cpp)
 argp_standalone_target_enable_warnings(argp-cpp-test)
-target_include_directories(argp-cpp-test PRIVATE ../src)
+target_compile_definitions(argp-cpp-test PRIVATE HAVE_CONFIG_H)
+target_include_directories(argp-cpp-test PRIVATE "${PROJECT_BINARY_DIR}" ../src)
 target_link_libraries(argp-cpp-test PRIVATE argp-standalone)
 # TODO: add test(?) Or is it sufficient if we link?
 
