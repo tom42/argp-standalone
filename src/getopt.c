@@ -22,7 +22,7 @@
 # include <config.h>
 #endif
 
-#include "argp-getopt.h" // TODO: annotate?
+#include "argp-getopt.h"
 
 #include <stdio.h>
 #include <stdlib.h>
