@@ -38,6 +38,13 @@ extern "C" {
 typedef int error_t;
 #endif
 
+#ifndef __THROW
+# define __THROW
+#endif
+#ifndef __NTH
+# define __NTH(fct) fct __THROW
+#endif
+
 /* A description of a particular option.  A pointer to an array of
    these is passed in the OPTIONS field of an argp structure.  Each option
    entry can correspond to one long option and/or one short option; more
@@ -495,22 +502,22 @@ extern void __argp_failure (const struct argp_state *__restrict __state,
      /*__attribute__ ((__format__ (__printf__, 4, 5)))*/; // TODO: attribute
 
 /* Returns true if the option OPT is a valid short option.  */
-extern int _option_is_short (const struct argp_option *__opt) /*__THROW*/; // TODO: __throw
-extern int __option_is_short (const struct argp_option *__opt) /*__THROW*/; // TODO: __throw
+extern int _option_is_short (const struct argp_option *__opt) __THROW;
+extern int __option_is_short (const struct argp_option *__opt) __THROW;
 
 /* Returns true if the option OPT is in fact the last (unused) entry in an
    options array.  */
-extern int _option_is_end (const struct argp_option *__opt) /*__THROW*/; // TODO: __throw
-extern int __option_is_end (const struct argp_option *__opt) /*__THROW*/; // TODO: __throw
+extern int _option_is_end (const struct argp_option *__opt) __THROW;
+extern int __option_is_end (const struct argp_option *__opt) __THROW;
 
 /* Return the input field for ARGP in the parser corresponding to STATE; used
    by the help routines.  */
 extern void *_argp_input (const struct argp *__restrict __argp,
 			  const struct argp_state *__restrict __state)
-     /*__THROW*/; // TODO: __throw
+     __THROW;
 extern void *__argp_input (const struct argp *__restrict __argp,
 			   const struct argp_state *__restrict __state)
-     /*__THROW*/; // TODO: __throw
+     __THROW;
 
 #ifdef __USE_EXTERN_INLINES
 
