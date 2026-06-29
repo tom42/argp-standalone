@@ -4,6 +4,7 @@
 
 #include <argp.h>
 #include <argp-fmtstream.h>
+#include <argp-getopt.h>
 #include <cstdio>
 
 int main()
@@ -11,4 +12,7 @@ int main()
   // TODO: do something slightly more useful? (test all headers? actually no, other headers are not public)
   argp_failure(nullptr, 0, 0, "failure");
   argp_fmtstream_free(argp_make_fmtstream(stdout, 0, 0, 0));
+  // TODO: call something from argp-getopt_core.h
+  getopt(0, nullptr, nullptr); // TODO: real args, verify return code?
+  // TODO: call something from argp-getopt_ext.h
 }

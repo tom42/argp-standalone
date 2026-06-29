@@ -26,7 +26,9 @@
    a protective #error, because the guard macro for getopt.h in
    gnulib is not fixed.  */
 
-//__BEGIN_DECLS // TODO: what is this? what should we do with it?
+#ifdef  __cplusplus
+extern "C" {
+#endif
 
 // TODO: document why we comment this out
 #if 0
@@ -95,6 +97,8 @@ extern int optopt;
 extern int getopt (int ___argc, char *const *___argv, const char *__shortopts)
        /*__THROW __nonnull ((2, 3))*/; // TODO: __throw
 
-//__END_DECLS // TODO: what is this? what should we do with it?
+#ifdef  __cplusplus
+}
+#endif
 
 #endif /* getopt_core.h */
