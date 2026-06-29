@@ -22,8 +22,8 @@
 # include <config.h>
 #endif
 
-#include "argp-getopt.h" // TODO: annotate?
-#include "argp-getopt_int.h" // TODO: annotate?
+#include "argp-getopt.h"
+#include "argp-getopt_int.h"
 
 int
 getopt_long (int argc, char *__getopt_argv_const *argv, const char *options,
