@@ -380,8 +380,8 @@ process_long_option (int argc, char **argv, const char *optstring,
 /* Initialize internal data upon the first call to getopt.  */
 
 static const char *
-_getopt_initialize (/*_GL_UNUSED*/ int argc, // TODO: what is _GL_UNUSED? Where would it be defined?
-		    /*_GL_UNUSED*/ char **argv, const char *optstring, // TODO: what is _GL_UNUSED? Where would it be defined?
+_getopt_initialize (/*_GL_UNUSED*/ int argc,
+		    /*_GL_UNUSED*/ char **argv, const char *optstring,
 		    struct _getopt_data *d, int posixly_correct)
 {
   /* Start processing options with ARGV-element 1 (since ARGV-element 0
