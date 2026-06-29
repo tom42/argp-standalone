@@ -27,6 +27,13 @@
 #include <limits.h>
 #include <errno.h>
 
+#ifndef __THROW
+# define __THROW
+#endif
+#ifndef __NTH
+# define __NTH(fct) fct __THROW
+#endif
+
 #ifdef  __cplusplus
 extern "C" {
 #endif
@@ -36,13 +43,6 @@ extern "C" {
 #ifndef __error_t_defined
 # define __error_t_defined 1
 typedef int error_t;
-#endif
-
-#ifndef __THROW
-# define __THROW
-#endif
-#ifndef __NTH
-# define __NTH(fct) fct __THROW
 #endif
 
 /* A description of a particular option.  A pointer to an array of
