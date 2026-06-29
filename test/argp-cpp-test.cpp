@@ -13,5 +13,5 @@ int main()
   argp_failure(nullptr, 0, 0, "failure");
   argp_fmtstream_free(argp_make_fmtstream(stdout, 0, 0, 0));
   getopt(0, nullptr, nullptr); // TODO: real args, verify return code?
-  // TODO: call something from argp-getopt_ext.h
+  getopt_long(0, nullptr, nullptr, nullptr, nullptr); // TODO: real args, verify return code?
 }

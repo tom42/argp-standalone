@@ -25,7 +25,9 @@
    Unlike most bits headers, it does not have a protective #error,
    because the guard macro for getopt.h in gnulib is not fixed.  */
 
-//__BEGIN_DECLS // TODO: what is this? what should we do with it?
+#ifdef  __cplusplus
+extern "C" {
+#endif
 
 /* Describe the long-named options requested by the application.
    The LONG_OPTIONS argument to getopt_long or getopt_long_only is a vector
@@ -73,6 +75,8 @@ extern int getopt_long_only (int ___argc, char *__getopt_argv_const *___argv,
 		             const struct option *__longopts, int *__longind)
        /*__THROW __nonnull ((2, 3))*/; // TODO: __throw
 
-//__END_DECLS // TODO: what is this? what should we do with it?
+#ifdef  __cplusplus
+}
+#endif
 
 #endif /* getopt_ext.h */
