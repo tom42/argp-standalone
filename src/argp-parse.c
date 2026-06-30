@@ -36,7 +36,7 @@
 # include <unistd.h>
 #endif
 #include <limits.h>
-#include "argp-getopt.h" // TODO: do we mark this somehow?
+#include "argp-getopt.h"
 #include "argp-getopt_int.h"
 
 #ifndef _
