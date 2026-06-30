@@ -23,7 +23,10 @@
 
 #include <stdio.h>
 #include <ctype.h>
-//#include <getopt.h> TODO: include getopt.h, once we have it (umm but we always include our version, no?)
+/* argp-standalone: do not include getopt.h in public header,
+   since it may not be available. We do not want to expose
+   our own getopt implementation here, either. */
+/*#include <getopt.h>*/
 #include <limits.h>
 #include <errno.h>
 
