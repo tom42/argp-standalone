@@ -51,6 +51,21 @@
 # endif
 #endif
 
+/* argp-standalone: more recent versions of glibc do not define __restrict
+   here anymore but get it via <features.h>. We do not have this header.
+   Add an own definition of __restrict from an older version of argp.h.  */
+/* GCC 2.95 and later have "__restrict"; C99 compilers have
+   "restrict", and "configure" may have defined "restrict".  */
+#ifndef __restrict
+# if ! (2 < __GNUC__ || (2 == __GNUC__ && 95 <= __GNUC_MINOR__))
+#  if defined restrict || 199901L <= __STDC_VERSION__
+#   define __restrict restrict
+#  else
+#   define __restrict
+#  endif
+# endif
+#endif
+
 #ifdef  __cplusplus
 extern "C" {
 #endif
@@ -416,8 +431,8 @@ extern const char *argp_program_version;
    calls this function with a stream to print the version to and a pointer to
    the current parsing state, and then exits (unless the ARGP_NO_EXIT flag is
    used).  This variable takes precedent over ARGP_PROGRAM_VERSION.  */
-extern void (*argp_program_version_hook) (FILE */*__restrict*/ __stream, // TODO: __restrict: what do do? Why was it not a problem so far?
-					  struct argp_state */*__restrict*/ // TODO: __restrict: what do do? Why was it not a problem so far?
+extern void (*argp_program_version_hook) (FILE *__restrict __stream,
+					  struct argp_state *__restrict
 					  __state);
 
 /* If defined or set by the user program, it should point to string that is
