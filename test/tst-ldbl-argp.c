@@ -61,4 +61,5 @@ main(int argc, char** argv)
   int remaining;
   argv[0] = "test-argp";
   argp_parse (&argp, argc, argv, 0, &remaining, NULL);
+  return 0;
 }
