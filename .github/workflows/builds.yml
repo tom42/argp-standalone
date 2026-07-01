@@ -78,7 +78,7 @@ jobs:
         --preset=dev-windows
         -DCMAKE_C_COMPILER=gcc
         -DCMAKE_BUILD_TYPE=${{matrix.build_type}}
-        -D__USE_MINGW_ANSI_STDIO
+        -D__USE_MINGW_ANSI_STDIO=
 
     - name: Build
       run: |
