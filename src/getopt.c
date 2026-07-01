@@ -27,7 +27,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <unistd.h> // TODO: comment our or include only if available?
+// TODO: comment our or include only if available?
+//       => include only if available, but be sure that all locations where we do this config.h is actually included!
+//#include <unistd.h>
 
 #ifdef _LIBC
 /* When used as part of glibc, error printing must be done differently
