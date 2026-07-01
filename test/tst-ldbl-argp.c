@@ -61,6 +61,5 @@ main(int argc, char** argv)
   //int remaining;
   //argv[0] = "test-argp";
   //argp_parse (&argp, argc, argv, 0, &remaining, NULL);
-  long double x = 42;
-  printf("%Lg\n", x);
+  printf("%Lf%f%Lf%f\n", (long double) -1, (double) -2, (long double) -3, (double) -4);
 }
