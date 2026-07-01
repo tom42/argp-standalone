@@ -20,7 +20,7 @@
 #include <argp.h>
 #include <string.h>
 
-static const struct argp_option
+/*static const struct argp_option
 options[] =
 {
   { "error", 'e', "format", OPTION_ARG_OPTIONAL,
@@ -47,18 +47,20 @@ parser (int key, char *arg, struct argp_state *state)
 	return ARGP_ERR_UNKNOWN;
     }
   return 0;
-}
+}*/
 
-static struct argp
+/*static struct argp
 argp =
 {
   options, parser
-};
+};*/
 
 int
 main(int argc, char** argv)
 {
-  int remaining;
-  argv[0] = "test-argp";
-  argp_parse (&argp, argc, argv, 0, &remaining, NULL);
+  //int remaining;
+  //argv[0] = "test-argp";
+  //argp_parse (&argp, argc, argv, 0, &remaining, NULL);
+  long double x = 42;
+  printf("%Lg\n", x);
 }
