@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <ctype.h>
 /* argp-standalone: do not include getopt.h in public header,
-   since it may not be available. */
+   since it may not be available.  */
 /*#include <getopt.h>*/
 #include <limits.h>
 #include <errno.h>
