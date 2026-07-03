@@ -6,7 +6,6 @@ cmake_minimum_required(VERSION 3.17.3)
 project(argp-standalone VERSION 1.0.3 LANGUAGES C)
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
-set(CMAKE_C_STANDARD 11)
 
 ################################################################################
 # Options
