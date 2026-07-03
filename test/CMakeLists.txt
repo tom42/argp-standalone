@@ -51,6 +51,8 @@ if(MINGW)
   # Quote: "This is mingw specific "issue" in regard to ensure compatibility if you run this on an ancient non-updated version
   #        of Windows, with the oldest Visual Studio runtime you can find. You can ignore this warning unless support for ancient
   #        stuff is important."
+  # TODO: fix this correctly. With MinGW we should possibly be using __MINGW_PRINTF_FORMAT instead of __printf__.
+  #       See https://stackoverflow.com/q/79973899/17365470
   target_compile_options(tst-ldbl-argp PRIVATE -Wno-format)
 endif()
 target_link_libraries(tst-ldbl-argp PRIVATE argp-standalone)
