@@ -36,6 +36,9 @@
 # define __NTH(fct) fct __THROW
 #endif
 
+/* argp-standalone: more recent versions of glibc do not define __attribute__
+   here anymore but in some non-standard header that we might not have.
+   Add an own definition of __attribute__ from an older version of argp.  */
 #ifndef __attribute__
 /* This feature is available in gcc versions 2.5 and later.  */
 # if __GNUC__ < 2 || (__GNUC__ == 2 && __GNUC_MINOR__ < 5) || \
@@ -52,8 +55,8 @@
 #endif
 
 /* argp-standalone: more recent versions of glibc do not define __restrict
-   in argp.h anymore but get it via <features.h>. We do not have this header.
-   Add an own definition of __restrict from an older version of argp.h.  */
+   here anymore but in some non-standard header that we might not have.
+   Add an own definition of __restrict from an older version of argp.  */
 /* GCC 2.95 and later have "__restrict"; C99 compilers have
    "restrict", and "configure" may have defined "restrict".  */
 #ifndef __restrict
