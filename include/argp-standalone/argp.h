@@ -52,7 +52,7 @@
 #endif
 
 /* argp-standalone: more recent versions of glibc do not define __restrict
-   here anymore but get it via <features.h>. We do not have this header.
+   in argp.h anymore but get it via <features.h>. We do not have this header.
    Add an own definition of __restrict from an older version of argp.h.  */
 /* GCC 2.95 and later have "__restrict"; C99 compilers have
    "restrict", and "configure" may have defined "restrict".  */
