@@ -44,6 +44,7 @@ target_link_libraries(tst-argp2 PRIVATE argp-standalone)
 add_test(NAME tst-argp2 COMMAND tst-argp2)
 
 add_executable(tst-ldbl-argp tst-ldbl-argp.c)
+set_property(TARGET tst-ldbl-argp PROPERTY C_STANDARD 11)
 argp_standalone_target_enable_warnings(tst-ldbl-argp)
 target_link_libraries(tst-ldbl-argp PRIVATE argp-standalone)
 add_test(NAME tst-ldbl-argp-error COMMAND tst-ldbl-argp --error)
