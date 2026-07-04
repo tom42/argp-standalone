@@ -1990,8 +1990,9 @@ __argp_failure_internal (const struct argp_state *state, int status,
 #else
 	      putc_unlocked (':', stream);
 	      putc_unlocked (' ', stream);
+	      /* argp-standalone: use our replacement no matter what. */
 	      fputs (argp_compat_strerror (errnum, buf, sizeof (buf)), stream);
-/*# ifdef HAVE_STRERROR_R // TODO: do we annotate it somehow?
+/*# ifdef HAVE_STRERROR_R
 	      fputs (__strerror_r (errnum, buf, sizeof (buf)), stream);
 # else
 	      fputs (strerror (errnum), stream);
