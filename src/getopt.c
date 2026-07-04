@@ -27,9 +27,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#if defined(HAVE_UNISTD_H) && HAVE_UNISTD_H
-# include <unistd.h>
-#endif
+/* argp-standalone: do not include unistd.h. It may provide declarations that
+   conflict with those provided by us, e.g. optarg etc. on Cygwin.  */
+/*#include <unistd.h>*/
 
 #ifdef _LIBC
 /* When used as part of glibc, error printing must be done differently
