@@ -45,16 +45,6 @@ add_test(NAME tst-argp2 COMMAND tst-argp2)
 
 add_executable(tst-ldbl-argp tst-ldbl-argp.c)
 argp_standalone_target_enable_warnings(tst-ldbl-argp)
-if(MINGW)
-  # Disable -Wformat on MinGW.
-  # Not sure why there is a warning. The resulting binary passes tests, but see https://stackoverflow.com/q/79973899/17365470.
-  # Quote: "This is mingw specific "issue" in regard to ensure compatibility if you run this on an ancient non-updated version
-  #        of Windows, with the oldest Visual Studio runtime you can find. You can ignore this warning unless support for ancient
-  #        stuff is important."
-  # TODO: fix this correctly. With MinGW we should possibly be using __MINGW_PRINTF_FORMAT instead of __printf__.
-  #       See https://stackoverflow.com/q/79973899/17365470
-  target_compile_options(tst-ldbl-argp PRIVATE -Wno-format)
-endif()
 target_link_libraries(tst-ldbl-argp PRIVATE argp-standalone)
 add_test(NAME tst-ldbl-argp-error COMMAND tst-ldbl-argp --error)
 set_tests_properties(tst-ldbl-argp-error PROPERTIES PASS_REGULAR_EXPRESSION "test-argp: -1.000000-2.000000-3.000000-4.000000\nTry `test-argp --help' or `test-argp --usage' for more information.\n")
