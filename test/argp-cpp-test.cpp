@@ -10,10 +10,10 @@
 #include <argp-getopt.h>
 #include <cstdio>
 
-int main()
+int main(int argc, char** argv)
 {
   argp_failure(nullptr, 0, 0, "failure message");
   argp_fmtstream_free(argp_make_fmtstream(stdout, 0, 0, 0));
-  getopt(0, "", "");
+  getopt(0, argv, "");
   getopt_long(0, nullptr, nullptr, nullptr, nullptr);
 }
