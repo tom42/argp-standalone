@@ -30,7 +30,11 @@
 extern "C" {
 #endif
 
-// TODO: document why we comment this out
+/* argp-standalone: The following declarations may conflict with declarations
+ * from unistd.h, e.g. on Cygwin where the declarations from unistd.h have
+ * dllimport storage class. Since getopt itself compiles without these
+ * declarations and argp-standalone only provides argp but not getopt to its
+ * clients we simply remove these declarations.  */
 #if 0
 /* For communication from 'getopt' to the caller.
    When 'getopt' finds an option that takes an argument,
