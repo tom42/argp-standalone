@@ -19,7 +19,7 @@
    <https://www.gnu.org/licenses/>.  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+# include <config.h>
 #endif
 
 // TODO: when compiling with glibc we need to define _GNU_SOURCE to get program_invocation_short_name and program_invocation_name

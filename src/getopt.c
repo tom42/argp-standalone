@@ -18,7 +18,7 @@
    License along with the GNU C Library; if not, see
    <https://www.gnu.org/licenses/>.  */
 
-#ifndef _LIBC
+#ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
 
@@ -27,9 +27,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// TODO: comment our or include only if available?
-//       => include only if available, but be sure that all locations where we do this config.h is actually included!
-//#include <unistd.h>
+#if defined(HAVE_UNISTD_H) && HAVE_UNISTD_H
+# include <unistd.h>
+#endif
 
 #ifdef _LIBC
 /* When used as part of glibc, error printing must be done differently
