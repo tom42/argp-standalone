@@ -413,7 +413,7 @@ __argp_fmtstream_printf (struct argp_fmtstream *fs, const char *fmt, ...)
 
       va_start (args, fmt);
       avail = fs->end - fs->p;
-      out = vsnprintf (fs->p, avail, fmt, args); // TODO: we changed from __vsnprintf_internal (5 args) to vsnprintf (4 args, standard). Verify this is correct. And do we mark it somehow?
+      out = vsnprintf (fs->p, avail, fmt, args);
       va_end (args);
       if ((size_t) out >= avail)
 	size_guess = out + 1;
