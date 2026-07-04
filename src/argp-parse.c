@@ -22,7 +22,8 @@
 # include <config.h>
 #endif
 
-// TODO: when compiling with glibc we need to define _GNU_SOURCE to get program_invocation_short_name and program_invocation_name
+/* argp-standalone: when compiling with glibc we need to define _GNU_SOURCE
+   to get program_invocation_short_name and program_invocation_name.  */
 #if (defined(HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME) && HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME) || \
     (defined(HAVE_DECL_PROGRAM_INVOCATION_NAME) && HAVE_DECL_PROGRAM_INVOCATION_NAME)
 #ifndef _GNU_SOURCE
