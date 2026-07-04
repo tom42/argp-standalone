@@ -55,6 +55,3 @@ endif()
 # TODO: when done possibly run a diff what we changed and then mark source locations with some sort of marker comment?
 #       * In any case, clean up things!
 # TODO: add all missing flags and stuff (see CMakeLists from 1.1.0)
-# TODO: ensure we have all files:
-#       * argp src:
-#         * Makefile (-fexceptions or not? but what is $(uses-callbacks)?)
