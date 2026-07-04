@@ -14,6 +14,6 @@ int main()
 {
   argp_failure(nullptr, 0, 0, "failure message");
   argp_fmtstream_free(argp_make_fmtstream(stdout, 0, 0, 0));
-  getopt(0, nullptr, nullptr);
+  getopt(0, "", "");
   getopt_long(0, nullptr, nullptr, nullptr, nullptr);
 }
