@@ -95,7 +95,7 @@ extern int optopt;
    writable.  */
 
 extern int getopt (int ___argc, char *const *___argv, const char *__shortopts)
-       __THROW /*__nonnull ((2, 3))*/; // TODO: __throw/__nonnull
+       __THROW __nonnull ((2, 3));
 
 #ifdef  __cplusplus
 }

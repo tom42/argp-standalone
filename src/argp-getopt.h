@@ -47,6 +47,11 @@
 # endif
 #endif
 
+/* argp-standalone: define __nonnull */
+#ifndef __nonnull
+#define __nonnull(argp_arg_indices) // TODO: supply better version if gcc is being used?
+#endif
+
 /* The type of the 'argv' argument to getopt_long and getopt_long_only
    is properly 'char **', since both functions may write to the array
    (in order to move all the options to the beginning).  However, for

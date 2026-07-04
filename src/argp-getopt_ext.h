@@ -69,11 +69,11 @@ struct option
 extern int getopt_long (int ___argc, char *__getopt_argv_const *___argv,
 			const char *__shortopts,
 		        const struct option *__longopts, int *__longind)
-       __THROW /*__nonnull ((2, 3))*/; // TODO: __nonnull
+       __THROW __nonnull ((2, 3));
 extern int getopt_long_only (int ___argc, char *__getopt_argv_const *___argv,
 			     const char *__shortopts,
 		             const struct option *__longopts, int *__longind)
-       __THROW /*__nonnull ((2, 3))*/; // TODO: __nonnull
+       __THROW __nonnull ((2, 3));
 
 #ifdef  __cplusplus
 }
