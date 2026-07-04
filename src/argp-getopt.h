@@ -22,7 +22,30 @@
 #ifndef _GETOPT_H
 #define _GETOPT_H 1
 
-//#include <features.h> // TODO: not really? Do we really need this?
+/* argp-standalone: include <ctype.h> to get glibc's <feature.h> if it exists.
+   This will get us the definition of __THROW.  */
+/* If __GNU_LIBRARY__ is not already defined, either we are being used
+   standalone, or this is the first header included in the source file.
+   If we are being used with glibc, we need to include <features.h>, but
+   that does not exist if we are standalone.  So: if __GNU_LIBRARY__ is
+   not defined, include <ctype.h>, which will pull in <features.h> for us
+   if it's from glibc.  (Why ctype.h?  It's guaranteed to exist and it
+   doesn't flood the namespace with stuff the way some other headers do.)  */
+#if !defined __GNU_LIBRARY__
+# include <ctype.h>
+#endif
+
+/* argp-standalone: define __THROW. Taken from older version of argp. */
+#ifndef __THROW
+# ifndef __GNUC_PREREQ
+#  define __GNUC_PREREQ(maj, min) (0)
+# endif
+# if defined __cplusplus && __GNUC_PREREQ (2,8)
+#  define __THROW	throw ()
+# else
+#  define __THROW
+# endif
+#endif
 
 /* The type of the 'argv' argument to getopt_long and getopt_long_only
    is properly 'char **', since both functions may write to the array
