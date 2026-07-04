@@ -503,11 +503,11 @@ parser_init (struct parser *parser, const struct argp *argp,
     return ENOMEM;
 
   parser->groups = parser->storage;
-  // TODO: fix for compilers that do not support void pointer arithmetics (VERIFY THIS AGAIN, I DID THIS ONLY VERY QUICKLY TO GET STUFF BUILDING)
-  char* p = parser->storage;
+  /* argp-standalone: no void pointer arithmetic */
+  {char* p = parser->storage;
   parser->child_inputs = (void*)(p + GLEN);
   parser->long_opts = (void*)(p + GLEN + CLEN);
-  parser->short_opts = (void*)(p + GLEN + CLEN + LLEN);
+  parser->short_opts = (void*)(p + GLEN + CLEN + LLEN);}
   parser->opt_data = opt_data;
 
   memset (parser->child_inputs, 0, szs.num_child_inputs * sizeof (void *));
