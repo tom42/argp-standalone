@@ -69,6 +69,16 @@
 # endif
 #endif
 
+/* argp-standalone: implement -Wformat warnings correctly when using MinGW-w64.
+   See https://stackoverflow.com/a/79974346/17365470.  */
+#ifdef __MINGW32__
+# define argp_attribute_format(argp_format, argp_args) \
+    __attribute__ ((__format__ (__MINGW_PRINTF_FORMAT, argp_format, argp_args)))
+#else
+# define argp_attribute_format(argp_format, argp_args) \
+    __attribute__ ((__format__ (__printf__, argp_format, argp_args)))
+#endif
+
 #ifdef  __cplusplus
 extern "C" {
 #endif
@@ -514,10 +524,10 @@ extern void __argp_usage (const struct argp_state *__state);
    message, then exit (1).  */
 extern void argp_error (const struct argp_state *__restrict __state,
 			const char *__restrict __fmt, ...)
-     __attribute__ ((__format__ (__printf__, 2, 3)));
+     argp_attribute_format (2, 3);
 extern void __argp_error (const struct argp_state *__restrict __state,
 			  const char *__restrict __fmt, ...)
-     __attribute__ ((__format__ (__printf__, 2, 3)));
+     argp_attribute_format (2, 3);
 
 /* Similar to the standard gnu error-reporting function error(), but will
    respect the ARGP_NO_EXIT and ARGP_NO_ERRS flags in STATE, and will print
@@ -530,11 +540,11 @@ extern void __argp_error (const struct argp_state *__restrict __state,
 extern void argp_failure (const struct argp_state *__restrict __state,
 			  int __status, int __errnum,
 			  const char *__restrict __fmt, ...)
-     __attribute__ ((__format__ (__printf__, 4, 5)));
+     argp_attribute_format (4, 5);
 extern void __argp_failure (const struct argp_state *__restrict __state,
 			    int __status, int __errnum,
 			    const char *__restrict __fmt, ...)
-     __attribute__ ((__format__ (__printf__, 4, 5)));
+     argp_attribute_format (4, 5);
 
 /* Returns true if the option OPT is a valid short option.  */
 extern int _option_is_short (const struct argp_option *__opt) __THROW;

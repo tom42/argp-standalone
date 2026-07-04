@@ -56,6 +56,16 @@
 #define attribute_hidden
 #endif
 
+/* argp-standalone: implement -Wformat warnings correctly when using MinGW-w64.
+   See https://stackoverflow.com/a/79974346/17365470.  */
+#ifdef __MINGW32__
+# define argp_attribute_format(argp_format, argp_args) \
+__attribute__ ((__format__ (__MINGW_PRINTF_FORMAT, argp_format, argp_args)))
+#else
+# define argp_attribute_format(argp_format, argp_args) \
+__attribute__ ((__format__ (__printf__, argp_format, argp_args)))
+#endif
+
 #if defined (__GNU_LIBRARY__) && defined (HAVE_LINEWRAP_H)
 /* line_wrap_stream is available, so use that.  */
 #define ARGP_FMTSTREAM_USE_LINEWRAP
@@ -150,11 +160,11 @@ extern void argp_fmtstream_free (argp_fmtstream_t __fs);
 
 extern ssize_t __argp_fmtstream_printf (argp_fmtstream_t __fs,
 					const char *__fmt, ...)
-     __attribute__ ((__format__ (printf, 2, 3)))
+     argp_attribute_format (2, 3)
      attribute_hidden;
 extern ssize_t argp_fmtstream_printf (argp_fmtstream_t __fs,
 				      const char *__fmt, ...)
-     __attribute__ ((__format__ (printf, 2, 3)));
+     argp_attribute_format (2, 3);
 
 extern int __argp_fmtstream_putc (argp_fmtstream_t __fs, int __ch);
 extern int argp_fmtstream_putc (argp_fmtstream_t __fs, int __ch);
