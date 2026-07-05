@@ -40,13 +40,6 @@ cmake_push_check_state()
 set(CMAKE_REQUIRED_DEFINITIONS -D_GNU_SOURCE)
 
 # Check for headers
-# TODO: most of these don't seem to be used anymore:
-#       * Check and remove those unneeded
-#       * Also clean up config.h.in
-check_include_file(mempcpy.h HAVE_MEMPCPY_H)
-check_include_file(strcase.h HAVE_STRCASE_H)
-check_include_file(strchrnul.h HAVE_STRCHRNUL_H)
-check_include_file(strndup.h HAVE_STRNDUP_H)
 check_include_file(sysexits.h HAVE_SYSEXITS_H)
 check_include_file(unistd.h HAVE_UNISTD_H)
 
