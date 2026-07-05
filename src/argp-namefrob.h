@@ -144,8 +144,8 @@ extern char *__argp_basename (char *name);
 #endif
 
 // TODO: annotate?
-/*#if defined _LIBC || HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
+#if defined _LIBC || HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
 # define __argp_short_program_name()	(program_invocation_short_name)
-#else*/
+#else
 extern char *__argp_short_program_name (void);
-//#endif // TODO: annotate?
+#endif // TODO: annotate?
