@@ -1,7 +1,7 @@
 // TODO: see whether we can replace this file by an older one that maybe makes more sense
 //       * Check the following functions are the same in here and in argp.h
 //         * __argp_usage:        OK except the difference in calling argp_state_help vs __argp_state_help
-//         * _option_is_short
+//         * _option_is_short     OK
 //         * _option_is_end
 #ifdef HAVE_CONFIG_H
 # include <config.h>
