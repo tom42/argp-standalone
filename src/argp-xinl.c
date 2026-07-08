@@ -1,8 +1,8 @@
-// TODO: see whether we can replace this file by an older one that maybe makes more sense
+// TODO: see whether we can replace this file by an older one that maybe makes more sense => YEP, CAN DO SO => DO SO, THEN
 //       * Check the following functions are the same in here and in argp.h
 //         * __argp_usage:        OK except the difference in calling argp_state_help vs __argp_state_help
 //         * _option_is_short     OK
-//         * _option_is_end
+//         * _option_is_end       OK
 #ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
