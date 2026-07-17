@@ -54,3 +54,33 @@ endif()
 
 # TODO: when done possibly run a diff what we changed and then mark source locations with some sort of marker comment?
 #       * In any case, clean up things!
+#./src/argp-compat.h
+#./src/argp-getopt_ext.h
+#./src/argp-fs-xinl.c
+#./src/argp-fmtstream.c
+#./src/argp-getopt_int.h
+#./src/argp-pvh.c
+#./src/argp-getopt_core.h
+#./src/argp-pv.c
+#./src/argp-getopt.h
+#./src/argp-compat.c
+#./src/getopt1.c
+#./src/argp-fmtstream.h
+#./src/argp-parse.c
+#./src/argp-namefrob.h
+#./src/argp-xinl.c
+#./src/argp-eexst.c
+#./src/argp-ba.c
+#./src/getopt.c
+#./src/argp-help.c
+#./test/argp-compat-test.c
+#./test/argp-test.c
+#./test/unity_internals.h
+#./test/tst-ldbl-argp.c
+#./test/unity.c
+#./test/argp-failure-test.c
+#./test/tst-argp1.c
+#./test/tst-argp2.c
+#./test/unity.h
+#./test/test_support.h
+#./include/argp-standalone/argp.h
