@@ -26,6 +26,7 @@
 #include <string.h>
 #include <argp.h>
 
+/* argp-standalone: include our own test support file. */
 #include "test_support.h"
 
 const char *argp_program_version = "argp-test 1.0";
