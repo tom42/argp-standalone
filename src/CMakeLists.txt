@@ -74,5 +74,4 @@ endif()
 #./test/argp-failure-test.c
 #./test/tst-argp1.c
 #./test/tst-argp2.c
-#./test/test_support.h
 #./include/argp-standalone/argp.h
