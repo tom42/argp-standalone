@@ -72,12 +72,9 @@ endif()
 #./src/getopt.c
 #./src/argp-help.c
 #./test/argp-test.c
-#./test/unity_internals.h
 #./test/tst-ldbl-argp.c
-#./test/unity.c
 #./test/argp-failure-test.c
 #./test/tst-argp1.c
 #./test/tst-argp2.c
-#./test/unity.h
 #./test/test_support.h
 #./include/argp-standalone/argp.h
