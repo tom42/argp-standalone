@@ -57,7 +57,6 @@ endif()
 #./src/argp-getopt_ext.h
 #./src/argp-fmtstream.c
 #./src/argp-getopt_int.h
-#./src/argp-pvh.c
 #./src/argp-getopt_core.h
 #./src/argp-pv.c
 #./src/argp-getopt.h
