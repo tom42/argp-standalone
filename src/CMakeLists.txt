@@ -55,7 +55,6 @@ endif()
 # TODO: when done possibly run a diff what we changed and then mark source locations with some sort of marker comment?
 #       * In any case, clean up things!
 #./src/argp-getopt_ext.h
-#./src/argp-fs-xinl.c
 #./src/argp-fmtstream.c
 #./src/argp-getopt_int.h
 #./src/argp-pvh.c
