@@ -96,6 +96,7 @@ do_test (void)
 }
 
 
+/* argp-standalone: we do not have glibc's test framework. */
 int
 main(int argc, char** argv)
 {
