@@ -20,6 +20,10 @@
 #include <argp.h>
 #include <string.h>
 
+/* argp-standalone: we do not have glibc's test framework. */
+/*#include <support/capture_subprocess.h>*/
+/*#include <support/check.h>*/
+
 static const struct argp_option
 options[] =
 {
@@ -55,11 +59,12 @@ argp =
   options, parser
 };
 
+/* argp-standalone: test run and verification is done with CTest. */
 int
 main(int argc, char** argv)
 {
   int remaining;
-  argv[0] = "test-argp";
+  argv[0] = "test-argp"; /* Hardcoded argv[0] simplifies verification. */
   argp_parse (&argp, argc, argv, 0, &remaining, NULL);
   return 0;
 }

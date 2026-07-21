@@ -66,7 +66,6 @@ endif()
 #./src/argp-xinl.c
 #./src/getopt.c
 #./src/argp-help.c
-#./test/tst-ldbl-argp.c
 #./test/tst-argp1.c
 #./test/tst-argp2.c
 #./include/argp-standalone/argp.h
