@@ -22,6 +22,7 @@
 # include <config.h>
 #endif
 
+/* argp-standalone: use EXIT_FAILURE if <sysexits.h> is not available. */
 #if defined(HAVE_SYSEXITS_H) && HAVE_SYSEXITS_H
 # include <sysexits.h>
 #else
@@ -33,6 +34,7 @@
 /* The exit status that argp will use when exiting due to a parsing error.
    If not defined or set by the user program, this defaults to EX_USAGE from
    <sysexits.h>.  */
+/* argp-standalone: use EXIT_FAILURE if <sysexits.h> is not available. */
 error_t argp_err_exit_status =
 #if defined(HAVE_SYSEXITS_H) && HAVE_SYSEXITS_H
   EX_USAGE;
