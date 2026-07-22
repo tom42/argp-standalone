@@ -113,6 +113,7 @@ parse_opt (int key, char *arg, struct argp_state *state)
   return ARGP_ERR_UNKNOWN;
 }
 
+/* argp-standalone: we do not have glibc's test framework. */
 int
 main (int argc, char** argv)
 {
