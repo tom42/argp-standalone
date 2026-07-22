@@ -62,7 +62,6 @@ endif()
 #./src/getopt1.c
 #./src/argp-fmtstream.h
 #./src/argp-parse.c
-#./src/argp-namefrob.h
 #./src/argp-xinl.c
 #./src/getopt.c
 #./src/argp-help.c

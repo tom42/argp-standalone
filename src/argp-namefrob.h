@@ -146,8 +146,7 @@ extern char *__argp_basename (char *name);
 /* argp-standalone: this is a micro optimization that turns calls to
    _argp_short_program_name() into reads of program_invocation_short_name
    if it is available. But this only complicates matters more by adding
-   even more conditional compilation, so we comment it out and move on.
-   It's now like it was in older versions of glibc.  */
+   even more conditional compilation, so we comment it out and move on.  */
 /*#if defined _LIBC || HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
 # define __argp_short_program_name()	(program_invocation_short_name)
 #else*/
