@@ -413,6 +413,7 @@ __argp_fmtstream_printf (struct argp_fmtstream *fs, const char *fmt, ...)
 
       va_start (args, fmt);
       avail = fs->end - fs->p;
+      /* argp-standalone: use vsnprintf, not __vsnprintf_internal. */
       out = vsnprintf (fs->p, avail, fmt, args);
       va_end (args);
       if ((size_t) out >= avail)
