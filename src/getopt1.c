@@ -22,6 +22,7 @@
 # include <config.h>
 #endif
 
+/* argp-standalone: include our own renamed and patched headers from glibc. */
 #include "argp-getopt.h"
 #include "argp-getopt_int.h"
 
