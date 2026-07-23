@@ -60,6 +60,5 @@ endif()
 #./src/argp-fmtstream.h
 #./src/argp-parse.c
 #./src/argp-xinl.c
-#./src/getopt.c
 #./src/argp-help.c
 #./include/argp-standalone/argp.h

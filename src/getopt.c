@@ -18,17 +18,19 @@
    License along with the GNU C Library; if not, see
    <https://www.gnu.org/licenses/>.  */
 
+/* argp-standalone: changed condition, use HAVE_CONFIG_H, not _LIBC. */
 #ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
 
+/* argp-standalone: include our own renamed and patched headers from glibc. */
 #include "argp-getopt.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 /* argp-standalone: do not include unistd.h. It may provide declarations that
-   conflict with those provided by us, e.g. optarg etc. on Cygwin.  */
+   conflict with definitions provided by us, e.g. optarg etc. on Cygwin.  */
 /*#include <unistd.h>*/
 
 #ifdef _LIBC
@@ -44,6 +46,7 @@
 # define flockfile(fp) _IO_flockfile (fp)
 # define funlockfile(fp) _IO_funlockfile (fp)
 #else
+/* argp-standalone: we currently do not support gettext. */
 /*# include "gettext.h"
 # define _(msgid) gettext (msgid)*/
 # define _(msgid) msgid
@@ -82,6 +85,7 @@
    non-option argument.  If it is '-', both functions will report
    non-option arguments as arguments to the option character '\x01'.  */
 
+/* argp-standalone: include our own renamed and patched headers from glibc. */
 #include "argp-getopt_int.h"
 
 /* For communication from 'getopt' to the caller.
@@ -382,6 +386,7 @@ process_long_option (int argc, char **argv, const char *optstring,
 /* Initialize internal data upon the first call to getopt.  */
 
 static const char *
+/* argp-standalone: do not bother to supply _GL_UNUSED. */
 _getopt_initialize (/*_GL_UNUSED*/ int argc,
 		    /*_GL_UNUSED*/ char **argv, const char *optstring,
 		    struct _getopt_data *d, int posixly_correct)
