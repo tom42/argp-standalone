@@ -56,7 +56,6 @@ endif()
 #       * In any case, clean up things!
 #./src/argp-getopt_ext.h
 #./src/argp-getopt_int.h
-#./src/argp-getopt_core.h
 #./src/argp-fmtstream.h
 #./src/argp-parse.c
 #./src/argp-xinl.c

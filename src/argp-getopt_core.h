@@ -26,6 +26,7 @@
    a protective #error, because the guard macro for getopt.h in
    gnulib is not fixed.  */
 
+/* argp-standalone: we do not have __BEGIN_DECLS/__END_DECLS. */
 #ifdef  __cplusplus
 extern "C" {
 #endif
