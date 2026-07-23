@@ -56,6 +56,7 @@
 # define __getopt_argv_const const
 #endif
 
+/* argp-standalone: include our own renamed and patched headers from glibc. */
 #include "argp-getopt_core.h"
 #include "argp-getopt_ext.h"
 
