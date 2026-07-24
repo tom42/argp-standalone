@@ -21,6 +21,7 @@
 #ifndef _GETOPT_INT_H
 #define _GETOPT_INT_H	1
 
+/* argp-standalone: include our own renamed and patched headers from glibc. */
 #include "argp-getopt.h"
 
 extern int _getopt_internal (int ___argc, char **___argv,
