@@ -33,7 +33,7 @@
 # else
 #  ifdef _AIX
 #pragma alloca
-#  elif defined(_WIN32)
+#  elif defined(_WIN32) /* argp-standalone: alloca is _alloca on Windows */
 #   define alloca _alloca
 #  else
 #   ifndef alloca /* predefined by HP cc +Olibcalls */
@@ -45,7 +45,7 @@ char *alloca ();
 
 #include <stdbool.h>
 #include <stddef.h>
-#include <stdint.h>
+#include <stdint.h> /* argp-standalone: get declaration of uint8_t */
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
@@ -583,7 +583,7 @@ hol_entry_short_iterate (const struct hol_entry *entry,
    Stop when such a call returns a non-zero value, and return this value.
    If all FUNC invocations returned 0, return 0.  */
 static inline int
-/*__attribute__ ((always_inline))*/
+/*__attribute__ ((always_inline))*/ /* argp-standalone: comment out */
 hol_entry_long_iterate (const struct hol_entry *entry,
 			int (*func)(const struct argp_option *opt,
 				    const struct argp_option *real,
@@ -1818,6 +1818,9 @@ char *__argp_basename (char *name)
   return short_name ? short_name + 1 : name;
 }
 
+/* argp-standalone: there is no header that declares __progname on BSDs.
+   Supply our own declaration. Probably we should not do this and use
+   getprogname() instead. */
 #if defined(HAVE___PROGNAME) && HAVE___PROGNAME
 extern char* __progname;
 #endif
