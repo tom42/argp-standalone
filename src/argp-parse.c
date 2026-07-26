@@ -33,10 +33,12 @@
 
 #include <stdlib.h>
 #include <string.h>
+/* argp-standalone: only include <unistd.h> if it's available. */
 #if defined(HAVE_UNISTD_H) && HAVE_UNISTD_H
 # include <unistd.h>
 #endif
 #include <limits.h>
+/* argp-standalone: include our own renamed and patched headers from glibc. */
 #include "argp-getopt.h"
 #include "argp-getopt_int.h"
 
@@ -61,7 +63,7 @@
 
 #include <argp.h>
 #include "argp-namefrob.h"
-#include "argp-compat.h"
+#include "argp-compat.h" /* argp-standalone: include compatibility header */
 
 /* Getopt return values.  */
 #define KEY_END (-1)		/* The end of the options.  */
