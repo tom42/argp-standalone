@@ -26,12 +26,14 @@
 #ifndef _ARGP_FMTSTREAM_H
 #define _ARGP_FMTSTREAM_H
 
+/* argp-standalone: include config.h */
 #ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
 
 #include <stdio.h>
 #include <string.h>
+/* argp-standalone: only include <unistd.h> if it's available. */
 #if defined(HAVE_UNISTD_H) && HAVE_UNISTD_H
 # include <unistd.h>
 #endif
@@ -137,6 +139,7 @@ struct argp_fmtstream
 
 typedef struct argp_fmtstream *argp_fmtstream_t;
 
+/* argp-standalone: we do not have __BEGIN_DECLS/__END_DECLS. */
 #ifdef  __cplusplus
 extern "C" {
 #endif
@@ -164,11 +167,11 @@ extern void argp_fmtstream_free (argp_fmtstream_t __fs);
 
 extern ssize_t __argp_fmtstream_printf (argp_fmtstream_t __fs,
 					const char *__fmt, ...)
-     argp_attribute_format (2, 3)
+     argp_attribute_format (2, 3) /* argp-standalone: use argp_attribute_format */
      attribute_hidden;
 extern ssize_t argp_fmtstream_printf (argp_fmtstream_t __fs,
 				      const char *__fmt, ...)
-     argp_attribute_format (2, 3);
+     argp_attribute_format (2, 3); /* argp-standalone: use argp_attribute_format */
 
 extern int __argp_fmtstream_putc (argp_fmtstream_t __fs, int __ch);
 extern int argp_fmtstream_putc (argp_fmtstream_t __fs, int __ch);
