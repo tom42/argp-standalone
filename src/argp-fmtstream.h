@@ -37,7 +37,7 @@
 #if defined(HAVE_UNISTD_H) && HAVE_UNISTD_H
 # include <unistd.h>
 #endif
-#include "argp-compat.h"
+#include "argp-compat.h" /* argp-standalone: include compatibility header */
 
 /* argp-standalone: more recent versions of glibc do not define __attribute__
    here anymore but in some non-standard header that we might not have.
