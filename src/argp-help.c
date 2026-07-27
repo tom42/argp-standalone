@@ -1820,7 +1820,8 @@ char *__argp_basename (char *name)
 
 /* argp-standalone: there is no header that declares __progname on BSDs.
    Supply our own declaration. Probably we should not do this and use
-   getprogname() instead. */
+   getprogname from <stdlib.h> instead, but getprogname returns const char*,
+   whereas argp wants char*.  */
 #if defined(HAVE___PROGNAME) && HAVE___PROGNAME
 extern char* __progname;
 #endif
@@ -1828,7 +1829,7 @@ extern char* __progname;
 char *
 __argp_short_program_name (void)
 {
-  /* Order matters here: attempt most preferred mechanism first. */
+  /* argp-standalone: attempt most preferred mechanism first. */
 # if defined(HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME) && HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
   return program_invocation_short_name;
 # elif defined(HAVE_DECL_PROGRAM_INVOCATION_NAME) && HAVE_DECL_PROGRAM_INVOCATION_NAME
