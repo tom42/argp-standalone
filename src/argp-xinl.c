@@ -18,6 +18,8 @@
    License along with the GNU C Library; if not, see
    <https://www.gnu.org/licenses/>.  */
 
+/* argp-standalone: old argp-xinl.c from glibc 2.42 works better for us. */
+
 #ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
