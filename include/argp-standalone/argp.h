@@ -89,6 +89,7 @@
     __attribute__ ((__format__ (__printf__, argp_format, argp_args)))
 #endif
 
+/* argp-standalone: we do not have __BEGIN_DECLS/__END_DECLS. */
 #ifdef  __cplusplus
 extern "C" {
 #endif
