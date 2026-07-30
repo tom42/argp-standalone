@@ -33,6 +33,8 @@
 #ifndef __THROW
 # define __THROW
 #endif
+
+/* argp-standalone: define __NTH. Taken from older version of <argp.h> */
 #ifndef __NTH
 # define __NTH(fct) fct __THROW
 #endif
