@@ -35,7 +35,7 @@
 # include <ctype.h>
 #endif
 
-/* argp-standalone: define __THROW. Taken from older version of argp. */
+/* argp-standalone: define __THROW. Taken from older version of <getopt.h> */
 #ifndef __THROW
 # ifndef __GNUC_PREREQ
 #  define __GNUC_PREREQ(maj, min) (0)
