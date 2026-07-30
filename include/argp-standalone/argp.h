@@ -535,10 +535,10 @@ extern void __argp_usage (const struct argp_state *__state);
    message, then exit (1).  */
 extern void argp_error (const struct argp_state *__restrict __state,
 			const char *__restrict __fmt, ...)
-     argp_attribute_format (2, 3);
+     argp_attribute_format (2, 3); /* argp-standalone: use own attribute. */
 extern void __argp_error (const struct argp_state *__restrict __state,
 			  const char *__restrict __fmt, ...)
-     argp_attribute_format (2, 3);
+     argp_attribute_format (2, 3); /* argp-standalone: use own attribute. */
 
 /* Similar to the standard gnu error-reporting function error(), but will
    respect the ARGP_NO_EXIT and ARGP_NO_ERRS flags in STATE, and will print
@@ -551,11 +551,11 @@ extern void __argp_error (const struct argp_state *__restrict __state,
 extern void argp_failure (const struct argp_state *__restrict __state,
 			  int __status, int __errnum,
 			  const char *__restrict __fmt, ...)
-     argp_attribute_format (4, 5);
+     argp_attribute_format (4, 5); /* argp-standalone: use own attribute. */
 extern void __argp_failure (const struct argp_state *__restrict __state,
 			    int __status, int __errnum,
 			    const char *__restrict __fmt, ...)
-     argp_attribute_format (4, 5);
+     argp_attribute_format (4, 5); /* argp-standalone: use own attribute. */
 
 /* Returns true if the option OPT is a valid short option.  */
 extern int _option_is_short (const struct argp_option *__opt) __THROW;
