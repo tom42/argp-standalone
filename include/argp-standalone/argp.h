@@ -29,6 +29,7 @@
 #include <limits.h>
 #include <errno.h>
 
+// TODO: we have two definitions of throw. Make up our mind which one to use.
 #ifndef __THROW
 # define __THROW
 #endif
