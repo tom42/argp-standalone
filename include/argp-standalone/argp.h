@@ -29,9 +29,16 @@
 #include <limits.h>
 #include <errno.h>
 
-// TODO: we have two definitions of throw. Make up our mind which one to use.
+/* argp-standalone: define __THROW. Taken from older version of <getopt.h> */
 #ifndef __THROW
-# define __THROW
+# ifndef __GNUC_PREREQ
+#  define __GNUC_PREREQ(maj, min) (0)
+# endif
+# if defined __cplusplus && __GNUC_PREREQ (2,8)
+#  define __THROW	throw ()
+# else
+#  define __THROW
+# endif
 #endif
 
 /* argp-standalone: define __NTH. Taken from older version of <argp.h> */
