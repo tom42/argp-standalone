@@ -434,10 +434,12 @@ struct argp_state
    returned.  This function may also call exit unless the ARGP_NO_HELP flag
    is set.  INPUT is a pointer to a value to be passed in to the parser.  */
 extern error_t argp_parse (const struct argp *__restrict __argp,
+			   /* argp-standalone: __argc and __argv are macros in MSVC. */
 			   int argc, char **__restrict argv,
 			   unsigned __flags, int *__restrict __arg_index,
 			   void *__restrict __input);
 extern error_t __argp_parse (const struct argp *__restrict __argp,
+			     /* argp-standalone: __argc and __argv are macros in MSVC. */
 			     int argc, char **__restrict argv,
 			     unsigned __flags, int *__restrict __arg_index,
 			     void *__restrict __input);
@@ -620,6 +622,7 @@ __NTH (__option_is_end (const struct argp_option *__opt))
 # endif
 #endif /* Use extern inlines.  */
 
+/* argp-standalone: do not implement glibc's long double redirection. */
 /*#include <bits/floatn.h>
 #if defined __LDBL_COMPAT || __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI == 1
 # include <bits/argp-ldbl.h>
