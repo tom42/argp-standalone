@@ -51,7 +51,3 @@ if(CMAKE_C_COMPILER_ID MATCHES "Clang|GNU")
   # gcc and clang need -fgnu89-inline to compile and link release builds
   target_compile_options(argp-standalone PRIVATE -fgnu89-inline)
 endif()
-
-# TODO: when done possibly run a diff what we changed and then mark source locations with some sort of marker comment?
-#       * In any case, clean up things!
-#./include/argp-standalone/argp.h

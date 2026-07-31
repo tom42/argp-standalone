@@ -586,6 +586,7 @@ extern void *__argp_input (const struct argp *__restrict __argp,
 #  define __option_is_end _option_is_end
 # endif
 
+/* argp-standalone: needed for old argp-xinl.c from glibc 2.42 we're using. */
 # ifndef ARGP_EI
 #  define ARGP_EI __extern_inline
 # endif
