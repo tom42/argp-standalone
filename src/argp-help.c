@@ -1835,7 +1835,7 @@ __argp_short_program_name (void)
 # elif defined(HAVE_DECL_PROGRAM_INVOCATION_NAME) && HAVE_DECL_PROGRAM_INVOCATION_NAME
   return __argp_basename (program_invocation_name);
 # elif defined(HAVE_DECL___ARGV) && HAVE_DECL___ARGV
-  return __argp_basename(__argv[0]);
+  return __argp_basename (__argv[0]);
 # elif defined(HAVE___PROGNAME) && HAVE___PROGNAME
   return __progname;
 # else
