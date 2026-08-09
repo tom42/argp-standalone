@@ -11,6 +11,8 @@
 
 static char** g_argv;
 
+// TODO: add test for __argp_basename
+
 void test___argp_short_program_name(void)
 {
   TEST_ASSERT_EQUAL_STRING(__argp_basename(g_argv[0]), __argp_short_program_name());
