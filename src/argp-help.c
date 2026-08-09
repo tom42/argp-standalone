@@ -1814,6 +1814,7 @@ weak_alias (__argp_help, argp_help)
 #ifndef _LIBC
 char *__argp_basename (char *name)
 {
+  // TODO: this does not work well on windows. Can we fix this? (is there not a basename that we could use?)
   char *short_name = strrchr (name, '/');
   return short_name ? short_name + 1 : name;
 }
@@ -1835,8 +1836,12 @@ __argp_short_program_name (void)
 # elif defined(HAVE_DECL_PROGRAM_INVOCATION_NAME) && HAVE_DECL_PROGRAM_INVOCATION_NAME
   return __argp_basename (program_invocation_name);
 # elif defined(HAVE_DECL___ARGV) && HAVE_DECL___ARGV
+  // TODO: are we sure __argv / __argv[0] is never NULL or something else silly?
+  // TODO: are we sure we need to call basename here? Does it work properly?
   return __argp_basename (__argv[0]);
 # elif defined(HAVE___PROGNAME) && HAVE___PROGNAME
+  // TODO: are we sure __progname is never NULL or something else silly? (No, actually it can be NULL)
+  // TODO: is this already the basename, or should we call basename ourselves?
   return __progname;
 # else
   /* FIXME: What now? Miles suggests that it is better to use NULL,
