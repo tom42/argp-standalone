@@ -1819,14 +1819,6 @@ char *__argp_basename (char *name)
   return short_name ? short_name + 1 : name;
 }
 
-/* argp-standalone: there is no header that declares __progname on BSDs.
-   Supply our own declaration. Probably we should not do this and use
-   getprogname from <stdlib.h> instead, but getprogname returns const char*,
-   whereas argp wants char*.  */
-#if defined(HAVE___PROGNAME) && HAVE___PROGNAME
-extern char* __progname; // TODO: move this closer to where it's used
-#endif
-
 char *
 __argp_short_program_name (void)
 {
@@ -1842,6 +1834,11 @@ __argp_short_program_name (void)
 # elif defined(HAVE___PROGNAME) && HAVE___PROGNAME
   // TODO: are we sure __progname is never NULL or something else silly? (No, actually it can be NULL)
   // TODO: is this already the basename, or should we call basename ourselves?
+  /* argp-standalone: there is no header that declares __progname on BSDs.
+     Supply our own declaration. Probably we should not do this and use
+     getprogname from <stdlib.h> instead, but getprogname returns const char*,
+     whereas argp wants char*.  */
+  extern char* __progname;
   return __progname;
 # else
   /* FIXME: What now? Miles suggests that it is better to use NULL,
