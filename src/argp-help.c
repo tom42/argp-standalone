@@ -1814,8 +1814,8 @@ weak_alias (__argp_help, argp_help)
 #ifndef _LIBC
 char *__argp_basename (char *name)
 {
-  // TODO: this does not work well on windows. Can we fix this? (is there not a basename that we could use?)
-  char *short_name = strrchr (name, '/');
+  /* argp-standalone: use ARGP_PATH_SEPARATOR */
+  char *short_name = strrchr (name, ARGP_PATH_SEPARATOR);
   return short_name ? short_name + 1 : name;
 }
 
@@ -1824,7 +1824,7 @@ char *__argp_basename (char *name)
    getprogname from <stdlib.h> instead, but getprogname returns const char*,
    whereas argp wants char*.  */
 #if defined(HAVE___PROGNAME) && HAVE___PROGNAME
-extern char* __progname;
+extern char* __progname; // TODO: move this closer to where it's used
 #endif
 
 char *

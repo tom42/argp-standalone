@@ -129,7 +129,8 @@ argp_default_parser (int key, char *arg, struct argp_state *state)
 	 to be that, so we have to be a bit careful here.]  */
 
       /* Update what we use for messages.  */
-      state->name = strrchr (arg, '/');
+      /* argp-standalone: use ARGP_PATH_SEPARATOR */
+      state->name = strrchr (arg, ARGP_PATH_SEPARATOR);
       if (state->name)
 	state->name++;
       else
@@ -569,7 +570,8 @@ parser_init (struct parser *parser, const struct argp *argp,
   if (parser->state.argv == argv && argv[0])
     /* There's an argv[0]; use it for messages.  */
     {
-      char *short_name = strrchr (argv[0], '/');
+      /* argp-standalone: use ARGP_PATH_SEPARATOR */
+      char *short_name = strrchr (argv[0], ARGP_PATH_SEPARATOR);
       parser->state.name = short_name ? short_name + 1 : argv[0];
     }
   else

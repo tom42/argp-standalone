@@ -23,7 +23,7 @@ typedef SSIZE_T ssize_t;
 #endif
 #endif
 
-// TODO: are we using this anywhere? If not, remove it?
+// TODO: we completely missed this when upgrading. How can we remember?
 #if defined(_WIN32)
 #define ARGP_PATH_SEPARATOR '\\'
 #else
