@@ -13,6 +13,12 @@ target_include_directories(argp-test PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(argp-test PRIVATE argp-standalone)
 add_test(NAME argp-test COMMAND argp-test)
 
+# TODO: document what we're doing here
+# TODO: this will not work on unixes
+# TODO: how can we specify "start of string?"
+add_test(NAME --program-name COMMAND argp-test --program-name directory\\basename --usage)
+set_tests_properties(--program-name PROPERTIES PASS_REGULAR_EXPRESSION "basename:*")
+
 add_executable(argp-compat-test argp-compat-test.c unity.c)
 if(WIN32)
   target_compile_definitions(argp-compat-test PRIVATE _CRT_SECURE_NO_WARNINGS)
