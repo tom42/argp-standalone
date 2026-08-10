@@ -11,8 +11,16 @@
 
 static char** g_argv;
 
-// TODO: add test for __argp_basename
 // TODO: add tests that ensure ARGP_PATH_SEPARATOR is used (failing that, add it to some sort of upgrade checklist)
+
+void test___argp_basename(void)
+{
+  // TODO: should use ARGP_PATH_SEPARATOR, but that does not easily work because ARGP_PATH_SEPARATOR is a char literal and we need a string literal. Sigh.
+  TEST_ASSERT_EQUAL_STRING("", __argp_basename("/"));
+  TEST_ASSERT_EQUAL_STRING("", __argp_basename("/foo/"));
+  TEST_ASSERT_EQUAL_STRING("foo", __argp_basename("/foo"));
+  TEST_ASSERT_EQUAL_STRING("bar", __argp_basename("/foo/bar"));
+}
 
 void test___argp_short_program_name(void)
 {
@@ -72,6 +80,7 @@ int main(int argc, char** argv)
 {
   g_argv = argv;
   UNITY_BEGIN();
+  RUN_TEST(test___argp_basename);
   RUN_TEST(test___argp_short_program_name);
   RUN_TEST(test_argp_compat_strerror);
   RUN_TEST(test_argp_compat_strerror_no_error);
