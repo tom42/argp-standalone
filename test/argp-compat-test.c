@@ -13,13 +13,29 @@ static char** g_argv;
 
 // TODO: add tests that ensure ARGP_PATH_SEPARATOR is used (failing that, add it to some sort of upgrade checklist)
 
+static char* unsafe_make_native_path(const char* unix_path)
+{
+    static char buf[1000]; /* Static buffer, therefore unsafe. */
+    strncpy(buf, unix_path, sizeof(buf));
+    buf[sizeof(buf) - 1] = 0; /* strncpy may leave buf unterminated. */
+
+    for (char* p = buf; *p; ++p)
+    {
+        if (*p == '/')
+        {
+            *p = ARGP_PATH_SEPARATOR;
+        }
+    }
+
+    return buf;
+}
+
 void test___argp_basename(void)
 {
-  // TODO: should use ARGP_PATH_SEPARATOR, but that does not easily work because ARGP_PATH_SEPARATOR is a char literal and we need a string literal. Sigh.
-  TEST_ASSERT_EQUAL_STRING("", __argp_basename("/"));
-  TEST_ASSERT_EQUAL_STRING("", __argp_basename("/foo/"));
-  TEST_ASSERT_EQUAL_STRING("foo", __argp_basename("/foo"));
-  TEST_ASSERT_EQUAL_STRING("bar", __argp_basename("/foo/bar"));
+  TEST_ASSERT_EQUAL_STRING("", __argp_basename(unsafe_make_native_path("/")));
+  TEST_ASSERT_EQUAL_STRING("", __argp_basename(unsafe_make_native_path("/a/")));
+  TEST_ASSERT_EQUAL_STRING("a", __argp_basename(unsafe_make_native_path("/a")));
+  TEST_ASSERT_EQUAL_STRING("b", __argp_basename(unsafe_make_native_path("/a/b")));
 }
 
 void test___argp_short_program_name(void)
