@@ -68,11 +68,11 @@ void test_argp_compat_strerror_unknown_error(void)
 
 void test_argp_compat_strerror_buffer_too_short(void)
 {
-  // Note: cppreference states regarding strerror_s that
-  // "If the message had to be truncated to fit the buffer and bufsz is greater than 3,
-  // then only bufsz-4 bytes are written, and the characters "..." are appended before
-  // the null terminator."
-  // At least Microsoft's standard library doesn't appear to do so.
+  /* Note: cppreference states regarding strerror_s that
+     "If the message had to be truncated to fit the buffer and bufsz is greater than 3,
+     then only bufsz-4 bytes are written, and the characters "..." are appended before
+     the null terminator."
+     At least Microsoft's standard library doesn't appear to do so. */
   char buf[5];
 #if defined(HAVE_DECL_STRERROR_S) && HAVE_DECL_STRERROR_S
   TEST_ASSERT_EQUAL_STRING("Perm", argp_compat_strerror(EACCES, buf, sizeof(buf)));
@@ -80,7 +80,7 @@ void test_argp_compat_strerror_buffer_too_short(void)
   TEST_ASSERT_EQUAL_STRING("", argp_compat_strerror(EACCES, buf, 1));
   TEST_ASSERT_EQUAL_STRING("", argp_compat_strerror(EACCES, buf, 0));
 #else
-  // Message comes from our strerror_r wrapper handling ERANGE.
+  /* Message comes from our strerror_r wrapper handling ERANGE. */
   TEST_ASSERT_EQUAL_STRING("ERAN", argp_compat_strerror(EACCES, buf, sizeof(buf)));
   TEST_ASSERT_EQUAL_STRING("E", argp_compat_strerror(EACCES, buf, 2));
   TEST_ASSERT_EQUAL_STRING("", argp_compat_strerror(EACCES, buf, 1));
