@@ -12,6 +12,7 @@
 static char** g_argv;
 
 // TODO: add test for __argp_basename
+// TODO: add tests that ensure ARGP_PATH_SEPARATOR is used (failing that, add it to some sort of upgrade checklist)
 
 void test___argp_short_program_name(void)
 {
