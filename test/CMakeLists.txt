@@ -15,9 +15,8 @@ add_test(NAME argp-test COMMAND argp-test)
 
 # TODO: document what we're doing here
 # TODO: this will not work on unixes
-# TODO: how can we specify "start of string?"
 add_test(NAME --program-name COMMAND argp-test --program-name directory\\basename --usage)
-set_tests_properties(--program-name PROPERTIES PASS_REGULAR_EXPRESSION "basename:*")
+set_tests_properties(--program-name PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basename:*")
 
 add_executable(argp-compat-test argp-compat-test.c unity.c)
 if(WIN32)
