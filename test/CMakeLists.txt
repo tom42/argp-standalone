@@ -45,10 +45,16 @@ add_executable(argp-standalone-test argp-standalone-test.c)
 argp_standalone_target_enable_warnings(argp-standalone-test)
 target_include_directories(argp-standalone-test PRIVATE "${PROJECT_BINARY_DIR}" ../src)
 target_link_libraries(argp-standalone-test PRIVATE argp-standalone)
+
+# Test whether argp_failure() uses the strerror replacement
 add_test(NAME argp-failure COMMAND argp-standalone-test --argp-failure)
 set_tests_properties(argp-failure PROPERTIES PASS_REGULAR_EXPRESSION "Error message format string: Permission denied")
+
+# Test ad hoc basename implementation inside the --program-name option code
 add_test(NAME basename1 COMMAND argp-standalone-test --program-name directory${os_path_separator}basename --usage)
 set_tests_properties(basename1 PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basename")
+
+# Test ad hoc basename implementation at the end of parser_init
 add_test(NAME basename2 COMMAND argp-standalone-test --usage)
 set_tests_properties(basename2 PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: argp-standalone-test")
 
