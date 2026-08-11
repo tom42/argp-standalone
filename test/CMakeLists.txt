@@ -21,7 +21,7 @@ cmake_path(NATIVE_PATH os_path_separator os_path_separator)
 # TODO: fix expected regular expression
 # TODO: this seems not to work since CTest seems to place Unix paths in argv[0]. Bummer.
 add_test(NAME xxx COMMAND argp-test --usage)
-set_tests_properties(xxx PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basename:*")
+set_tests_properties(xxx PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: argp-test:*")
 
 add_test(NAME --program-name COMMAND argp-test --program-name directory${os_path_separator}basename --usage)
 set_tests_properties(--program-name PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basename:*")
