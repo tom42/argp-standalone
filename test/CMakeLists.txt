@@ -32,11 +32,10 @@ target_include_directories(argp-standalone-test PRIVATE "${PROJECT_BINARY_DIR}" 
 target_link_libraries(argp-standalone-test PRIVATE argp-standalone)
 add_test(NAME argp-failure COMMAND argp-standalone-test --argp-failure)
 set_tests_properties(argp-failure PROPERTIES PASS_REGULAR_EXPRESSION "Error message format string: Permission denied")
-add_test(NAME --program-name COMMAND argp-standalone-test --program-name directory${os_path_separator}basename --usage)
-set_tests_properties(--program-name PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basename")
-# TODO: test name
-add_test(NAME xxx COMMAND argp-standalone-test --usage)
-set_tests_properties(xxx PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: argp-standalone-test")
+add_test(NAME basename1 COMMAND argp-standalone-test --program-name directory${os_path_separator}basename --usage)
+set_tests_properties(basename1 PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basename")
+add_test(NAME basename2 COMMAND argp-standalone-test --usage)
+set_tests_properties(basename2 PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: argp-standalone-test")
 
 add_executable(argp-cpp-test argp-cpp-test.cpp)
 argp_standalone_target_enable_warnings(argp-cpp-test)
