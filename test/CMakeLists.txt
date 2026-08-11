@@ -2,6 +2,10 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 # argp-standalone - standalone version of glibc's argp functions.
 
+# Set up variable containing the native path separator.
+cmake_path(SET os_path_separator "/")
+cmake_path(NATIVE_PATH os_path_separator os_path_separator)
+
 add_executable(argp-test argp-test.c)
 target_compile_definitions(argp-test PRIVATE HAVE_CONFIG_H)
 if(WIN32)
@@ -12,10 +16,6 @@ argp_standalone_target_enable_warnings(argp-test)
 target_include_directories(argp-test PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(argp-test PRIVATE argp-standalone)
 add_test(NAME argp-test COMMAND argp-test)
-
-# TODO: document what we're doing here
-cmake_path(SET os_path_separator "/")
-cmake_path(NATIVE_PATH os_path_separator os_path_separator)
 
 # TODO: test name
 # TODO: fix expected regular expression
