@@ -35,11 +35,11 @@ target_include_directories(argp-compat-unit-test PRIVATE "${PROJECT_BINARY_DIR}"
 target_link_libraries(argp-compat-unit-test PRIVATE argp-standalone)
 add_test(NAME argp-compat-unit-test COMMAND argp-compat-unit-test)
 
-add_executable(argp-failure-test argp-failure-test.c)
-argp_standalone_target_enable_warnings(argp-failure-test)
-target_link_libraries(argp-failure-test PRIVATE argp-standalone)
-add_test(NAME argp-failure-test COMMAND argp-failure-test)
-set_tests_properties(argp-failure-test PROPERTIES PASS_REGULAR_EXPRESSION "Error message format string: Permission denied")
+add_executable(argp-standalone-test argp-standalone-test.c)
+argp_standalone_target_enable_warnings(argp-standalone-test)
+target_link_libraries(argp-standalone-test PRIVATE argp-standalone)
+add_test(NAME argp-standalone-test COMMAND argp-standalone-test)
+set_tests_properties(argp-standalone-test PROPERTIES PASS_REGULAR_EXPRESSION "Error message format string: Permission denied")
 
 add_executable(argp-cpp-test argp-cpp-test.cpp)
 argp_standalone_target_enable_warnings(argp-cpp-test)
