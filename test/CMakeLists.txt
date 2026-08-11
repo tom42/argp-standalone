@@ -14,8 +14,9 @@ target_link_libraries(argp-test PRIVATE argp-standalone)
 add_test(NAME argp-test COMMAND argp-test)
 
 # TODO: document what we're doing here
-# TODO: this will not work on unixes
-add_test(NAME --program-name COMMAND argp-test --program-name directory\\basename --usage)
+cmake_path(SET os_path_separator "/")
+cmake_path(NATIVE_PATH os_path_separator os_path_separator)
+add_test(NAME --program-name COMMAND argp-test --program-name directory${os_path_separator}basename --usage)
 set_tests_properties(--program-name PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basename:*")
 
 add_executable(argp-compat-test argp-compat-test.c unity.c)
