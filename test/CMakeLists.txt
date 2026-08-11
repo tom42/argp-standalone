@@ -23,9 +23,6 @@ cmake_path(NATIVE_PATH os_path_separator os_path_separator)
 add_test(NAME xxx COMMAND argp-test --usage)
 set_tests_properties(xxx PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: argp-test:*")
 
-add_test(NAME --program-name COMMAND argp-test --program-name directory${os_path_separator}basename --usage)
-set_tests_properties(--program-name PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basename:*")
-
 add_executable(argp-compat-unit-test argp-compat-unit-test.c unity.c)
 if(WIN32)
   target_compile_definitions(argp-compat-unit-test PRIVATE _CRT_SECURE_NO_WARNINGS)
@@ -40,6 +37,8 @@ argp_standalone_target_enable_warnings(argp-standalone-test)
 target_link_libraries(argp-standalone-test PRIVATE argp-standalone)
 add_test(NAME argp-failure COMMAND argp-standalone-test --argp-failure)
 set_tests_properties(argp-failure PROPERTIES PASS_REGULAR_EXPRESSION "Error message format string: Permission denied")
+add_test(NAME --program-name COMMAND argp-standalone-test --program-name directory${os_path_separator}basename --usage)
+set_tests_properties(--program-name PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basename:*")
 
 add_executable(argp-cpp-test argp-cpp-test.cpp)
 argp_standalone_target_enable_warnings(argp-cpp-test)
