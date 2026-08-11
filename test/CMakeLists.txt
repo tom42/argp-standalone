@@ -6,6 +6,11 @@
 cmake_path(SET os_path_separator "/")
 cmake_path(NATIVE_PATH os_path_separator os_path_separator)
 
+
+################################################################################
+# argp-test
+################################################################################
+
 add_executable(argp-test argp-test.c)
 target_compile_definitions(argp-test PRIVATE HAVE_CONFIG_H)
 if(WIN32)
@@ -17,6 +22,11 @@ target_include_directories(argp-test PRIVATE "${PROJECT_BINARY_DIR}")
 target_link_libraries(argp-test PRIVATE argp-standalone)
 add_test(NAME argp-test COMMAND argp-test)
 
+
+################################################################################
+# argp-compat-unit-test
+################################################################################
+
 add_executable(argp-compat-unit-test argp-compat-unit-test.c unity.c)
 if(WIN32)
   target_compile_definitions(argp-compat-unit-test PRIVATE _CRT_SECURE_NO_WARNINGS)
@@ -25,6 +35,11 @@ argp_standalone_target_enable_warnings(argp-compat-unit-test)
 target_include_directories(argp-compat-unit-test PRIVATE "${PROJECT_BINARY_DIR}" ../src)
 target_link_libraries(argp-compat-unit-test PRIVATE argp-standalone)
 add_test(NAME argp-compat-unit-test COMMAND argp-compat-unit-test)
+
+
+################################################################################
+# argp-standalone-test
+################################################################################
 
 add_executable(argp-standalone-test argp-standalone-test.c)
 argp_standalone_target_enable_warnings(argp-standalone-test)
@@ -37,6 +52,11 @@ set_tests_properties(basename1 PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basen
 add_test(NAME basename2 COMMAND argp-standalone-test --usage)
 set_tests_properties(basename2 PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: argp-standalone-test")
 
+
+################################################################################
+# argp-cpp-test
+################################################################################
+
 add_executable(argp-cpp-test argp-cpp-test.cpp)
 argp_standalone_target_enable_warnings(argp-cpp-test)
 target_compile_definitions(argp-cpp-test PRIVATE HAVE_CONFIG_H)
@@ -45,15 +65,30 @@ target_link_libraries(argp-cpp-test PRIVATE argp-standalone)
 add_test(NAME argp-cpp-test COMMAND argp-cpp-test)
 set_tests_properties(argp-cpp-test PROPERTIES PASS_REGULAR_EXPRESSION "failure message")
 
+
+################################################################################
+# tst-argp1
+################################################################################
+
 add_executable(tst-argp1 tst-argp1.c)
 argp_standalone_target_enable_warnings(tst-argp1)
 target_link_libraries(tst-argp1 PRIVATE argp-standalone)
 add_test(NAME tst-argp1 COMMAND tst-argp1)
 
+
+################################################################################
+# tst-argp2
+################################################################################
+
 add_executable(tst-argp2 tst-argp2.c)
 argp_standalone_target_enable_warnings(tst-argp2)
 target_link_libraries(tst-argp2 PRIVATE argp-standalone)
 add_test(NAME tst-argp2 COMMAND tst-argp2)
+
+
+################################################################################
+# tst-ldbl-argp
+################################################################################
 
 add_executable(tst-ldbl-argp tst-ldbl-argp.c)
 argp_standalone_target_enable_warnings(tst-ldbl-argp)
