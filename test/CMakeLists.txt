@@ -28,16 +28,15 @@ add_test(NAME argp-compat-unit-test COMMAND argp-compat-unit-test)
 
 add_executable(argp-standalone-test argp-standalone-test.c)
 argp_standalone_target_enable_warnings(argp-standalone-test)
+target_include_directories(argp-standalone-test PRIVATE "${PROJECT_BINARY_DIR}" ../src)
 target_link_libraries(argp-standalone-test PRIVATE argp-standalone)
 add_test(NAME argp-failure COMMAND argp-standalone-test --argp-failure)
 set_tests_properties(argp-failure PROPERTIES PASS_REGULAR_EXPRESSION "Error message format string: Permission denied")
 add_test(NAME --program-name COMMAND argp-standalone-test --program-name directory${os_path_separator}basename --usage)
-set_tests_properties(--program-name PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basename:*")
+set_tests_properties(--program-name PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: basename")
 # TODO: test name
-# TODO: fix expected regular expression
-# TODO: this seems not to work since CTest seems to place Unix paths in argv[0]. Bummer.
 add_test(NAME xxx COMMAND argp-standalone-test --usage)
-set_tests_properties(xxx PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: argp-standalone-test:*")
+set_tests_properties(xxx PROPERTIES PASS_REGULAR_EXPRESSION "^Usage: argp-standalone-test")
 
 add_executable(argp-cpp-test argp-cpp-test.cpp)
 argp_standalone_target_enable_warnings(argp-cpp-test)

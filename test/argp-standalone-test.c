@@ -4,6 +4,7 @@
 
 #include <stdlib.h>
 #include "argp.h"
+#include "argp-compat.h"
 
 static const char doc[] = "Various tests for argp-standalone, to be run with CTest";
 
@@ -31,6 +32,20 @@ static struct argp argp = { options, parse_opt, 0, doc };
 
 int main(int argc, char** argv)
 {
+  /* CTest seems to pass Unix style path separators in argv[0] even on Windows.
+     This breaks the various ad hoc basename implementations inside argp,
+     so let's fix argv[0] here. */
+  if (argc > 0)
+  {
+    for (char* p = argv[0]; *p; ++p)
+    {
+      if (*p == '/')
+      {
+        *p = ARGP_PATH_SEPARATOR;
+      }
+    }
+  }
+
   argp_parse(&argp, argc, argv, 0, 0, 0);
   return EXIT_SUCCESS;
 }
