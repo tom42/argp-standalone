@@ -11,11 +11,6 @@
 
 static char** g_argv;
 
-// TODO: add tests that ensure ARGP_PATH_SEPARATOR is used (failing that, add it to some sort of upgrade checklist)
-//       * One place is the hidden --program-name option. We can probably invoke argp-test with CTest and check the output,
-//         provided CMake/CTest know about different path separators.
-//       * What about the other place in parser_init? If we're lucky, argp-test can be used to test that too
-
 static char* unsafe_make_native_path(const char* unix_path)
 {
     static char buf[1000]; /* Static buffer, therefore unsafe. */
