@@ -1828,8 +1828,12 @@ __argp_short_program_name (void)
 # elif defined(HAVE_DECL_PROGRAM_INVOCATION_NAME) && HAVE_DECL_PROGRAM_INVOCATION_NAME
   return __argp_basename (program_invocation_name);
 # elif defined(HAVE_DECL___ARGV) && HAVE_DECL___ARGV
-  // TODO: are we sure __argv / __argv[0] is never NULL or something else silly? Should we also check argc first?
-  return __argp_basename (__argv[0]);
+  /* Be defensive here. Not sure all these checks are necessary. */
+  if ((__argc > 0) && __argv && __argv[0])
+  {
+    return __argp_basename(__argv[0]);
+  }
+  return "";
 # elif defined(HAVE___PROGNAME) && HAVE___PROGNAME
   // TODO: are we sure __progname is never NULL or something else silly? (No, actually it can be NULL)
   // TODO: is this already the basename, or should we call basename ourselves?
