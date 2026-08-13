@@ -30,6 +30,7 @@ static char* unsafe_make_native_path(const char* unix_path)
 
 void test___argp_basename(void)
 {
+  TEST_ASSERT_EQUAL_STRING("", __argp_basename(""));
   TEST_ASSERT_EQUAL_STRING("", __argp_basename(unsafe_make_native_path("/")));
   TEST_ASSERT_EQUAL_STRING("", __argp_basename(unsafe_make_native_path("/a/")));
   TEST_ASSERT_EQUAL_STRING("a", __argp_basename(unsafe_make_native_path("/a")));
