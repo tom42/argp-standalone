@@ -3,7 +3,7 @@
 # argp-standalone - standalone version of glibc's argp functions.
 
 cmake_minimum_required(VERSION 3.17.3)
-project(argp-standalone VERSION 1.0.3 LANGUAGES C)
+project(argp-standalone VERSION 1.2.0 LANGUAGES C)
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 
