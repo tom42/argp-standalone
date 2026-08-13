@@ -1829,23 +1829,16 @@ __argp_short_program_name (void)
   return __argp_basename (program_invocation_name);
 # elif defined(HAVE_DECL___ARGV) && HAVE_DECL___ARGV
   /* Be defensive here. Not sure all these checks are necessary. */
-  if ((__argc > 0) && __argv && __argv[0])
-  {
-    return __argp_basename(__argv[0]);
-  }
-  return "";
+  char* p = ((__argc > 0) && __argv && __argv[0]) ? __argv[0] : "";
+  return __argp_basename (p);
 # elif defined(HAVE___PROGNAME) && HAVE___PROGNAME
   /* argp-standalone: there is no header that declares __progname on BSDs.
      Supply our own declaration. Probably we should not do this and use
      getprogname from <stdlib.h> instead, but getprogname returns const char*,
      whereas argp wants char*.  */
   extern char* __progname;
-  if (__progname) /* __progname may be NULL under some circumstances. */
-  {
-    /* __progname should already contain the base name only. */
-    return __progname;
-  }
-  return "";
+  char* p = __progname ? __progname : "";
+  return __argp_basename (p);
 # else
   /* FIXME: What now? Miles suggests that it is better to use NULL,
      but currently the value is passed on directly to fputs_unlocked,
