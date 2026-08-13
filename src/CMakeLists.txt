@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 # argp-standalone - standalone version of glibc's argp functions.
 
-set(
-  SOURCES
+add_library(
+  argp-standalone
   argp-ba.c
   argp-compat.c
   argp-eexst.c
@@ -17,8 +17,6 @@ set(
   getopt.c
   getopt1.c)
 
-add_library(argp-standalone ${SOURCES})
-
 target_compile_definitions(argp-standalone PRIVATE HAVE_CONFIG_H)
 argp_standalone_target_enable_warnings(argp-standalone)
 
@@ -26,6 +24,7 @@ target_include_directories(
   argp-standalone
   PRIVATE
   "${PROJECT_BINARY_DIR}"
+  "${CMAKE_CURRENT_SOURCE_DIR}"
   PUBLIC
   ../include/argp-standalone)
 

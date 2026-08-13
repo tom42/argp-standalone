@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
-/* Hierarchial argument parsing, layered over getopt.
-   Copyright (C) 1995-2016 Free Software Foundation, Inc.
+/* Hierarchical argument parsing, layered over getopt.
+   Copyright (C) 1995-2026 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
    Written by Miles Bader <miles@gnu.ai.mit.edu>.
 
@@ -16,25 +16,39 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 #ifndef _ARGP_H
 #define _ARGP_H
 
 #include <stdio.h>
 #include <ctype.h>
+/* argp-standalone: do not include getopt.h in public header,
+   since it may not be available.  */
+/*#include <getopt.h>*/
 #include <limits.h>
-
-#define __need_error_t
 #include <errno.h>
 
+/* argp-standalone: define __THROW. Taken from older version of <getopt.h> */
 #ifndef __THROW
-# define __THROW
+# ifndef __GNUC_PREREQ
+#  define __GNUC_PREREQ(maj, min) (0)
+# endif
+# if defined __cplusplus && __GNUC_PREREQ (2,8)
+#  define __THROW	throw ()
+# else
+#  define __THROW
+# endif
 #endif
+
+/* argp-standalone: define __NTH. Taken from older version of <argp.h> */
 #ifndef __NTH
 # define __NTH(fct) fct __THROW
 #endif
 
+/* argp-standalone: more recent versions of glibc do not define __attribute__
+   here anymore but in some non-standard header that we might not have.
+   Add an own definition of __attribute__ from an older version of argp.  */
 #ifndef __attribute__
 /* This feature is available in gcc versions 2.5 and later.  */
 # if __GNUC__ < 2 || (__GNUC__ == 2 && __GNUC_MINOR__ < 5) || \
@@ -50,6 +64,9 @@
 # endif
 #endif
 
+/* argp-standalone: more recent versions of glibc do not define __restrict
+   here anymore but in some non-standard header that we might not have.
+   Add an own definition of __restrict from an older version of argp.  */
 /* GCC 2.95 and later have "__restrict"; C99 compilers have
    "restrict", and "configure" may have defined "restrict".  */
 #ifndef __restrict
@@ -62,13 +79,26 @@
 # endif
 #endif
 
-#ifndef __error_t_defined
-typedef int error_t;
-# define __error_t_defined
+/* argp-standalone: implement -Wformat warnings correctly when using MinGW-w64.
+   See https://stackoverflow.com/a/79974346/17365470.  */
+#ifdef __MINGW32__
+# define argp_attribute_format(argp_format, argp_args) \
+    __attribute__ ((__format__ (__MINGW_PRINTF_FORMAT, argp_format, argp_args)))
+#else
+# define argp_attribute_format(argp_format, argp_args) \
+    __attribute__ ((__format__ (__printf__, argp_format, argp_args)))
 #endif
-
+
+/* argp-standalone: we do not have __BEGIN_DECLS/__END_DECLS. */
 #ifdef  __cplusplus
 extern "C" {
+#endif
+
+/* error_t may or may not be available from errno.h, depending on the
+   operating system.  */
+#ifndef __error_t_defined
+# define __error_t_defined 1
+typedef int error_t;
 #endif
 
 /* A description of a particular option.  A pointer to an array of
@@ -269,7 +299,7 @@ struct argp
 };
 
 /* Possible KEY arguments to a help filter function.  */
-#define ARGP_KEY_HELP_PRE_DOC	0x2000001 /* Help text preceeding options. */
+#define ARGP_KEY_HELP_PRE_DOC	0x2000001 /* Help text preceding options. */
 #define ARGP_KEY_HELP_POST_DOC	0x2000002 /* Help text following options. */
 #define ARGP_KEY_HELP_HEADER	0x2000003 /* Option header string. */
 #define ARGP_KEY_HELP_EXTRA	0x2000004 /* After all other documentation;
@@ -404,10 +434,12 @@ struct argp_state
    returned.  This function may also call exit unless the ARGP_NO_HELP flag
    is set.  INPUT is a pointer to a value to be passed in to the parser.  */
 extern error_t argp_parse (const struct argp *__restrict __argp,
+			   /* argp-standalone: __argc and __argv are macros in MSVC. */
 			   int argc, char **__restrict argv,
 			   unsigned __flags, int *__restrict __arg_index,
 			   void *__restrict __input);
 extern error_t __argp_parse (const struct argp *__restrict __argp,
+			     /* argp-standalone: __argc and __argv are macros in MSVC. */
 			     int argc, char **__restrict argv,
 			     unsigned __flags, int *__restrict __arg_index,
 			     void *__restrict __input);
@@ -483,7 +515,7 @@ extern void __argp_help (const struct argp *__restrict __argp,
    parsing routine (thus taking an argp_state structure as the first
    argument).  They may or may not print an error message and exit, depending
    on the flags in STATE -- in any case, the caller should be prepared for
-   them *not* to exit, and should return an appropiate error after calling
+   them *not* to exit, and should return an appropriate error after calling
    them.  [argp_usage & argp_error should probably be called argp_state_...,
    but they're used often enough that they should be short]  */
 
@@ -505,10 +537,10 @@ extern void __argp_usage (const struct argp_state *__state);
    message, then exit (1).  */
 extern void argp_error (const struct argp_state *__restrict __state,
 			const char *__restrict __fmt, ...)
-     __attribute__ ((__format__ (__printf__, 2, 3)));
+     argp_attribute_format (2, 3); /* argp-standalone: use own attribute. */
 extern void __argp_error (const struct argp_state *__restrict __state,
 			  const char *__restrict __fmt, ...)
-     __attribute__ ((__format__ (__printf__, 2, 3)));
+     argp_attribute_format (2, 3); /* argp-standalone: use own attribute. */
 
 /* Similar to the standard gnu error-reporting function error(), but will
    respect the ARGP_NO_EXIT and ARGP_NO_ERRS flags in STATE, and will print
@@ -521,11 +553,11 @@ extern void __argp_error (const struct argp_state *__restrict __state,
 extern void argp_failure (const struct argp_state *__restrict __state,
 			  int __status, int __errnum,
 			  const char *__restrict __fmt, ...)
-     __attribute__ ((__format__ (__printf__, 4, 5)));
+     argp_attribute_format (4, 5); /* argp-standalone: use own attribute. */
 extern void __argp_failure (const struct argp_state *__restrict __state,
 			    int __status, int __errnum,
 			    const char *__restrict __fmt, ...)
-     __attribute__ ((__format__ (__printf__, 4, 5)));
+     argp_attribute_format (4, 5); /* argp-standalone: use own attribute. */
 
 /* Returns true if the option OPT is a valid short option.  */
 extern int _option_is_short (const struct argp_option *__opt) __THROW;
@@ -547,13 +579,14 @@ extern void *__argp_input (const struct argp *__restrict __argp,
 
 #ifdef __USE_EXTERN_INLINES
 
-# if !_LIBC
+# if !(defined _LIBC && _LIBC)
 #  define __argp_usage argp_usage
 #  define __argp_state_help argp_state_help
 #  define __option_is_short _option_is_short
 #  define __option_is_end _option_is_end
 # endif
 
+/* argp-standalone: needed for old argp-xinl.c from glibc 2.42 we're using. */
 # ifndef ARGP_EI
 #  define ARGP_EI __extern_inline
 # endif
@@ -582,13 +615,19 @@ __NTH (__option_is_end (const struct argp_option *__opt))
   return !__opt->key && !__opt->name && !__opt->doc && !__opt->group;
 }
 
-# if !_LIBC
+# if !(defined _LIBC && _LIBC)
 #  undef __argp_usage
 #  undef __argp_state_help
 #  undef __option_is_short
 #  undef __option_is_end
 # endif
 #endif /* Use extern inlines.  */
+
+/* argp-standalone: do not implement glibc's long double redirection. */
+/*#include <bits/floatn.h>
+#if defined __LDBL_COMPAT || __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI == 1
+# include <bits/argp-ldbl.h>
+#endif*/
 
 #ifdef  __cplusplus
 }

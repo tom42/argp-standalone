@@ -23,14 +23,16 @@
       "name": "dev-linux-clang",
       "inherits": "dev-linux",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "clang"
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
       }
     },
     {
       "name": "dev-linux-gcc",
       "inherits": "dev-linux",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "gcc"
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++"
       }
     },
     {
@@ -38,6 +40,7 @@
       "inherits": "dev-base",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "i686-w64-mingw32-gcc",
+        "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
         "CMAKE_SYSTEM_NAME": "Windows",
         "CMAKE_CROSSCOMPILING_EMULATOR": "wine"
       }
@@ -47,6 +50,7 @@
       "inherits": "dev-base",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
+        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
         "CMAKE_SYSTEM_NAME": "Windows",
         "CMAKE_CROSSCOMPILING_EMULATOR": "wine"
       }

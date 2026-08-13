@@ -3,7 +3,7 @@
 # argp-standalone - standalone version of glibc's argp functions.
 
 cmake_minimum_required(VERSION 3.17.3)
-project(argp-standalone VERSION 1.0.3 LANGUAGES C)
+project(argp-standalone VERSION 1.2.0 LANGUAGES C)
 list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 
@@ -21,6 +21,7 @@ option(argp_standalone_ENABLE_WARNINGS "Build argp-standalone with warnings enab
 
 if(argp_standalone_BUILD_TESTING)
   enable_testing()
+  enable_language(CXX)
 endif()
 
 
@@ -39,10 +40,6 @@ cmake_push_check_state()
 set(CMAKE_REQUIRED_DEFINITIONS -D_GNU_SOURCE)
 
 # Check for headers
-check_include_file(mempcpy.h HAVE_MEMPCPY_H)
-check_include_file(strcase.h HAVE_STRCASE_H)
-check_include_file(strchrnul.h HAVE_STRCHRNUL_H)
-check_include_file(strndup.h HAVE_STRNDUP_H)
 check_include_file(sysexits.h HAVE_SYSEXITS_H)
 check_include_file(unistd.h HAVE_UNISTD_H)
 
@@ -67,7 +64,7 @@ check_symbol_exists(strerror_s string.h HAVE_DECL_STRERROR_S)
 cmake_pop_check_state()
 
 # Check for miscellaneous functions
-check_symbol_exists(asprintf stdio.h HAVE_ASPRINTF)
+check_function_exists(xasprintf HAVE_XASPRINTF)
 check_symbol_exists(mempcpy string.h HAVE_MEMPCPY)
 check_symbol_exists(random stdlib.h HAVE_RANDOM)
 check_symbol_exists(sleep unistd.h HAVE_SLEEP)

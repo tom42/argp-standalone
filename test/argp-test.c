@@ -1,8 +1,7 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* Test program for argp argument parser
-   Copyright (C) 1997-2016 Free Software Foundation, Inc.
+   Copyright (C) 1997-2026 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
-   Written by Miles Bader <miles@gnu.ai.mit.edu>.
 
    The GNU C Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
@@ -16,11 +15,7 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
-
-#ifndef _GNU_SOURCE
-#define _GNU_SOURCE 1
-#endif
+   <https://www.gnu.org/licenses/>.  */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -31,39 +26,8 @@
 #include <string.h>
 #include <argp.h>
 
-/*
- * Implementation of random() for systems that don't have it.
- * Suitable for test purposes only, not for production code.
- */
-#if defined(HAVE_RANDOM) && !HAVE_RANDOM
-int random(void)
-{
-  return rand();
-}
-#endif
-
-/*
- * Implementation of asprintf() for systems that don't have it.
- * Suitable for test purposes only, not for production code.
- */
-#if defined(HAVE_ASPRINTF) && ! HAVE_ASPRINTF
-#include <stdarg.h>
-void asprintf(char** strp, const char* fmt, ...)
-{
-  const size_t bufsize = 1024;
-  va_list ap;
-  va_start(ap, fmt);
-
-  /* Since this is test code we don't bother checking whether malloc returns 0. */
-  *strp = malloc(bufsize);
-
-  /* Format text and ensure it is terminated in any case. */
-  vsnprintf(*strp, bufsize, fmt, ap);
-  (*strp)[bufsize - 1] = 0;
-
-  va_end(ap);
-}
-#endif
+/* argp-standalone: include our own test support file. */
+#include "test_support.h"
 
 const char *argp_program_version = "argp-test 1.0";
 
@@ -218,12 +182,12 @@ help_filter (int key, const char *text, void *input)
   if (key == ARGP_KEY_HELP_POST_DOC && text)
     {
       time_t now = time (0);
-      asprintf (&new_text, text, ctime (&now));
+      new_text = xasprintf (text, ctime (&now));
     }
   else if (key == 'f')
     /* Show the default for the --foonly option.  */
-    asprintf (&new_text, "%s (ZOT defaults to %x)",
-	      text, params->foonly_default);
+    new_text = xasprintf ("%s (ZOT defaults to %x)",
+		          text, params->foonly_default);
   else
     new_text = (char *)text;
 

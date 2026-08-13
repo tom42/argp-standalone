@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* Real definitions for extern inline functions in argp.h
-   Copyright (C) 1997-2016 Free Software Foundation, Inc.
+   Copyright (C) 1997-2025 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
    Written by Miles Bader <miles@gnu.ai.mit.edu>.
 
@@ -16,7 +16,9 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
+
+/* argp-standalone: old argp-xinl.c from glibc 2.42 works better for us. */
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>
@@ -32,7 +34,7 @@
 #define ARGP_EI
 #undef __OPTIMIZE__
 #define __OPTIMIZE__ 1
-#include "argp.h"
+#include <argp.h>
 
 /* Add weak aliases.  */
 #if _LIBC - 0 && defined (weak_alias)

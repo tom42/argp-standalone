@@ -1,7 +1,6 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
-/* Copyright (C) 2007-2016 Free Software Foundation, Inc.
+/* Copyright (C) 2007-2026 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
-   Contributed by Jakub Jelinek <jakub@redhat.com>, 2007.
 
    The GNU C Library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
@@ -15,7 +14,7 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 #include <argp.h>
 
@@ -89,9 +88,18 @@ static struct argp argp1 =
   };
 
 
-int
-main (void)
+static int
+do_test (void)
 {
   argp_help (&argp1, stdout, ARGP_HELP_LONG, (char *) "tst-argp2");
   return 0;
+}
+
+
+/* argp-standalone: we do not have glibc's test framework. */
+int
+main(int argc, char** argv)
+{
+    do_test();
+    return 0;
 }

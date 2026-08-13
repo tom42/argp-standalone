@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: LGPL-2.1-or-later */
 /* Default definition for ARGP_ERR_EXIT_STATUS
-   Copyright (C) 1997-2016 Free Software Foundation, Inc.
+   Copyright (C) 1997-2026 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
    Written by Miles Bader <miles@gnu.ai.mit.edu>.
 
@@ -16,12 +16,13 @@
 
    You should have received a copy of the GNU Lesser General Public
    License along with the GNU C Library; if not, see
-   <http://www.gnu.org/licenses/>.  */
+   <https://www.gnu.org/licenses/>.  */
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
 
+/* argp-standalone: use EXIT_FAILURE if <sysexits.h> is not available. */
 #if defined(HAVE_SYSEXITS_H) && HAVE_SYSEXITS_H
 # include <sysexits.h>
 #else
@@ -33,6 +34,7 @@
 /* The exit status that argp will use when exiting due to a parsing error.
    If not defined or set by the user program, this defaults to EX_USAGE from
    <sysexits.h>.  */
+/* argp-standalone: use EXIT_FAILURE if <sysexits.h> is not available. */
 error_t argp_err_exit_status =
 #if defined(HAVE_SYSEXITS_H) && HAVE_SYSEXITS_H
   EX_USAGE;

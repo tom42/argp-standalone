@@ -17,8 +17,8 @@
 #if defined(HAVE_MEMPCPY) && !HAVE_MEMPCPY
 void* argp_compat_mempcpy(void* out, const void* in, size_t n)
 {
-    memcpy(out, in, n);
-    return (char*)out + n;
+  memcpy(out, in, n);
+  return (char*)out + n;
 }
 #endif
 

@@ -186,7 +186,7 @@ jobs:
     - name: Install Cygwin
       uses: cygwin/cygwin-install-action@v6
       with:
-        packages: cmake gcc-core ninja
+        packages: cmake gcc-core gcc-g++ ninja
 
     - name: Configure CMake
       run: >
