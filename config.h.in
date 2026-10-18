@@ -23,7 +23,6 @@
 #cmakedefine01 HAVE_RANDOM
 #cmakedefine01 HAVE_SLEEP
 #cmakedefine01 HAVE_STRCASECMP
-#cmakedefine01 HAVE_STRCHRNUL
 #cmakedefine01 HAVE_STRNDUP
 
 /* Variables */

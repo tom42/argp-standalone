@@ -73,7 +73,6 @@ check_symbol_exists(sleep unistd.h HAVE_SLEEP)
 # in string.h, so we probe for that (strings.h isn't included anywhere).
 check_symbol_exists(strcasecmp string.h HAVE_STRCASECMP)
 
-check_symbol_exists(strchrnul string.h HAVE_STRCHRNUL)
 check_symbol_exists(strndup string.h HAVE_STRNDUP)
 
 # Check for variables
